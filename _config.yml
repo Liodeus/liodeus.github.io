@@ -1,1 +1,38 @@
-theme: jekyll-theme-slate
+# visit https://github.com/mojombo/jekyll/wiki/Configuration for more settings
+
+paginate: 10 # pagination based on number of posts
+paginate_path: "page:num"
+exclude: ["README.md"] # files to exclude
+highlighter: rouge
+markdown: kramdown
+disqus: Liodeus
+google_analytics: Liodeus
+title: Liodeus
+
+defaults:
+  -
+    scope:
+      path: "" # empty string for all files
+    values:
+      title: Liodeus
+
+description: OSCP journey with Liodeus !
+author:
+  name: Liodeus
+  email: thibaultgalbourdin@gmail.com
+  github: https://github.com/Liodeus
+  linkedin: thibault-galbourdin-9a4998144
+  bio: OSCP journey with Liodeus !
+  email_md5: 94b2c0c075c4ed839beee2dafbb2ac69
+
+# rss_path: feed.xml
+# categories_path: categories.html
+# tags_path: tags.html
+
+# set it as url of an image
+# sidebar_background_image: https://www.dropbox.com/s/g9h23zrycedxtk5/sky.png?raw=1
+
+BASE_PATH:
+
+plugins:
+  - jekyll-paginate
