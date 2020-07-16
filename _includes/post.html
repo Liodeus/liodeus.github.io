@@ -74,7 +74,7 @@
 		<div>
       <section class="share col-sm-6">
         <h4 class="section-title">Share Post</h4>
-        <a class="btn btn-default btn-sm twitter" href="https://twitter.com/intent/tweet?text=&quot;{{ page.twitter_text }}&quot;%20{{ site.url }}{{ page.url }}&hashtags={% for tag in page.tags %}{{tag}},{% endfor %}""
+        <a class="btn btn-default btn-sm twitter" href="https://twitter.com/intent/tweet?text={{ site.url }}{{ page.url }}&hashtags={% for tag in page.tags %}{{tag}}{% endfor %}"
            onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
           <i class="fa fa-twitter fa-lg"></i>
           Twitter
