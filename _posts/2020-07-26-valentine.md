@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Valentine
-tags: [OSCP, Writeup, Linux]
+tags: [OSCP, Writeup, Linux, Web, Patch Management, SSH]
 description: "Valentine write-up"
 ---
 
@@ -13,7 +13,22 @@ description: "Valentine write-up"
 
 ------
 
+- base64
+- cat
+- echo
+- ffuf
+- john
+- linenum
 - nmap
+- openssl
+- python
+- scp
+- searchsploit
+- ssh2john
+- ssh
+- tee
+- tmux
+- xxd
 
 
 ## Reconnaissance
