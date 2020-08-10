@@ -1,8 +1,8 @@
 ---
 layout: post
-title: Buffer Overflow personal cheatsheet
+title: Buffer Overflow personnal cheatsheet
 tags: [OSCP, Buffer Overflow, cheatsheet]
-description: "Buffer Overflow personal cheatsheet"
+description: "Buffer Overflow personnal cheatsheet"
 
 ---
 
