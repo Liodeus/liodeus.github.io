@@ -10,8 +10,6 @@ description: "Buffer Overflow personnal cheatsheet"
 
 - C:\Users\thiba\Desktop\build\Release\winchecksec.exe PATH.exe
 
-# Buffer Overflow "Normal" :
-
 ### Mona Configuration :
 
 - mona config -set workingfolder c:\mona\%p
