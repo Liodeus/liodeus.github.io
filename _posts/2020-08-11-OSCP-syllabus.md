@@ -32,3 +32,7 @@ What I'm gonna do :
 19. Read part 19 entirely
 20. Read part 20 entirely
 21. Read part 21 entirely
+22. Fly over par 22 (read 22.2.1 / 22.3.6 / 22.3.7)
+23. Read part 23 entirely
+24. Read part 24 entirely
+25. Read part 25 entirely
