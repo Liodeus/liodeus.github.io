@@ -3,25 +3,26 @@ layout: post
 title: OSCP personnal cheatsheet
 tags: [OSCP, Cheatsheet]
 description: "OSCP personnal cheatsheet"
+
 ---
 
 - [Enumeration](#enumeration)
 - [NMAP](#nmap)
   * [TCP](#tcp)
   * [UDP](#udp)
-- [LDAP (389)](#ldap--389-)
-- [FTP (21)](#ftp--21-)
+- [FTP - 21](#ftp---21)
   * [Brute force](#brute-force)
   * [Downloading file](#downloading-file)
   * [Uploading file](#uploading-file)
-- [SSH (22)](#ssh--22-)
+- [SSH - 22](#ssh---22)
   * [Brute force](#brute-force-1)
-- [DNS (53)](#dns--53-)
+- [DNS - 53](#dns---53)
   * [Zone transfert](#zone-transfert)
   * [DNS brute force](#dns-brute-force)
-- [SNMP (161)](#snmp--161-)
+- [SNMP - 161](#snmp---161)
   * [Brute force community string](#brute-force-community-string)
-- [SMB (445)](#smb--445-)
+- [LDAP - 389](#ldap---389)
+- [SMB - 445](#smb---445)
   * [Version if nmap didn't detect it](#version-if-nmap-didn-t-detect-it)
   * [Scans](#scans)
   * [Mount a SMB share](#mount-a-smb-share)
@@ -30,15 +31,15 @@ description: "OSCP personnal cheatsheet"
     + [Prepare shellcodes and listeners](#prepare-shellcodes-and-listeners)
     + [Exploit](#exploit)
   * [If this doesn't work, try this one](#if-this-doesn-t-work--try-this-one)
-- [NFS (2049)](#nfs--2049-)
+- [NFS - 2049](#nfs---2049)
   * [Show Mountable NFS Shares](#show-mountable-nfs-shares)
   * [Mount a share](#mount-a-share)
   * [List NFS exported shares. If 'rw,no_root_squash' is present, connect, upload and execute suid-shell](#list-nfs-exported-shares-if--rw-no-root-squash--is-present--connect--upload-and-execute-suid-shell)
-- [RDP (3389)](#rdp--3389-)
+- [RDP - 3389](#rdp---3389)
   * [Connect with known credentials / hash](#connect-with-known-credentials---hash)
   * [Brute force](#brute-force-2)
   * [Adding user to RDP group (Windows)](#adding-user-to-rdp-group--windows-)
-- [DICTIONNARY](#dictionnary)
+- [DICTIONNARY GENERATION](#dictionnary-generation)
 - [HASHES](#hashes)
   * [Windows](#windows)
   * [Linux](#linux)
@@ -85,17 +86,7 @@ sudo -sU -sS -sC -sV -oA <NAME>.udp <IP> -v
 
 ------
 
-## LDAP (389)
-
-```
-nmap -n -sV --script "ldap* and not brute"
-
-ldapsearch -h <IP> -x -s base
-```
-
-------
-
-## FTP (21)
+## FTP - 21
 
 ### Brute force
 
@@ -123,7 +114,7 @@ put <FILE>
 
 ------
 
-## SSH (22)
+## SSH - 22
 
 ### Brute force
 
@@ -133,7 +124,7 @@ hydra -V -f -L <USERS_LIST> -P <PASSWORDS_LIST> ssh://<IP> -u -vV
 
 ------
 
-## DNS (53)
+## DNS - 53
 
 ```
 dnsenum <DOMAIN>
@@ -157,7 +148,7 @@ https://github.com/blark/aiodnsbrute
 
 ------
 
-## SNMP (161)
+## SNMP - 161
 
 ### Brute force community string
 
@@ -175,7 +166,17 @@ snmp-check <IP>
 
 ------
 
-## SMB (445)
+## LDAP - 389
+
+```
+nmap -n -sV --script "ldap* and not brute"
+
+ldapsearch -h <IP> -x -s base
+```
+
+------
+
+## SMB - 445
 
 ### Version if nmap didn't detect it
 
@@ -249,7 +250,7 @@ python zzz_exploit.py <IP>
 
 ------
 
-## NFS (2049)
+## NFS - 2049
 
 ### Show Mountable NFS Shares
 
@@ -274,7 +275,7 @@ chmod +s pwn
 
 ------
 
-## RDP (3389)
+## RDP - 3389
 
 ### Connect with known credentials / hash
 
@@ -303,7 +304,7 @@ net localgroup "Remote Desktop Users" <USER> /add
 
 ------
 
-## DICTIONNARY
+## DICTIONNARY GENERATION
 
 ```
 cewl -m <WORDS_SIZE> --with-numbers -w dictiFromWebsite <URL> -d <DEPTH>
