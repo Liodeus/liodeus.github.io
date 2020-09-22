@@ -4,6 +4,10 @@ body{
 	color: #2c3e50;
 }
 
+table, th, td {
+  border: 1px solid #ccc;
+}
+
 .sidebar {
 	position: fixed;
 	top: 0px;
