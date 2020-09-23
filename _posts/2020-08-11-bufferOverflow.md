@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Buffer Overflow personnal cheatsheet
-tags: [OSCP, Buffer Overflow, cheatsheet]
+tags: [OSCP, Buffer Overflow, Cheatsheet]
 description: "Buffer Overflow personnal cheatsheet"
 
 ---
