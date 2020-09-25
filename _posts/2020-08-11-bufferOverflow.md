@@ -293,8 +293,8 @@ Choose an address in the results and update exploit.py :
 - Setting the "retn" variable to the address, written backwards
 
 ```
-# Example
-0x625011af : "\xff\e4"
+# Example of a JMP ESP address
+0x625011af
 
 # exploit.py
 retn = "\xaf\x11\x50\x62"
