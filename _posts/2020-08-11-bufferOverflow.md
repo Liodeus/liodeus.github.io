@@ -93,6 +93,10 @@ Launch Immunity Debugger, then "Open" or "Attach" the .exe file.
 
 ### Mona configuration 
 
+All mona commands must be run in the terminal inside Immunity Debugger (in the red rectangle).
+
+![Mona commands](/assets/imgs/buffer_overflow/mona_commands.PNG)
+
 Set the current working directory :
 
 ```
