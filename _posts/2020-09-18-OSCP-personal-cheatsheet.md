@@ -24,7 +24,7 @@ description: "OSCP personal cheat sheet"
 - [FINGER - 79](#finger---79)
   * [User enumeration](#user-enumeration)
   * [Command execution](#command-execution)
-- [HTTP/HTTPS - 80/443](#HTTP/HTTPS - 80/443)
+- [HTTP/HTTPS - 80/443](#HTTP/HTTPS---80/443)
   * [Automatic scanners](#automatic-scanners)
   * [Wordpress](#wordpress)
     + [Wordpress panel RCE](#wordpress-panel-rce)
@@ -80,7 +80,7 @@ description: "OSCP personal cheat sheet"
     + [Check if vulnerable](#check-if-vulnerable)
     + [Prepare shellcodes and listeners](#prepare-shellcodes-and-listeners)
     + [Exploit](#exploit)
-  * [If this doesn't work, try this one](#if-this-doesn-t-work--try-this-one)
+    * [If this doesn't work, try this one](#if this doesn't work, try this one)
   * [MS08-067](#ms08-067)
   * [CVE-2017-7494](#cve-2017-7494)
 - [MSSQL - 1433](#mssql---1433)
@@ -846,7 +846,7 @@ python eternalblue_exploit<NUMBER>.py <IP> shellcode/sc_all.bin
 May need to run it multiple times
 ```
 
-### If this doesn't work, try this one
+#### If this doesn't work, try this one
 
 ```
 python zzz_exploit.py <IP>
