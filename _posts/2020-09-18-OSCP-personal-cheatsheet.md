@@ -1,9 +1,8 @@
 ---
- 	
 layout: post
 title: OSCP personal cheatsheet
 tags: [OSCP, Cheatsheet]
-description: "OSCP personal cheat sheet"
+description: "OSCP personal cheatsheet"
 ---
 
 - [Enumeration](#enumeration)
