@@ -24,7 +24,7 @@ description: "OSCP personal cheat sheet"
 - [FINGER - 79](#finger---79)
   * [User enumeration](#user-enumeration)
   * [Command execution](#command-execution)
-- [HTTP/HTTPS - 80/443](#HTTP/HTTPS---80/443)
+- [HTTP - HTTPS - 80 - 443](#HTTP---HTTPS---80---443)
   * [Automatic scanners](#automatic-scanners)
   * [Wordpress](#wordpress)
     + [Wordpress panel RCE](#wordpress-panel-rce)
@@ -42,9 +42,9 @@ description: "OSCP personal cheat sheet"
     + [HTTP basic authentication](#http-basic-authentication)
     + [HTTP GET request](#http-get-request)
     + [HTTP POST request](#http-post-request)
-  * [Spidering / Brute force directories / files](#spidering---brute-force-directories---files)
+  * [Spidering / Brute force directories / files](#spidering-/-brute-force-directories-/-files)
     + [File backups](#file-backups)
-  * [Local File Inclusion / Remote File Inclusion - LFI / RFI](#local-file-inclusion---remote-file-inclusion---lfi---rfi)
+  * [Local File Inclusion / Remote File Inclusion - LFI / RFI](#Local-File-Inclusion-/-Remote-File-Inclusion---LFI-/-RFI)
     + [Wrappers](#wrappers)
       - [Wrapper php://filter](#wrapper-php---filter)
       - [Wrapper expect://](#wrapper-expect---)
@@ -368,7 +368,7 @@ finger "|/bin/ls -a /<IP>"
 
 ------
 
-## HTTP/HTTPS - 80/443
+## HTTP - HTTPS - 80 - 443
 
 ### Automatic scanners
 
