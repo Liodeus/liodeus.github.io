@@ -1,5 +1,5 @@
 ---
-
+ 	
 layout: post
 title: OSCP personal cheatsheet
 tags: [OSCP, Cheatsheet]
@@ -24,7 +24,7 @@ description: "OSCP personal cheat sheet"
 - [FINGER - 79](#finger---79)
   * [User enumeration](#user-enumeration)
   * [Command execution](#command-execution)
-- [HTTP - HTTPS - 80 - 443](#HTTP---HTTPS---80---443)
+- [HTTP - HTTPS - 80 - 443](#http---https---80---443)
   * [Automatic scanners](#automatic-scanners)
   * [Wordpress](#wordpress)
     + [Wordpress panel RCE](#wordpress-panel-rce)
@@ -42,9 +42,9 @@ description: "OSCP personal cheat sheet"
     + [HTTP basic authentication](#http-basic-authentication)
     + [HTTP GET request](#http-get-request)
     + [HTTP POST request](#http-post-request)
-  * [Spidering / Brute force directories / files](#spidering-/-brute-force-directories-/-files)
+  * [Spidering / Brute force directories / files](#spidering--brute-force-directories--files)
     + [File backups](#file-backups)
-  * [Local File Inclusion / Remote File Inclusion - LFI / RFI](#Local-File-Inclusion-/-Remote-File-Inclusion---LFI-/-RFI)
+  * [Local File Inclusion / Remote File Inclusion - LFI / RFI](#local-file-inclusion--remote-file-inclusion---lfi--rfi)
     + [Wrappers](#wrappers)
       - [Wrapper php://filter](#wrapper-php://filter)
       - [Wrapper expect://](#wrapper-expect://)
@@ -100,7 +100,7 @@ description: "OSCP personal cheat sheet"
   * [Manual exploit](#manual-exploit-1)
 - [RDP - 3389](#rdp---3389)
   * [Brute force](#brute-force)
-  * [Connect with known credentials / hash](#connect-with-known-credentials-/-hash)
+  * [Connect with known credentials / hash](#connect-with-known-credentials--hash)
   * [Session stealing](#session-stealing)
     + [Get openned sessions](#get-openned-sessions)
     + [Access to the selected](#access-to-the-selected)
@@ -217,7 +217,7 @@ description: "OSCP personal cheat sheet"
   * [Determine the current version of Linux](#determine-the-current-version-of-linux)
   * [Determine more information about the environment](#determine-more-information-about-the-environment)
   * [List processes running](#list-processes-running)
-  * [List the allowed (and forbidden) commands for the invoking use](#List-the-allowed-(and-forbidden)-commands-for-the-invoking-use)
+  * [List the allowed (and forbidden) commands for the invoking use](#list-the-allowed-and-forbidden-commands-for-the-invoking-use)
 - [USEFUL WINDOWS COMMANDS](#useful-windows-commands)
 - [ZIP](#zip)
 
