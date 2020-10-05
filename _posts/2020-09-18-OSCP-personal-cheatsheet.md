@@ -196,9 +196,9 @@ description: "OSCP personal cheatsheet"
 - [PRIVILE ESCALATION](#privile-escalation)
   * [Linux](#linux-4)
     + [Enumeration scripts](#enumeration-scripts)
-  * [Vulnerability scan](#vulnerability-scan)
-  * [Suid checker](#suid-checker)
-  * [Methodology to follow](#methodology-to-follow)
+    * [Vulnerability scan](#vulnerability-scan)
+    * [Suid checker](#suid-checker)
+    * [Methodology to follow](#methodology-to-follow)
   * [Windows](#windows-4)
     + [Enumeration scripts](#enumeration-scripts-1)
       - [General scans](#general-scans)
@@ -239,7 +239,7 @@ description: "OSCP personal cheatsheet"
   
 - [REVERSE SHELL](#reverse-shell)
   
-  - [Amazing tool for shell generation](#amazing-tool-for-shell-generation-1)
+  - [Amazing tool for shell generation](#amazing-tool-for-shell-generation)
   - [Bash](#bash-1)
   - [Perl](#perl-1)
   - [Python](#python-1)
@@ -1606,14 +1606,14 @@ python linuxprivchecker.py
 ./unix-privesc-check standard
 ```
 
-### Vulnerability scan
+#### Vulnerability scan
 
 ```
 perl les2.pl
 bash les.sh
 ```
 
-### Suid checker
+#### Suid checker
 
 ```
 python suid3num.py
@@ -1621,7 +1621,7 @@ python suid3num.py
 https://gtfobins.github.io/
 ```
 
-### Methodology to follow
+#### Methodology to follow
 
 ```
 https://guif.re/linuxeop
