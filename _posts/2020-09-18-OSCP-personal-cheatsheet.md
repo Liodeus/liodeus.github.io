@@ -239,7 +239,7 @@ description: "OSCP personal cheatsheet"
   
 - [REVERSE SHELL](#reverse-shell)
   
-  - [Amazing tool for shell generation](#amazing-tool-for-shell-generation)
+  - [Amazing tool for shell generation](#amazing-tool-for-shell-generation-1)
   - [Bash](#bash-1)
   - [Perl](#perl-1)
   - [Python](#python-1)
