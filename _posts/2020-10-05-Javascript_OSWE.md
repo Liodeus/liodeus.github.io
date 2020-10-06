@@ -27,7 +27,7 @@ description: "Javascript personal course - OSWE"
       - [Instance method](#instance-method)
       - [Static method](#static-method)
   - [DOM](#dom)
-    - [Couse used](#couse-used)
+    - [Course used](#course-used)
     - [Get elements](#get-elements)
     - [Modify elements](#modify-elements)
       - [Modify the content of an element](#modify-the-content-of-an-element)
@@ -351,7 +351,7 @@ console.log(Point.distance(p1, p2)); // 7.0710678118654755
 
 ## DOM
 
-### Couse used
+### Course used
 
 ```
 https://openclassrooms.com/fr/courses/5543061-ecrivez-du-javascript-pour-le-web
