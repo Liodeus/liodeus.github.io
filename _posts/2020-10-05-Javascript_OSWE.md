@@ -7,22 +7,42 @@ description: "Javascript personal course - OSWE"
 
 # Table of contents
 
-- [JavaScript](#javascript)
-  - [Course used](#course-used)
-  - [Variables](#variables)
-  - [Constants](#constants)
-  - [Comments](#comments)
-  - [Print variables](#print-variables)
-  - [Determined variable type](#determined-variable-type)
-  - [Object](#object)
-  - [Class](#class)
-  - [Tables](#tables)
-  - [Set](#set)
-  - [Map](#map)
-  - [Conditions](#conditions)
-  - [Loops](#loops)
-  - [Functions](#functions)
-  - [Method in a class](#method-in-a-class)
+- [Table of contents](#table-of-contents)
+  - [JavaScript](#javascript)
+    - [Course used](#course-used)
+    - [Variables](#variables)
+    - [Constants](#constants)
+    - [Comments](#comments)
+    - [Print variables](#print-variables)
+    - [Determined variable type](#determined-variable-type)
+    - [Object](#object)
+    - [Class](#class)
+    - [Tables](#tables)
+    - [Set](#set)
+    - [Map](#map)
+    - [Conditions](#conditions)
+    - [Loops](#loops)
+    - [Functions](#functions)
+    - [Method in a class](#method-in-a-class)
+      - [Instance method](#instance-method)
+      - [Static method](#static-method)
+  - [DOM](#dom)
+    - [Couse used](#couse-used)
+    - [Get elements](#get-elements)
+    - [Modify elements](#modify-elements)
+      - [Modify the content of an element](#modify-the-content-of-an-element)
+      - [Modify classes](#modify-classes)
+      - [Change the style of an element](#change-the-style-of-an-element)
+      - [Modify attributes](#modify-attributes)
+      - [Modify elements](#modify-elements)
+        - [Create new elements](#create-new-elements)
+        - [Add child](#add-child)
+        - [Remove and replace elements](#remove-and-replace-elements)
+    - [Events](#events)
+      - [onclick](#onclick)
+      - [preventDefault](#preventdefault)
+      - [mouseMove](#mousemove)
+      - [input](#input)
 
 ------
 
@@ -89,8 +109,6 @@ alert(typeof test); -> Output number
 ------
 
 ### Object
-
-Object in JavaScript are written in JSON.
 
 ```
 # Create
@@ -328,4 +346,203 @@ p2.distance; // undefined
 
 console.log(Point.distance(p1, p2)); // 7.0710678118654755
 ```
+
+------
+
+## DOM
+
+### Couse used
+
+```
+https://openclassrooms.com/fr/courses/5543061-ecrivez-du-javascript-pour-le-web
+```
+
+------
+
+### Get elements
+
+getElementById()
+
+```
+<p id="test">Test</p>
+const test = document.getElementById('test');
+```
+
+getElementsByClassName()
+
+```
+<div>
+    <div class="content">Contenu 1</div>
+    <div class="content">Contenu 2</div>
+</div>
+const contents = document.getElementsByClassName('content');
+```
+
+getElementsByTagName()
+
+```
+<div>
+    <article>Contenu 1</article>
+    <article>Contenu 2</article>
+    <article>Contenu 3</article>
+</div>
+const articles = document.getElementsByTagName('article');
+const thirdArticle = articles[2];
+```
+
+Parent / child
+
+```
+<div id="parent">
+    <div id="previous">Précédent</div>
+    <div id="main">
+        <p>Paragraphe 1</p>
+        <p>Paragraphe 2</p>
+    </div>
+    <div id="next">Suivant</div>
+</div>
+
+const elt = document.getElementById('main');
+
+const child = elt.children; // Return paragraphe 1/2 
+const parent = elt.parentElement; // Return div (id=parent)
+const sibling = elt.nextElementSibling; // Return div (id=next)
+const previous_sibling = elt.previousElementSibling; // Return div (id=previous)
+```
+
+------
+
+### Modify elements
+
+#### Modify the content of an element
+
+```
+<p>Paragraphe 1</p>
+<p>Paragraphe 2</p>
+
+const test = document.getElementsByTagName("p")[0];
+const test2 = document.getElementsByTagName("p")[1];
+
+test.innerHTML = "<p>Exemple <i>Test</i></p>"; // Test will be in italic
+test2.textContent = "<p>Exemple <i>Test</i></p>"; // Test will not be in italic
+```
+
+#### Modify classes
+
+```
+<div id="main"></div>
+
+let elt = document.getElementById('main');
+
+elt.classList.add("nouvelleClasse"); // Adds the newClass to the element
+elt.classList.remove("nouvelleClasse"); // Deletes the new classClass that was just added
+elt.classList.contains("nouvelleClasse"); // Will return false because it has just been deleted
+elt.classList.replace("oldClass", "newClass"); // Will replace oldClass by newClass if oldClass was present on the element
+```
+
+#### Change the style of an element
+
+```
+elt.style.color = "#fff"; // Change the color of the text of the element to white
+elt.style.backgroundColor = "#000"; // Change the background color of the element to black
+elt.style.fontWeight = "bold"; // Bold the text of the element
+```
+
+#### Modify attributes
+
+```
+<div id="main"></div>
+
+let elt = document.getElementById('main');
+
+elt.setAttribute("type", "password"); // Change the input type to a password type
+elt.setAttribute("name", "my-password"); // Change the name of the input to my-password
+elt.getAttribute("name"); // Returns my-password
+elt.removeAttribute("name") // Remove the name attribute of the input
+```
+
+#### Modify elements
+
+##### Create new elements
+
+```
+const newElt = document.createElement("div");
+```
+
+##### Add child
+
+```
+<div id="main"></div>
+
+const newElt = document.createElement("div");
+let elt = document.getElementById("main");
+
+elt.appendChild(newElt);
+```
+
+##### Remove and replace elements
+
+```
+<div id="main"></div>
+
+const newElt = document.createElement("div");
+let elt = document.getElementById("main");
+elt.appendChild(newElt);
+
+elt.removeChild(newElt); // Removes the newElt element from the elt element
+elt.replaceChild(document.createElement("article"), newElt); // Replaces the newElt element by a new element of type article
+```
+
+------
+
+### Events
+
+```
+addEventListener(<event>, <callback>);
+```
+
+#### onclick
+
+```
+const elt = document.getElementById('link');
+
+elt.addEventListener('click', function() {
+    elt.innerHTML = "Clicked !";
+});
+```
+
+#### preventDefault
+
+```
+const elt = document.getElementById('link');
+
+elt.addEventListener('click', function(event) {
+    event.preventDefault(); // We use the preventDefault function of our event object to prevent the default behavior of this element when the mouse is clicked.
+});
+```
+
+#### mouseMove
+
+```
+elt.addEventListener('mousemove', function(event) {
+    const x = event.offsetX;
+    const y = event.offsetY;
+});
+```
+
+#### input 
+
+Works for :
+
+- \<input\>\</input\>
+- \<select\>\</select\>
+- \<textarea\>\</textarea\>
+
+```
+input.addEventListener('input', function(event) {
+    output.innerHTML = event.target.value; 
+});
+```
+
+------
 
