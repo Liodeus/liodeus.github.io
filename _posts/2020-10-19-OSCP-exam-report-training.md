@@ -5,11 +5,57 @@ tags: [OSCP, Cheatsheet, Report, Training]
 description: "OSCP exam report - training"
 ---
 
+# OSCP EXAM REPORT - TRAINING 
+
+## Report templates
+
+Downloads the templates :
+
 ```
 git clone https://github.com/noraj/OSCP-Exam-Report-Template-Markdown.git
-mkdir report
+mkdir report_training
 cd OSCP-Exam-Report-Template-Markdown
-mv src/OSCP-exam-report-template_* ../report/
+mv src/OSCP-exam-report-template_* ../report_training/
+```
+
+In this repository there is two exam templates :
+
+- OSCP-exam-report-template_whoisflynn_v3.2.md
+- OSCP-exam-report-template_OS_v1.md
+
+Choose the one that you prefer between these two, you can see what they'll look like once in PDF format here :
+
+- [OSCP-exam-report-template_whoisflynn_v3.2.pdf](https://github.com/noraj/OSCP-Exam-Report-Template-Markdown/blob/master/output/OSCP-exam-report-template_whoisflynn_v3.2.pdf)
+- [OSCP-exam-report-template_OS_v1.pdf](https://github.com/noraj/OSCP-Exam-Report-Template-Markdown/blob/master/output/OSCP-exam-report-template_OS_v1.pdf)
+
+If you don't like any of them here's some more templates from Offensive Security :
+
+- [Microsoft Word](https://www.offensive-security.com/pwk-online/PWKv1-REPORT.doc)
+- [OpenOffice/LibreOffice](https://www.offensive-security.com/pwk-online/PWKv1-REPORT.odt)
+
+## Report training 
+
+
+
+
+
+## Scripts for report generation
+
+
+
+
+
+## Report generation
+
+
+
+
+
+## Tips on report generation
+
+
+```
+
 ```
 
 
