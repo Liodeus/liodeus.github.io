@@ -23,6 +23,8 @@ description: "OSCP exam report - training"
     - [Training](#training)
   - [Tips on report generation](#tips-on-report-generation)
     - [Backslash](#backslash)
+    - [Tabulation](#tabulation)
+    - [Text color](#text-color)
   - [Tips before the exam](#tips-before-the-exam)
     - [Proctoring requirements](#proctoring-requirements)
     - [OSCP Exam Guide](#oscp-exam-guide)
@@ -160,7 +162,7 @@ To edit the markdown template, I used [Typora](https://typora.io/).
 
 ### Markdown cheat sheet
 
-https://www.markdownguide.org/cheat-sheet/
+[https://www.markdownguide.org/cheat-sheet/](https://www.markdownguide.org/cheat-sheet/)
 
 ### Training
 
@@ -174,13 +176,39 @@ I did my training on this box :
 
 ### Backslash
 
-If the backslash are in **code** syntax, there is no generation problems.
+If backslashes are in **code** syntax, there is no generation problems.
 
 ![Code syntax](/assets/imgs/report/in_code.PNG)
 
-But if you want to print it as **text**, this is a problem. You have to use a double slash, like so :
+But if you want to print it as **text**, this is a problem. You have to double it, like so :
 
 ![Directory listing](/assets/imgs/report/double.PNG)
+
+### Tabulation
+
+To make a tabulation I used the Latex syntax :
+
+```
+\quad <TEXT>
+```
+
+### Text color
+
+To change the text color, I used the Latex syntax :
+
+```
+\textcolor{<COLOR>}{<TEXT>}
+```
+
+The predefined color names are
+
+```
+black, blue, brown, cyan, darkgray, gray, green, lightgray, lime, magenta, olive, orange, pink, purple, red, teal, violet, white, yellow
+```
+
+More infos on Latex colors :
+
+- [https://en.wikibooks.org/wiki/LaTeX/Colors](https://en.wikibooks.org/wiki/LaTeX/Colors)
 
 ## Tips before the exam
 
