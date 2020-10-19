@@ -267,7 +267,7 @@ You should try them all, to see the one that you like the most.
 
 ## Report submission
 
-For report submission, just use the script .sh as follow :
+For report submission, just use the script make_submission.sh as follow :
 
 ```
 ./make_submission.sh
