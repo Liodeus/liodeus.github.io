@@ -7,6 +7,18 @@ description: "OSCP exam report - training"
 
 # OSCP EXAM REPORT - TRAINING 
 
+# Table of contents
+
+- [OSCP EXAM REPORT - TRAINING](#oscp-exam-report---training)
+  - [Report templates](#report-templates)
+  - [Scripts for report generation](#scripts-for-report-generation)
+      - [Generate report script](#generate-report-script)
+      - [Submission script](#submission-script)
+      - [Make scripts executable](#make-scripts-executable)
+  - [Report generation](#report-generation)
+  - [Report training](#report-training)
+  - [Tips on report generation](#tips-on-report-generation)
+
 ## Report templates
 
 Downloads the templates :
@@ -33,87 +45,13 @@ If you don't like any of them here's some more templates from Offensive Security
 - [Microsoft Word](https://www.offensive-security.com/pwk-online/PWKv1-REPORT.doc)
 - [OpenOffice/LibreOffice](https://www.offensive-security.com/pwk-online/PWKv1-REPORT.odt)
 
-## Report training 
-
-
-
-
+For my part I choose **OSCP-exam-report-template_whoisflynn_v3.2.md**, so any training will be done with this one.
 
 ## Scripts for report generation
 
+#### Generate report script
 
-
-
-
-## Report generation
-
-
-
-
-
-## Tips on report generation
-
-
-```
-
-```
-
-
-
-download the latest .deb
-
-```
-https://github.com/jgm/pandoc/releases
-```
-
-```
-wget https://github.com/jgm/pandoc/releases/download/2.10.1/pandoc-2.10.1-1-amd64.deb
-```
-
-```
-sudo dpkg -i pandoc-2.10.1-1-amd64.deb
-```
-
-
-
-```
-sudo apt install evince
-```
-
-
-
-Download the latest version of Eisvogel
-
-```
-https://github.com/Wandmalfarbe/pandoc-latex-template/releases
-```
-
-```
-mkdir temp
-cd temp
-wget https://github.com/Wandmalfarbe/pandoc-latex-template/releases/download/v1.5.0/Eisvogel-1.5.0.zip
-mv eisvogel.tex eisvogel.latex
-mv eisvogel.latex ../report/
-mkdir /usr/share/pandoc/
-mkdir /usr/share/pandoc/templates/
-mkdir /usr/share/pandoc/data/
-mkdir /usr/share/pandoc/data/templates/
-cp eisvogel.latex /usr/share/pandoc/templates/
-```
-
-```
-sudo apt-get install texlive-full
-```
-
-
-
-```
-chmod +x generate_report.sh make_submission.sh
-```
-
-
-
-```
+```bash
 # generate_report.sh
 
 #!/bin/bash
@@ -146,7 +84,9 @@ fi
 
 
 
-```
+#### Submission script
+
+```bash
 # make_submission.sh
 
 #!/bin/bash
@@ -166,4 +106,31 @@ echo "Creating 7z package..."
 #7z a $ZIP_PACKAGE -pOS-$OSID $EXAM_REPORT $LAB_REPORT
 7z a $ZIP_PACKAGE -pOS-$OSID $EXAM_REPORT
 ```
+
+
+
+#### Make scripts executable
+
+```bash
+chmod +x generate_report.sh make_submission.sh
+```
+
+
+
+## Report generation
+
+
+
+## Report training 
+
+
+
+
+
+## Tips on report generation
+
+
+
+
+
 
