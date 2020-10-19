@@ -10,10 +10,12 @@ description: "OSCP exam report - training"
 - [Table of contents](#table-of-contents)
 - [OSCP EXAM REPORT - TRAINING](#oscp-exam-report---training)
   - [Report templates](#report-templates)
+    - [Reports downloading](#reports-downloading)
+    - [Requirements](#requirements)
   - [Scripts for report generation](#scripts-for-report-generation)
-      - [Generate report script](#generate-report-script)
-      - [Submission script](#submission-script)
-      - [Make scripts executable](#make-scripts-executable)
+    - [Generate report script](#generate-report-script)
+    - [Submission script](#submission-script)
+    - [Make scripts executable](#make-scripts-executable)
   - [Report generation](#report-generation)
   - [Report training](#report-training)
   - [Tips on report generation](#tips-on-report-generation)
@@ -25,6 +27,8 @@ description: "OSCP exam report - training"
 # OSCP EXAM REPORT - TRAINING 
 
 ## Report templates
+
+### Reports downloading
 
 Downloads the templates :
 
@@ -52,9 +56,19 @@ If you don't like any of them here's some more templates from Offensive Security
 
 For my part I choose **OSCP-exam-report-template_whoisflynn_v3.2.md**, so any training will be done with this one.
 
+### Requirements
+
+You'll need to install a few things :
+
+- [Pandoc](https://pandoc.org/installing.html)
+- LaTeX (eg. [TeX Live](http://www.tug.org/texlive/)) in order to get `pdflatex` or `xelatex`
+- [Eisvogel Pandoc LaTeX PDF Template](https://github.com/Wandmalfarbe/pandoc-latex-template#installation)
+- [p7zip](http://p7zip.sourceforge.net/) (if you want to use the script, for generating the archive)
+- evince (apt install evince)
+
 ## Scripts for report generation
 
-#### Generate report script
+### Generate report script
 
 This script is for the report generation in PDF from markdown.
 
@@ -89,7 +103,7 @@ then
 fi
 ```
 
-#### Submission script
+### Submission script
 
 This script is to generate the password protected **.7z**, once your report is finish. I commented the LAB_REPORT part of the script because I did not do it.
 
@@ -114,13 +128,23 @@ echo "Creating 7z package..."
 7z a $ZIP_PACKAGE -pOS-$OSID $EXAM_REPORT
 ```
 
-#### Make scripts executable
+### Make scripts executable
 
 ```bash
 chmod +x generate_report.sh make_submission.sh
 ```
 
 ## Report generation
+
+You should have something like that :
+
+![Directory listing](/assets/imgs/report/listing_files.PNG)
+
+Now to test that everything is working let's try to generate a report from markdown.
+
+
+
+
 
 
 
