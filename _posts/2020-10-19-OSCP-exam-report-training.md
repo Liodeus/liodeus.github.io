@@ -64,7 +64,7 @@ You'll need to install a few things :
 - LaTeX (eg. [TeX Live](http://www.tug.org/texlive/)) in order to get `pdflatex` or `xelatex`
 - [Eisvogel Pandoc LaTeX PDF Template](https://github.com/Wandmalfarbe/pandoc-latex-template#installation)
 - [p7zip](http://p7zip.sourceforge.net/) (if you want to use the script, for generating the archive)
-- evince (apt install evince)
+- [evince](https://wiki.gnome.org/Apps/Evince) (apt install evince)
 
 ## Scripts for report generation
 
@@ -142,21 +142,35 @@ You should have something like that :
 
 Now to test that everything is working let's try to generate a report from markdown.
 
+```
+./generate_report.sh OSCP-exam-report-template_whoisflynn_v3.2.md test.pdf
+```
 
-
-
-
-
+Wait a few seconds and a PDF report called test.pdf of 9 pages should open.
 
 ## Report training 
 
+To edit the markdown template, I used [Typora](https://typora.io/).
 
+To train myself at reporting, I train on buffer overflow. Why buffer overflow ? Because I knew that at the exam there was one. So if I do it right, during the real exam, I would not have to do much change to my report training.
+
+I did my training on this box :
+
+- [Brainpan](https://tryhackme.com/room/brainpan)
 
 
 
 ## Tips on report generation
 
+### Bytes
 
+While generating the reports, I had a few problems with bytes.
+
+```
+\x90\x90\x90
+```
+
+\\x90\\x90\\x90
 
 ## Tips before the exam
 
