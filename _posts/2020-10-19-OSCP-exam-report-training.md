@@ -5,10 +5,9 @@ tags: [OSCP, Cheatsheet, Report, Training]
 description: "OSCP exam report - training"
 ---
 
-# OSCP EXAM REPORT - TRAINING 
-
 # Table of contents
 
+- [Table of contents](#table-of-contents)
 - [OSCP EXAM REPORT - TRAINING](#oscp-exam-report---training)
   - [Report templates](#report-templates)
   - [Scripts for report generation](#scripts-for-report-generation)
@@ -18,6 +17,12 @@ description: "OSCP exam report - training"
   - [Report generation](#report-generation)
   - [Report training](#report-training)
   - [Tips on report generation](#tips-on-report-generation)
+  - [Tips before the exam](#tips-before-the-exam)
+    - [Proctoring requirements](#proctoring-requirements)
+    - [OSCP Exam Guide](#oscp-exam-guide)
+    - [OSCP FAQ](#oscp-faq)
+
+# OSCP EXAM REPORT - TRAINING 
 
 ## Report templates
 
@@ -51,6 +56,8 @@ For my part I choose **OSCP-exam-report-template_whoisflynn_v3.2.md**, so any tr
 
 #### Generate report script
 
+This script is for the report generation in PDF from markdown.
+
 ```bash
 # generate_report.sh
 
@@ -82,9 +89,9 @@ then
 fi
 ```
 
-
-
 #### Submission script
+
+This script is to generate the password protected **.7z**, once your report is finish. I commented the LAB_REPORT part of the script because I did not do it.
 
 ```bash
 # make_submission.sh
@@ -93,29 +100,25 @@ fi
 
 OSID="XXXXX"
 EXAM_REPORT="OSCP-OS-$OSID-Exam-Report.pdf"
-#LAB_REPORT="OSCP-OS-$OSID-Lab-Report.pdf"
+# LAB_REPORT="OSCP-OS-$OSID-Lab-Report.pdf"
 ZIP_PACKAGE="OSCP-OS-$OSID-Exam-Report.7z"
 
 echo "Generating exam report..."
 ./generate_report.sh ../exam/OSCP_exam_report.md $EXAM_REPORT
 
-#echo "Generating lab report..."
-#./generate_report.sh lab_report.md $LAB_REPORT
+# echo "Generating lab report..."
+# ./generate_report.sh lab_report.md $LAB_REPORT
 
 echo "Creating 7z package..."
-#7z a $ZIP_PACKAGE -pOS-$OSID $EXAM_REPORT $LAB_REPORT
+# 7z a $ZIP_PACKAGE -pOS-$OSID $EXAM_REPORT $LAB_REPORT
 7z a $ZIP_PACKAGE -pOS-$OSID $EXAM_REPORT
 ```
-
-
 
 #### Make scripts executable
 
 ```bash
 chmod +x generate_report.sh make_submission.sh
 ```
-
-
 
 ## Report generation
 
@@ -131,6 +134,22 @@ chmod +x generate_report.sh make_submission.sh
 
 
 
+## Tips before the exam
 
+### Proctoring requirements
 
+Follow this tutorial before your exam to install all requirements concerning the proctoring :
 
+- [https://help.offensive-security.com/hc/en-us/articles/360050299352-Proctoring-Tool-Student-Manual](https://help.offensive-security.com/hc/en-us/articles/360050299352-Proctoring-Tool-Student-Manual)
+
+### OSCP Exam Guide
+
+Read the OSCP Exam Guide :
+
+- [https://help.offensive-security.com/hc/en-us/articles/360040165632](https://help.offensive-security.com/hc/en-us/articles/360040165632)
+
+### OSCP FAQ
+
+Have some questions ? Read the OSCP FAQ :
+
+- [https://help.offensive-security.com/hc/en-us/articles/360050164111-OSCP-Certification-Exam-FAQ](https://help.offensive-security.com/hc/en-us/articles/360050164111-OSCP-Certification-Exam-FAQ)
