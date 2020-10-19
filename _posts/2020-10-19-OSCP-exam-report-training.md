@@ -173,7 +173,17 @@ I did my training on this box :
 
 - [Brainpan](https://tryhackme.com/room/brainpan)
 
-Here's what my Buffer Overflow looks like :
+So I took screenshots during the box, they're all inside a directory that I called **images**. Here's what my folder look like : 
+
+![Directory listing](/assets/imgs/report/listing_files_2.PNG)
+
+Here's how I generated it (as in [Report generation](#report-generation)) :
+
+```
+./generate_report.sh OSCP-exam-report-template_whoisflynn_v3.2.md test.pdf
+```
+
+Here's what my training report looks like :
 
 - Markdown : [https://github.com/Liodeus/liodeus.github.io/blob/master/_posts/OSCP-exam-report-template_whoisflynn_v3.2.md](https://github.com/Liodeus/liodeus.github.io/blob/master/_posts/OSCP-exam-report-template_whoisflynn_v3.2.md)
 - PDF : [https://github.com/Liodeus/liodeus.github.io/blob/master/_posts/test.pdf](https://github.com/Liodeus/liodeus.github.io/blob/master/_posts/test.pdf)
@@ -182,7 +192,7 @@ But I highly advice that you do it yourself, don't just take mine, practice !
 
 ### Other
 
-I just train reporting on Buffer Overflow but if you want to train your reporting on other box, here's what I found :
+I just trained reporting on Buffer Overflow but if you want to train your reporting on other box, here's what I found :
 
 - Jeeves (25 Points)
 - Chatterbox (20 Points)
@@ -226,6 +236,24 @@ black, blue, brown, cyan, darkgray, gray, green, lightgray, lime, magenta, olive
 More infos on Latex colors :
 
 - [https://en.wikibooks.org/wiki/LaTeX/Colors](https://en.wikibooks.org/wiki/LaTeX/Colors)
+
+### Code syntax background color
+
+If you want to change the background color of the code markdown syntax, you just have to change to change the line 21 of generate_report.sh
+
+```
+--highlight-style <STYLE>
+```
+
+- kate
+- monochrome
+- breezeDark
+- espresso
+- zenburn
+- haddock
+- tango
+
+You should try them all, to see the one that you like the most.
 
 ## Tips before the exam
 
