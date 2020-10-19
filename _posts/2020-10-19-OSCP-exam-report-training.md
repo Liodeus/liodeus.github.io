@@ -38,7 +38,7 @@ description: "OSCP exam report - training"
 
 ### Reports downloading
 
-Downloads the templates :
+Download the templates :
 
 ```
 git clone https://github.com/noraj/OSCP-Exam-Report-Template-Markdown.git
@@ -154,7 +154,7 @@ Now to test that everything is working let's try to generate a report from markd
 ./generate_report.sh OSCP-exam-report-template_whoisflynn_v3.2.md test.pdf
 ```
 
-Wait a few seconds and a PDF report called test.pdf of 9 pages should open.
+Wait a few seconds and a PDF report called **test.pdf** of 9 pages should open.
 
 ## Report training 
 
@@ -164,7 +164,9 @@ To edit the markdown template, I used [Typora](https://typora.io/).
 
 ### Markdown cheat sheet
 
-[https://www.markdownguide.org/cheat-sheet/](https://www.markdownguide.org/cheat-sheet/)
+If you want to know some more about markdown syntax :
+
+- [https://www.markdownguide.org/cheat-sheet/](https://www.markdownguide.org/cheat-sheet/)
 
 ### Training
 
@@ -240,7 +242,7 @@ More infos on Latex colors :
 
 ### Code syntax background color
 
-If you want to change the background color of the code markdown syntax, you just have to change to change the line 21 of generate_report.sh
+If you want to change the background color of the code markdown syntax, you just have to change the line 21 of generate_report.sh
 
 ```
 --highlight-style <STYLE>
