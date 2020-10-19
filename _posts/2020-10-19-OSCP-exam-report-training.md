@@ -21,6 +21,7 @@ description: "OSCP exam report - training"
     - [Markdown editor](#markdown-editor)
     - [Markdown cheat sheet](#markdown-cheat-sheet)
     - [Training](#training)
+    - [Other](#other)
   - [Tips on report generation](#tips-on-report-generation)
     - [Backslash](#backslash)
     - [Tabulation](#tabulation)
@@ -101,7 +102,7 @@ pandoc $1 -o $2 \
 --toc-depth 6 \
 --number-sections \
 --top-level-division=chapter \
---highlight-style tango
+--highlight-style zenburn
 
 if [ $? -eq 0 ]
 then
@@ -171,6 +172,22 @@ To train myself at reporting, I train on buffer overflow. Why buffer overflow ? 
 I did my training on this box :
 
 - [Brainpan](https://tryhackme.com/room/brainpan)
+
+Here's what my Buffer Overflow looks like :
+
+- Markdown : [https://github.com/Liodeus/liodeus.github.io/blob/master/_posts/OSCP-exam-report-template_whoisflynn_v3.2.md](https://github.com/Liodeus/liodeus.github.io/blob/master/_posts/OSCP-exam-report-template_whoisflynn_v3.2.md)
+- PDF : [https://github.com/Liodeus/liodeus.github.io/blob/master/_posts/test.pdf](https://github.com/Liodeus/liodeus.github.io/blob/master/_posts/test.pdf)
+
+But I highly advice that you do it yourself, don't just take mine, practice !
+
+### Other
+
+I just train reporting on Buffer Overflow but if you want to train your reporting on other box, here's what I found :
+
+- Jeeves (25 Points)
+- Chatterbox (20 Points)
+- Cronos (20 Points)
+- Sense (10 Points)
 
 ## Tips on report generation
 
