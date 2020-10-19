@@ -202,6 +202,10 @@ I just trained reporting on Buffer Overflow but if you want to train your report
 - Cronos (20 Points)
 - Sense (10 Points)
 
+Here is a report example from Offensive Security :
+
+- [https://www.offensive-security.com/pwk-online/PWK-Example-Report-v1.pdf](https://www.offensive-security.com/pwk-online/PWK-Example-Report-v1.pdf)
+
 ## Tips on report generation
 
 ### Backslash
