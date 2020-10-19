@@ -126,7 +126,7 @@ EXAM_REPORT="OSCP-OS-$OSID-Exam-Report.pdf"
 ZIP_PACKAGE="OSCP-OS-$OSID-Exam-Report.7z"
 
 echo "Generating exam report..."
-./generate_report.sh ../exam/OSCP_exam_report.md $EXAM_REPORT
+./generate_report.sh ./OSCP-exam-report-template_whoisflynn_v3.2.md $EXAM_REPORT
 
 # echo "Generating lab report..."
 # ./generate_report.sh lab_report.md $LAB_REPORT
@@ -135,6 +135,8 @@ echo "Creating 7z package..."
 # 7z a $ZIP_PACKAGE -pOS-$OSID $EXAM_REPORT $LAB_REPORT
 7z a $ZIP_PACKAGE -pOS-$OSID $EXAM_REPORT
 ```
+
+You have to change the line 3 by your **OSID**.
 
 ### Make scripts executable
 
@@ -178,7 +180,7 @@ I did my training on this box :
 
 So I took screenshots during the box, they're all inside a directory that I called **images**. Here's what my folder look like : 
 
-![Directory listing](/assets/imgs/report/listing_files_2.PNG)
+![Directory listing 2](/assets/imgs/report/listing_files_2.PNG)
 
 Here's how I generated it (as in [Report generation](#report-generation)) :
 
@@ -216,7 +218,7 @@ If backslashes are in **code** syntax, there is no generation problems.
 
 But if you want to print it as **text**, this is a problem. You have to double it, like so :
 
-![Directory listing](/assets/imgs/report/double.PNG)
+![Double backslash](/assets/imgs/report/double.PNG)
 
 ### Tabulation
 
@@ -261,6 +263,22 @@ If you want to change the background color of the code markdown syntax, you just
 - tango
 
 You should try them all, to see the one that you like the most.
+
+## Report submission
+
+For report submission, just use the script .sh as follow :
+
+```
+./make_submission.sh
+```
+
+![Report submission](/assets/imgs/report/7z.PNG)
+
+During the real exam, after running this script, you would have to upload the **7z** here : 
+
+- [https://upload.offsec.com/](https://upload.offsec.com/)
+
+Then, send the link to : OSCP@offensive-security.com
 
 ## Tips before the exam
 
