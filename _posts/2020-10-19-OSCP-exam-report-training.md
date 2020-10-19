@@ -27,12 +27,13 @@ description: "OSCP exam report - training"
     - [Tabulation](#tabulation)
     - [Text color](#text-color)
     - [Code syntax background color](#code-syntax-background-color)
+  - [Report submission](#report-submission)
   - [Tips before the exam](#tips-before-the-exam)
     - [Proctoring requirements](#proctoring-requirements)
     - [OSCP Exam Guide](#oscp-exam-guide)
     - [OSCP FAQ](#oscp-faq)
 
-# OSCP EXAM REPORT - TRAINING 
+#  REPORT - TRAINING 
 
 ## Report templates
 
