@@ -18,7 +18,11 @@ description: "OSCP exam report - training"
     - [Make scripts executable](#make-scripts-executable)
   - [Report generation](#report-generation)
   - [Report training](#report-training)
+    - [Markdown editor](#markdown-editor)
+    - [Markdown cheat sheet](#markdown-cheat-sheet)
+    - [Training](#training)
   - [Tips on report generation](#tips-on-report-generation)
+    - [Backslash](#backslash)
   - [Tips before the exam](#tips-before-the-exam)
     - [Proctoring requirements](#proctoring-requirements)
     - [OSCP Exam Guide](#oscp-exam-guide)
@@ -150,7 +154,15 @@ Wait a few seconds and a PDF report called test.pdf of 9 pages should open.
 
 ## Report training 
 
+### Markdown editor
+
 To edit the markdown template, I used [Typora](https://typora.io/).
+
+### Markdown cheat sheet
+
+https://www.markdownguide.org/cheat-sheet/
+
+### Training
 
 To train myself at reporting, I train on buffer overflow. Why buffer overflow ? Because I knew that at the exam there was one. So if I do it right, during the real exam, I would not have to do much change to my report training.
 
@@ -158,19 +170,17 @@ I did my training on this box :
 
 - [Brainpan](https://tryhackme.com/room/brainpan)
 
-
-
 ## Tips on report generation
 
-### Bytes
+### Backslash
 
-While generating the reports, I had a few problems with bytes.
+If the backslash are in **code** syntax, there is no generation problems.
 
-```
-\x90\x90\x90
-```
+![Code syntax](/assets/imgs/report/in_code.PNG)
 
-\\x90\\x90\\x90
+But if you want to print it as **text**, this is a problem. You have to use a double slash, like so :
+
+![Directory listing](/assets/imgs/report/double.PNG)
 
 ## Tips before the exam
 
