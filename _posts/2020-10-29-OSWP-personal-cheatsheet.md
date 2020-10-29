@@ -9,8 +9,6 @@ description: "OSWP personal cheatsheet"
 # Table of contents
 
 - [WIFU](#wifu)
-  - [Loading and unloading drivers (Linux)](#loading-and-unloading-drivers-linux)
-    - [To load the mac80211 driver](#to-load-the-mac80211-driver)
   - [Listing wireless access points that are within range](#listing-wireless-access-points-that-are-within-range)
   - [Monitor mode](#monitor-mode)
       - [Up the interface](#up-the-interface)
@@ -55,31 +53,6 @@ description: "OSWP personal cheatsheet"
     - [Miscellaneous](#miscellaneous)
 
 # WIFU
-
-## Loading and unloading drivers (Linux)
-
-page 143 - 145
-
-```
-iw list
-```
-
-### To load the mac80211 driver
-
-```
-rmmod r8187
-```
-
-```
-modprobe rt18187
-iwconfig
-```
-
-```
-iw list
-```
-
-
 
 ## Listing wireless access points that are within range
 
