@@ -1,6 +1,6 @@
 ---
 layout: post
-title: OSWP
+title: OSWP personal cheatsheet
 tags: [OSWP, Cheatsheet]
 description: "OSWP personal cheatsheet"
 
