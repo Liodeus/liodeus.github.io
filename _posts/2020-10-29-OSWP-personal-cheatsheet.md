@@ -595,7 +595,7 @@ mdk4 <INTERFACE> a -a <BSSID> -m
 
 #### Deauthentication Flooding
 
-This will sent deauth packets to any and all clients connected to the AP specified in the file.
+This will send deauth packets to any and all clients connected to the AP specified in the file.
 
 ```
 mdk4 <INTERFACE> d -c <CHANNEL> -E <ESSID> -B <BSSID>
@@ -651,7 +651,9 @@ hashcat -m 16800 -a 0 galleriaHC.16800 <PASSWORDS_WORDLIST>
 
 ### Attacking WPA2-Enterprise
 
-
+- [https://teckk2.github.io/wifi%20pentesting/2018/08/09/Cracking-WPA-WPA2-Enterprise.html](https://teckk2.github.io/wifi%20pentesting/2018/08/09/Cracking-WPA-WPA2-Enterprise.html)
+- [https://giuliocomi.blogspot.com/2018/06/wpa2-psk-vs-wpa2-enterprise-hacking-and.html](https://giuliocomi.blogspot.com/2018/06/wpa2-psk-vs-wpa2-enterprise-hacking-and.html)
+- [https://github.com/Wh1t3Rh1n0/air-hammer](https://github.com/Wh1t3Rh1n0/air-hammer)
 
 ### WPS Pin attacks
 
@@ -688,11 +690,11 @@ reaver -i <INTERFACE> -b <BSSID> -SNLAsvv -d 1 -r 5:3 -c <CHANNEL_NUMBER>
 
 #### Hirte attack
 
-
+- [https://pentestlab.blog/2015/02/03/hirte-attack/](https://pentestlab.blog/2015/02/03/hirte-attack/)
 
 #### Cafe Latte attack
 
-
+- [https://www.computerworld.com/article/2539400/cafe-latte-attack-steals-data-from-wi-fi-users.html](https://www.computerworld.com/article/2539400/cafe-latte-attack-steals-data-from-wi-fi-users.html)
 
 ### Rogue access point
 
@@ -704,6 +706,12 @@ Once that has been done, if the client receives the malicious  access point's si
 
 #### Fake AP
 
-
+```
+Do your research
+```
 
 #### MITM
+
+```
+Do your research
+```
