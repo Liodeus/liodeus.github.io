@@ -545,7 +545,11 @@ davtest -url <URL>
 #### HTTP basic authentication
 
 ```
+# Hydra
 hydra -l <USER> -V -P <PASSWORDS_LIST> -s 80 -f <IP> http-get /<URL_ENDPOINT>/ -t 15
+
+# Patator
+python patator.py http_fuzz auth_type=basic url=<URL> user_pass=FILE0 0=<USER:PASSWORD_LIST> -x ignore:code=401 -x ignore:code=307
 ```
 
 #### HTTP GET request
