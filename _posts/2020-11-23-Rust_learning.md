@@ -5,6 +5,47 @@ tags: [Learn, Courses, Rust]
 description: "Rust learning"
 ---
 
+# Table of contents
+
+- [Rust programming](#rust-programming)
+  - [Hello world !](#hello-world-)
+  - [println!()](#println)
+  - [Cargo](#cargo)
+    - [Create a project](#create-a-project)
+    - [Build a project](#build-a-project)
+    - [Run a project](#run-a-project)
+    - [Check a project](#check-a-project)
+    - [Building for release](#building-for-release)
+  - [Variables](#variables)
+    - [Binding](#binding)
+    - [Constant](#constant)
+    - [Shadowing](#shadowing)
+    - [Increment](#increment)
+    - [Unused variable](#unused-variable)
+  - [Functions](#functions)
+    - [Passing arguments](#passing-arguments)
+    - [Returning values](#returning-values)
+    - [Closures](#closures)
+  - [Primitive Data Types](#primitive-data-types)
+    - [Bool](#bool)
+    - [Char](#char)
+    - [Integer](#integer)
+    - [Unsigned integer](#unsigned-integer)
+    - [Float](#float)
+    - [Array](#array)
+    - [Tuple](#tuple)
+    - [Slice](#slice)
+    - [Str](#str)
+      - [String](#string)
+      - [String concatenation](#string-concatenation)
+  - [Control Flows](#control-flows)
+    - [if - else if - else](#if---else-if---else)
+    - [Match](#match)
+    - [Loop](#loop)
+    - [While](#while)
+    - [For](#for)
+      - [Array/vector](#arrayvector)
+
 # Rust programming
 
 ## Hello world !
