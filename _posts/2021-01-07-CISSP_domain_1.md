@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Security and Risk Management
+title: Security and Risk Management - CISSP
 tags: [CISSP, CHAPTER_1, Security and Risk Management]
 description: "Security and Risk Management - Chapter 1"
 ---
