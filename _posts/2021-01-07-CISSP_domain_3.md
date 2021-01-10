@@ -7,9 +7,21 @@ description: "Security Architecture and Engineering - Chapter 3"
 
 # Security Architecture and Engineering
 
+## System architecture
 
+Architecture : describes the major components of the system and how they interact with each other, with the users, and with other systems.
 
+Development : refers to the entire life cycle of a system, including the planing analysis, design, building, testing, deployment, maintenance, and retirement phases.
 
+ ISO/IEC/IEEE 42010:2011 : Recommended Practice for Architectural Description of Software-Intensive Systems.
+
+Architecture description (AD) : Collection of document types to convey an architecture in a formal manner.
+
+Stakeholder : Individual, team, or organization with interests in, or concerns relative to, a system.
+
+View : Representation of a whole system from the perspective of a related set of concerns.
+
+Viewpoint : A specification of the conventions for constructing and using a view. A template from which to develop individual views by establishing the purposes and audience for a view and the techniques for its creation and analysis.
 
 
 
