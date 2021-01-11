@@ -1,11 +1,109 @@
 ---
 layout: post
-title: 
-tags: []
-description: ""
+title: Communication and Network Security - CISSP
+tags: [CISSP, CHAPTER_4, Communication and Network Security]
+description: "Communication and Network Security - Chapter 4"
 ---
 
 # Communication and Network Security
+
+## OSI model - TCP/IP
+
+| Layers  | OSI          | TCP/IP            |
+| ------- | ------------ | ----------------- |
+| Layer 7 | Application  | Application       |
+| Layer 6 | Presentation | Application       |
+| Layer 5 | Session      | Application       |
+| Layer 4 | Transport    | Transport         |
+| Layer 3 | Network      | Network           |
+| Layer 2 | Data Link    | Network Interface |
+| Layer 1 | Physical     | Network Interface |
+
+Mnemonics : **A**ll **P**eople **S**eem **T**o **N**eed **D**ata **P**rocessing
+
+### Application
+
+Handle file transfer, virtual terminals, network management, and fulfilling networking requests of applications. 
+
+- FTP
+- SNMP
+- SMTP
+- Telnet
+- HTTP
+
+### Presentation
+
+Handle translation into standard formats, data compression/decompression, and data encryption/decryption. No protocols work at
+this layer, just services.
+
+- ASCII
+- JPEG
+- MIDI
+
+### Session
+
+Set up connections between applications; maintain dialog control; and negotiate, establish, maintain, and tear down the communication channel.
+
+- NetBIOS
+- PPTP (Point-to-Point Tunneling Protocol)
+- RPC
+
+### Transport
+
+Handle end-to-end transmission and segmentation of a data stream.
+
+- TCP
+- UDP
+
+### Network
+
+The responsibilities of the network layer protocols include internetworking service, addressing, and routing.
+
+- IP
+- ICMP
+- IPX (Internetwork Packet Exchange )
+
+### Data Link
+
+Convert data into LAN or WAN frames for transmission and define how a computer accesses a network. This layer is divided into the Logical Link Control (LLC) and the Media Access Control (MAC) sublayers.
+
+- ARP
+- PPP (Point-to-Point Protocol)
+- Ethernet (IEEE 802.3)
+- Token Ring (IEEE 802.5)
+
+### Physical
+
+Network interface cards and drivers convert bits into electrical signals and control the physical aspects of data transmission, including optical, electrical, and mechanical requirements.
+
+- 10Base-T, 10Base2, 10Base5, 100Base-TX, 100Base-FX, 100Base-T, 1000Base-T, 1000Base-SX
+- DSL
+
+![](/assets/imgs/CISSP/CH04/osi_tcp_model.png)
+
+Encapsulation : refer to a process in which protocol information is added to the data when it passes through the layers. Protocol information can be added before (header) and after the data (trailer). 
+
+![](/assets/imgs/CISSP/CH04/one.PNG)
+
+Simplex : Communication takes place in one direction.
+
+Half-Duplex : Communication takes place in both directions, but only one application can send information at a time.
+
+Full-Duplex : Communication takes place in both directions, and both applications can send information at the same time.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 ## Dual stacks
 
@@ -31,17 +129,5 @@ Broadcast packets from one broadcast domain are not forwarded to other broadcast
 
 We have three broadcast domains, one on each side of the router.
 
-## OSI model - TCP/IP
 
-| Layers  | OSI          | TCP/IP            |
-| ------- | ------------ | ----------------- |
-| Layer 7 | Application  | Application       |
-| Layer 6 | Presentation | Application       |
-| Layer 5 | Session      | Application       |
-| Layer 4 | Transport    | Transport         |
-| Layer 3 | Network      | Network           |
-| Layer 2 | Data Link    | Network Interface |
-| Layer 1 | Physical     | Network Interface |
-
-![TCP/IP Model: Layers & Protocol | What is TCP IP Stack?](https://www.guru99.com/images/1/093019_0615_TCPIPModelW3.png)
 
