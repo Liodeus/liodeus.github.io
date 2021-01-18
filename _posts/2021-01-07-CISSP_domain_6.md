@@ -163,26 +163,39 @@ Is a passive way to monitor the interactions of real users with a web applicatio
 
 ### Adding Accounts
 
-**All** new users should be required to **read** through and **acknowledge** they understand (by signing) all policies that apply to them. At a minimum, every organization should have (and every user should sign) an acceptable use policy (AUP) that specifies what the organizations considers acceptable use of the information system that are made available to the employee.
+**All** new users should be required to **read** through and **acknowledge** they understand (by signing) all policies that apply to them. At a minimum, every organization should have (and every user should **sign**) an **acceptable use policy** (AUP) that specifies what the organizations considers acceptable use of the information system that are made available to the employee.
+
+Testing that all employees are aware of the AUP and other applicable policies can be the first step in auditing user accounts. Since every user should have a signed AUP, for instance, all we need is to get a list of all users in the organization and then compare it to the files containing the signed documents.
+
+The policies also should dictate the default expiration date of accounts, the password policy, and the information to which a user should have access.
 
 ### Modifying Accounts
 
-test
+Adding, removing, or modifying the permissions that a user has should be a carefully controlled and documented process.
+
+- When are the new permissions effective ? 
+- Why are they needed ?
+-  Who authorized the change ? 
+
+Organizations that are mature in their security processes will have a change control process in place to address user privileges. While many auditors will focus on who has administrative privileges in the organization, there are many custom sets of permissions that approach the level of an admin account. It is important, then, to have and test processes by which elevated privileges are issued.
 
 ### Suspending Accounts
 
-test
+Whatever the reason, we must ensure that the account of someone who is not present to use it is suspended until that person returns or the term of our retention policy is met.
+
+Testing the administrative controls on suspended accounts follows the same pattern already laid out in the preceding two sections: look at each account (or take a representative sample of all of them) and compare it with the status of its owner. Alternatively, we can get a list of employees who are temporarily or permanently away from the organization and check the status of those accounts. It is **important** that accounts are deleted **only in strict** accordance with the data retention policy.
 
 ## Backup Verification
+
+The frequency of each backup (hourly, daily, weekly) is driven by the risk management process. Whatever the approach to backing up data, we need to **periodically test** it to ensure that the backups will work as promised when we need them.
+
+**Never backup** your data to the same device on which the original data exists.
 
 ### Types of Data
 
 - User Data Files
-  - test
 - Databases
-  - test
 - Mailbox Data
-  - test
 
 ### Testing Data Backups
 
