@@ -118,7 +118,7 @@ Security information and event managers (SIEM) : systems that enable the central
 
 ## Network Time Protocol (NTP)
 
- is a networking protocol for clock synchronization between computer systems, it uses UDP on port 123.
+Is a networking protocol for clock synchronization between computer systems, it uses UDP on port 123.
 
 ![](/assets/imgs/CISSP/CH06/two.PNG)
 
@@ -129,4 +129,70 @@ Stratum 1 : Primary time source
 Stratum 2 : Local network servers
 
 Stratum 3 : Any other servers
+
+## Synthetic Transaction
+
+Is a monitoring technique that is done by using an emulation or scripted recordings of transactions.
+
+## Real User Monitoring (RUM)
+
+Is a passive way to monitor the interactions of real users with a web application or system. It uses agents to capture metrics such as delay, jitter, and errors from the user's perspective.
+
+## Code Review Process
+
+1. **Identify the code** to be reviewed
+   - Usually a specific function or file.
+2. **Organizes the inspection**
+  - And makes sure everyone has access to the correct version of the source code, along with all supporting artifacts.
+3. **Prepares for inspection**
+  - By reading through the code and making notes.
+4. All the obvious errors are **collated offline**
+  - Not in a meeting so they don’t have to be discussed during the inspection meeting (which would be a waste of time).
+5. If everyone **agrees the code is ready for inspection**, then the meeting goes ahead.
+6. Everyone **discusses bugs**
+  - Design issues, and anything else that comes up about the code. A scribe (not the author of the code) writes everything down.
+7. **Disposition of code**, at the end of the meeting, everyone agrees on :
+  - Passed : Code is good to go
+  -  Passed with rework : Code is good so long as small changes are fixed
+  -  Reinspect : Fix problems and have another inspection
+8. **Fixes** any mistakes and checks in the new version.
+9. If the disposition of the code in step 7 was passed with rework, the team leader checks off the bugs that the scribe wrote down and makes sure they’re all fixed.
+10. If the disposition of the code in step 7 was reinspect, the team leader goes back to step 2 and starts over again.
+
+## Auditing Administrative Controls
+
+### Adding Accounts
+
+**All** new users should be required to **read** through and **acknowledge** they understand (by signing) all policies that apply to them. At a minimum, every organization should have (and every user should sign) an acceptable use policy (AUP) that specifies what the organizations considers acceptable use of the information system that are made available to the employee.
+
+### Modifying Accounts
+
+test
+
+### Suspending Accounts
+
+test
+
+## Backup Verification
+
+### Types of Data
+
+- User Data Files
+  - test
+- Databases
+  - test
+- Mailbox Data
+  - test
+
+### Testing Data Backups
+
+- **Develop scenarios** that capture specific sets of events that are representative of the threats facing the organization.
+- **Develop a plan** that tests all the mission-critical data backups in each of the scenarios.
+- **Leverage automation** to minimize the effort required by the auditors and ensure tests happen periodically.
+- **Minimize impact on business** processes of the data backup test plan so that it can be executed regularly.
+- **Ensure coverage** so that every system is tested, though not necessarily in the same test.
+- **Document the results** so you know what is working and what needs to be worked on.
+- **Fix or improve** any issues you documented.
+
+## Disaster Recovery and Business Continuity
 
