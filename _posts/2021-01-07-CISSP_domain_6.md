@@ -209,3 +209,43 @@ The frequency of each backup (hourly, daily, weekly) is driven by the risk manag
 
 ## Disaster Recovery and Business Continuity
 
+Business Continuity Plan (BCP) : The overall organizational plan for "how-to" continue business.
+
+Disaster Recovery Plan (DRP) : The plan for recovering from an IT disaster and having the IT infrastructure back in operation.
+
+### Testing and Revising the Business Continuity Plan
+
+#### Checklist test or Desk check test
+
+- Copies of the DRP or BCP are distributed to the different departments for review
+- Once the departments have reviewed their copies and made suggestions, the planning team then integrates those changes into the master plan.
+
+#### Structured Walk-Through test
+
+- Representatives from each department or functional area come together and go over the plan to ensure its accuracy.
+- The group reviews the objectives of the plan.
+- Discusses the scope and assumptions of the plan.
+- Reviews the organization and reporting structure.
+- Evaluates the testing, maintenance, and training requirements described.
+- The group walks through different scenarios of the plan from beginning to end to make sure nothing was left out.
+
+#### Tabletop exercises (TTXs)
+
+The key personnel who have emergency management roles and responsibilities gather together to discuss various simulated  emergency situations. Because the environment of a tabletop is  non-threatening (i.e., a “real” emergency is not happening), the people  gathered together around the table can calmly rehearse their roles, ask  questions, and troubleshoot problem areas.
+
+#### Simulation test
+
+All employees who participate in operational and support functions, or their representatives, come together to practice executing the disaster recovery plan based on a specific scenario. The scenario is used to test the reaction of each operational and support representative.
+
+The drill includes only those materials that will be available in an actual disaster to portray a more realistic environment. The simulation test continues up to the point of actual relocation to an offsite facility and actual shipment of replacement equipment.
+
+#### Parallel test
+
+Some systems are moved to the alternate site and processing takes place. The results are compared with the regular processing that is
+done at the original site. This ensures that the specific systems can actually perform adequately at the alternate offsite facility, and points out any tweaking or reconfiguring that is necessary.
+
+#### Full-Interruption test
+
+The original site is actually shut down, and processing takes place at the alternate site. The recovery team fulfills its obligations in preparing the systems and environment for the alternate site. All processing is done only on devices at the alternate offsite facility.
+
+Full-interruption tests should be performed **only** after all other types of tests have been successful.
