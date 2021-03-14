@@ -16,6 +16,6 @@ description: "AWS Technical Professional - Module 3 - From Services to Solutions
 
 ## Rehost : lift and shift
 
-Transfer of application resources from an on-premises datacenter to the AS cloud. This is a functional recreation of the on-premies network, only hosted on AWS. The customer benefits from the pay-as-you-go model, and can rapidly deploy more resources as needed.
+Transfer of application resources from an on-premises datacenter to the AWS cloud. This is a functional recreation of the on-premises network, only hosted on AWS. The customer benefits from the pay-as-you-go model, and can rapidly deploy more resources as needed.
 
 ![](/assets/imgs/AWS/lift_shift.PNG)
