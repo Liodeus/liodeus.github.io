@@ -30,3 +30,14 @@ Examples :
 - Migrating applications to Amazon Elastic Beanstalk
 
 ![](/assets/imgs/AWS/lift_tinker_shift.PNG)
+
+## Refactor : modernize
+
+Re-imagining how the application is architected and developed, typically using cloud-native features.
+
+Examples :
+
+- Changing a database structure from an EC2-hosted database or a standard RDS database, to Amazon Aurora
+- Changing a monolithic application architecture to a more service-oriented design to make use of modern technologies such as containers or serverless like AWS Lambda
+
+![](/assets/imgs/AWS/refactor.PNG)
