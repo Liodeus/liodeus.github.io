@@ -19,3 +19,14 @@ description: "AWS Technical Professional - Module 3 - From Services to Solutions
 Transfer of application resources from an on-premises datacenter to the AWS cloud. This is a functional recreation of the on-premises network, only hosted on AWS. The customer benefits from the pay-as-you-go model, and can rapidly deploy more resources as needed.
 
 ![](/assets/imgs/AWS/lift_shift.PNG)
+
+## Replatform : lift, tinker, and shift
+
+It's similar to rehosting, in that the core architecture of the application isn't being changer. It's about making targeted cloud optimizations.
+
+Examples : 
+
+- Migrating databases to Amazon RDS
+- Migrating applications to Amazon Elastic Beanstalk
+
+![](/assets/imgs/AWS/lift_tinker_shift.PNG)
