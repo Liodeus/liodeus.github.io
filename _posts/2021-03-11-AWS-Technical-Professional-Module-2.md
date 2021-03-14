@@ -1,8 +1,8 @@
 ---
 layout: post
-title: AWS Technical Professional - Module 2 : AWS Core Technologies
+title: AWS Technical Professional - Module 2 - AWS Core Technologies
 tags: [AWS, Security, Cloud]
-description: "AWS Technical Professional - Module 2 : AWS Core Technologies"
+description: "AWS Technical Professional - Module 2 - AWS Core Technologies"
 ---
 
 # Table of contents
