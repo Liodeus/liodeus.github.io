@@ -191,8 +191,9 @@ Pay for what you **need** !
 
 ## Customer Use Cases
 
-Key resource for finding use cases to help inspire solution design : https://aws.amazon.com/solutions/case-studies/
+Key resource for finding use cases to help inspire solution design : [https://aws.amazon.com/solutions/case-studies/](https://aws.amazon.com/solutions/case-studies/)
 
-Provides customers who need help deploying an AWS Solution by highlighting AWS Competency Partener Solutions : https://aws.amazon.com/solutions/consulting-offers/
+Provides customers who need help deploying an AWS Solution by highlighting AWS Competency Partener Solutions : [https://aws.amazon.com/solutions/consulting-offers/](https://aws.amazon.com/solutions/consulting-offers/)
 
-Quick Starts are built by AWS solutions architecs and partners to help you deploy popular technologies on AWS, based on AWS best practices for security and high availability : https://aws.amazon.com/quickstart/
+Quick Starts are built by AWS solutions architecs and partners to help you deploy popular technologies on AWS, based on AWS best practices for security and high availability : [https://aws.amazon.com/quickstart/](https://aws.amazon.com/quickstart/)
+
