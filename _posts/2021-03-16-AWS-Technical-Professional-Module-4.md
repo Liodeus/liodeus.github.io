@@ -5,6 +5,21 @@ tags: [AWS, Security, Cloud]
 description: "AWS Technical Professional - Module 4 - AWS Solutions to Customers"
 ---
 
+# Table of contents
+
+- [AWS Technical Professional - Module 4 : Presenting AWS Solutions to Customers](#aws-technical-professional---module-4--presenting-aws-solutions-to-customers)
+  - [Key phases](#key-phases)
+  - [Discovery](#discovery)
+    - [Preparing for discovery](#preparing-for-discovery)
+    - [Discovery practices](#discovery-practices)
+  - [Preparing an AWS solution](#preparing-an-aws-solution)
+  - [Handling objections](#handling-objections)
+  - [Objection handling best practices](#objection-handling-best-practices)
+  - [Common objection responses](#common-objection-responses)
+    - [Security](#security)
+    - [Cost or cost savings](#cost-or-cost-savings)
+    - [Scalability and Response](#scalability-and-response)
+
 # AWS Technical Professional - Module 4 : Presenting AWS Solutions to Customers
 
 ## Key phases
