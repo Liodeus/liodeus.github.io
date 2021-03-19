@@ -38,3 +38,41 @@ A minimum valuable product is a functional product (or solution) with just enoug
 ## Migration strategies
 
 ![](/assets/imgs/AWS/migration_strategies.PNG)
+
+## AWS Trusted Advisor best practice checklist
+
+More information about Trusted Advisor best practice checklist : [here](https://aws.amazon.com/premiumsupport/technology/trusted-advisor/best-practice-checklist/)
+
+## Modernize to drive growth
+
+- Retire expensive legacy solutions
+- Reduce TCO, improve cost optimization
+- Gain agility through automation
+- Free up resources to drive innovation
+
+## Serverless
+
+- Benefits
+  - No provisioning, maintaining and administering servers
+  - AWS handles fault tolerance and availability
+  - Focus on product innovation
+
+More information about Serverless : [here](https://aws.amazon.com/serverless/)
+
+## Containers
+
+- Package code, configurations, and dependencies into a single object
+- Share an operating system
+- Run a resource-isolated process
+- AWS offers resources and orchestration services
+
+### Use cases
+
+- Microservices
+- Batch processing
+- Machine learning
+- Hybrid applications
+- Application migration to the cloud
+- Platform as a service
+
+More information about Containers : [here](https://aws.amazon.com/containers/)
