@@ -53,7 +53,7 @@ Transfer of application resources from an on-premises datacenter to the AWS clou
 
 ## Replatform : lift, tinker, and shift
 
-It's similar to rehosting, in that the core architecture of the application isn't being changer. It's about making targeted cloud optimizations.
+It's similar to rehosting, in that the core architecture of the application isn't being changed. It's about making targeted cloud optimizations.
 
 Examples : 
 
@@ -102,10 +102,10 @@ Assume everything fails and design backwards.
 
 ### Build security in every layer
 
-- Encryption Data at rest an in transit
+- Encryption Data at rest and in transit
 - Enforce principle of least privilege in IAM
 - Implement both Security Groups and Network Access Lists (NACL)
-- Consider advanced security features and services such as Amazon Inspector and Amazon Guard Duty and AWS Shield
+- Consider advanced security features and services such as Amazon Inspector, Amazon Guard Duty and AWS Shield
 
 ### Leverage different storage options
 
