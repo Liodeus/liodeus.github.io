@@ -5,6 +5,18 @@ tags: [AWS, Security, Cloud]
 description: "AWS Technical Professional - Module 5 -Looking Ahead"
 ---
 
+# Table of contents
+
+- [AWS Technical Professional - Module 5 : Looking Ahead](#aws-technical-professional---module-5--looking-ahead)
+  - [The migration process](#the-migration-process)
+  - [Minimum Viable Product (MVP)](#minimum-viable-product-mvp)
+  - [Migration strategies](#migration-strategies)
+  - [AWS Trusted Advisor best practice checklist](#aws-trusted-advisor-best-practice-checklist)
+  - [Modernize to drive growth](#modernize-to-drive-growth)
+  - [Serverless](#serverless)
+  - [Containers](#containers)
+    - [Use cases](#use-cases)
+
 # AWS Technical Professional - Module 5 : Looking Ahead
 
 
