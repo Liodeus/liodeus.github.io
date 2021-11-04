@@ -683,7 +683,7 @@ https://github.com/swisskyrepo/PayloadsAllTheThings/tree/master/Upload%20Insecur
 ```
 https://github.com/swisskyrepo/PayloadsAllTheThings/tree/master/SQL%20Injection
 
-https://blog.cobalt.io/a-pentesters-guide-to-sql-injection-sqli-16fd570c3532
+https://cobalt.io/blog/a-pentesters-guide-to-sql-injection-sqli
 ```
 
 ### XSS
