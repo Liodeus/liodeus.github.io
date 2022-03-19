@@ -9,11 +9,11 @@ description: "Jenkins - Vulnerabilities analysis part 3"
 What's coming from all the precedent numbers are this list of vulnerabilities by category. This is interresting to see what kind of bug can be found on Jenkins.
 
 ## Numbers
-3- 8 - Missing permission
-3- 6 - XSS
-2- 9 - CSRF
-1- 1 - XXE
-1- 1 - Secret stored in plain text
+- 38 - Missing permission
+- 36 - XSS
+- 29 - CSRF
+- 11 - XXE
+- 11 - Secret stored in plain text
 - 7 - Path traversal
 - 6 - Agent-to-controller security bypass
 - 3 - Arbitrary file read
