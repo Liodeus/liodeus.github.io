@@ -1,11 +1,11 @@
 ---
 layout: post
-title: Jenkins - Vulnerability analysis part 1
+title: Jenkins - Vulnerabilities analysis part 1
 tags: [Jenkins, Security, CI, CD]
-description: "Jenkins - Vulnerability analysis part 1"
+description: "Jenkins - Vulnerabilities analysis part 1"
 ---
 
-The goal here is to learn/find out what kind of vulnerabilities can be found in Jenkins.
+I'm trying to learn what kind of vulnerabilities can be found on Jenkins. My analysis won't be 100% accurate, but I'm trying my best :)
 
 To achieve this, I based all my research on their [*Security Advisory*](https://www.jenkins.io/security/advisories/).
 
@@ -230,4 +230,4 @@ Which gave me those results. (Boring like this I know)
 - Passwords stored in plain text by Vmware vRealize CodeStream Plugin 
 - Personal tokens stored in plain text by incapptic connect uploader Plugin
 
-Next part of this analysis, is to group vulnerability by "type", see Jenkins - Vulnerability analysis part 2.
+Next part of this analysis, is to group vulnerability by "type", see [Jenkins - Vulnerability analysis part 2](https://liodeus.github.io/2022/03/19/Jenkins-vulnerabilities-analysis-part-2.html).
