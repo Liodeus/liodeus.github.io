@@ -55,6 +55,7 @@ Search for vulnerable plugins :
 - Create a new freestyle project
 - Go on it - click Pom2Config
 - Craft a .xml with exploit
+
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE data [
