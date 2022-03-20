@@ -22,15 +22,18 @@ Search for vulnerable plugins :
 	- Dashboard View Plugin 2.18
 	- [https://plugins.jenkins.io/dashboard-view/](https://plugins.jenkins.io/dashboard-view/)
 	- Requires Jenkins 2.277.1
+
 #### Exploit
 - New view - name it - select dashboard
 - add a Portlets at the top of the page
 - Iframe source url --> javascript:alert("Liodeus")
+
 ### Reflected XSS vulnerability in Wall Display Master Project Plugin
 - CVE-2019-10376 
 	-  Wall Display Master Project 0.6.34
 	- [https://plugins.jenkins.io/jenkinswalldisplay/](https://plugins.jenkins.io/jenkinswalldisplay/) 
 	- Requires Jenkins 1.580
+
 #### Exploit
 - click Wall Display
 - `customTheme=</style><script>alert("Liodeus")</script>`
@@ -47,6 +50,7 @@ Search for vulnerable plugins :
 	- pom2config plugin 1.2
 	- [https://plugins.jenkins.io/pom2config/](https://plugins.jenkins.io/pom2config/)
 	- Requires Jenkins 1.509.1
+
 #### Exploit
 - Create a new freestyle project
 - Go on it - click Pom2Config
@@ -68,6 +72,7 @@ Search for vulnerable plugins :
 	- GitLab Authentication Plugin 1.13
 	- [https://plugins.jenkins.io/gitlab-oauth/](https://plugins.jenkins.io/gitlab-oauth/)
 	- Requires Jenkins 2.249.1
+
 #### Exploit
 - Dashboard - Configure Global Security - Security Realm - GitLab Authentication Plugin
 - Client ID --> ThisIsASecretID
