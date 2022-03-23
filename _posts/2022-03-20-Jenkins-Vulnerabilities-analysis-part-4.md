@@ -12,9 +12,6 @@ The docker image, which will be the lab, with all the plugins already installed,
 Search for vulnerable plugins :
 - [https://www.jenkins.io/security/advisories/](https://www.jenkins.io/security/advisories/)
 
-
-## Missing permission
-
 * * *
 
 ## XSS
@@ -126,21 +123,6 @@ Search for vulnerable plugins :
 - In the "Path to key" box, enter a file to check for existance
 - If the file doesn't exist on the system : No such file : 'fileName'
 - If the file exist : No error
-
-* * *
-
-## Agent-to-controller security bypass
-
-* * *
-
-## Arbitrary file read
-
-
-## Denial of service
-
-* * *
-
-## Incorrect permission
 
 * * *
 

@@ -76,6 +76,6 @@ Which is a total of **146** vulnerabilities or **81,1%** of the total during thi
 10. Incorrect permission --> 1,6%
 
 ## What's next ?
-Next part of this analysis, will be about making a lab to study the vulnerabilities from my top 10. This will be a docker image containing vulnerable plugins and there will be a "write up" on how to trigger them.
+Next part of this analysis, will be about making a lab to study some of the vulnerabilities from my top 10. This will be a docker image containing vulnerable plugins and there will be a "write up" on how to trigger them.
 
 See [Jenkins - Vulnerability analysis part 4](https://liodeus.github.io/2022/03/20/Jenkins-Vulnerabilities-analysis-part-4.html).
