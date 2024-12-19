@@ -90,6 +90,15 @@ L'OWASP met en lumière les principales menaces auxquelles les LLM sont exposés
     <img src="https://raw.githubusercontent.com/Liodeus/liodeus.github.io/refs/heads/master/assets/imgs/AI/volcano.svg"> 
 </p>
 
+## Exemples concrets
+### Freysa
+[Freysa](https://www.freysa.ai/) est une plateforme innovante où des utilisateurs peuvent participer à des défis visant à convaincre un agent IA de transférer des fonds d'une cagnotte. Par exemple, dans un défi récent, un utilisateur a réussi à convaincre l'IA Freysa de transférer plus de **47 000 dollars** en utilisant une stratégie de prompt injection astucieuse. L'utilisateur a réussi à contourner les directives de l'IA en lui faisant croire qu'une demande de transfert était légitime, malgré les protections mises en place.
+
+### JailbreakMe
+[JailbreakMe](https://jailbreakme.xyz/), quant à elle, est une plateforme décentralisée où les organisations peuvent tester leurs modèles d'IA en organisant des tournois où les utilisateurs gagnent des récompenses pour trouver des failles et "jailbreak" les agents IA. Par exemple, dans un tournoi récent, un agent IA appelé Zynx a été mis au défi de protéger un secret. Les participants ont tenté de le convaincre de révéler ce secret en utilisant des dialogues et des prompts spécialement conçus pour contourner les protections de l'IA.
+
+Ces exemples montrent à quel point les systèmes d'IA peuvent être vulnérables si les prompts ne sont pas correctement filtrés ou si les directives de l'IA ne sont pas suffisamment robustes. Ils démontrent également que les attaques par prompt injection peuvent être très efficaces, même contre des modèles d'IA conçus pour être sécurisés. Cela souligne l'importance de tester régulièrement les modèles d'IA pour identifier et corriger ces vulnérabilités avant leur déploiement en production.
+
 ---
 
 ## Processus de Red Teaming
