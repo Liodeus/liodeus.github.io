@@ -47,7 +47,9 @@ Pour garantir une sécurité optimale, il est crucial de combiner ces deux appro
 </p>
 
 ### Les LLM ne se limitent pas qu’au texte
-Les modèles de langage, ne se limitent pas à la génération de texte. Ils s'appliquent à des domaines variés tels que le traitement du langage naturel (NLP), la vision par ordinateur (computer vision) pour les images, et l'audio pour les voix. Ils acceptent également d'autres formats d'entrée de données, formant ainsi des modèles multimodaux capables de traiter et croiser différents types d'informations. Cette diversité élargit considérablement leur surface d'attaque.
+Les LLM modernes ne se limitent plus au traitement du texte. Ils évoluent vers des modèles multimodaux capables d'analyser et de générer différents types de contenus. Dans le domaine visuel, ils peuvent analyser des photos, générer des illustrations ou encore reconnaître des objets. Pour l'audio, ces modèles excellent en transcription de voix, génération de parole et analyse sonore. Ils s'étendent également au traitement vidéo, permettant la compréhension de scènes et la description de mouvements, ainsi qu'à l'analyse de documents complexes incluant la compréhension de mises en page, de tableaux et de graphiques.
+
+Cette capacité à traiter plusieurs formats d'entrée et de sortie, bien qu'enrichissant les possibilités d'utilisation, élargit également considérablement la surface d'attaque potentielle. Chaque nouvelle modalité introduit ses propres vulnérabilités et points d'entrée pour d'éventuelles attaques.
 
 <p align="center" width="100%">
     <img src="https://raw.githubusercontent.com/Liodeus/liodeus.github.io/refs/heads/master/assets/imgs/AI/multimodales.svg"> 
