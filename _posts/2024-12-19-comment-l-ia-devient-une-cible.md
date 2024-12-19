@@ -189,10 +189,12 @@ Tester la sécurité des systèmes d'intelligence artificielle constitue un déf
 
 ## Sources
 
-* [AI Safety Guidelines](https://aisi.go.jp/assets/pdf/ai_safety_RT_v1.00_en.pdf)
-* [Advancing Red Teaming with People and AI](https://openai.com/index/advancing-red-teaming-with-people-and-ai)
-* [OWASP Top 10 for LLM](https://genai.owasp.org/llm-top-10/)
-* [Schémas - Napkin.ai](https://app.napkin.ai/)
+- [AI Safety Guidelines](https://aisi.go.jp/assets/pdf/ai_safety_RT_v1.00_en.pdf)
+- [Advancing Red Teaming with People and AI](https://openai.com/index/advancing-red-teaming-with-people-and-ai)
+- [OWASP Top 10 for LLM](https://genai.owasp.org/llm-top-10/)
+- [Schémas - Napkin.ai](https://app.napkin.ai/)
+- [Freysa](https://www.freysa.ai/)
+- [JailbreakMe](https://jailbreakme.xyz/)
 
 ---
 
