@@ -25,9 +25,9 @@ Depuis ces dernières années, l'IA et plus particulièrement les LLM (Large Lan
 ### Avertissement
 Avant de plonger dans le sujet, il est important de rappeler certains points pour mieux contextualiser ce qui va suivre :
 
-1. **Recherche personnelle** : Cette présentation repose sur mes expériences et recherches personnelles.
-2. **Vérité non absolue** : Les méthodologies et techniques évoquées ici ne sont pas immuables. La sécurité de l'IA évolue constamment et exige une adaptation continue.
-3. **Méthodologies alternatives** : Les approches présentées ne sont qu'une partie des possibilités existantes. Il existe d'autres méthodologies et outils pour tester la sécurité de l'IA.
+- **Recherche personnelle** : Cette présentation repose sur mes expériences et recherches personnelles.
+- **Vérité non absolue** : Les méthodologies et techniques évoquées ici ne sont pas immuables. La sécurité de l'IA évolue constamment et exige une adaptation continue.
+- **Méthodologies alternatives** : Les approches présentées ne sont qu'une partie des possibilités existantes. Il existe d'autres méthodologies et outils pour tester la sécurité de l'IA.
 
 <p align="center" width="100%">
     <img src="https://raw.githubusercontent.com/Liodeus/liodeus.github.io/refs/heads/master/assets/imgs/AI/warning.svg"> 
@@ -183,7 +183,15 @@ Après tous les préparatifs, les tests se déroulent avec plusieurs étapes cl�
 ---
 
 ## Conclusion
-Tester la sécurité des systèmes d'intelligence artificielle constitue un défi majeur et crucial à l'ère de l'IA omniprésente. Ce processus exige une compréhension approfondie des modèles, des risques et des scénarios d'attaque pertinents, tout en adaptant les approches aux spécificités de chaque système. En combinant rigueur méthodologique et innovation, il est possible de mieux protéger ces technologies avancées contre les menaces actuelles et futures. Il est essentiel de maintenir une vigilance constante et de favoriser la collaboration pour assurer la sécurité et la fiabilité de l'IA, et ainsi bâtir un avenir où l'intelligence artificielle peut être utilisée de manière sûre et bénéfique pour tous.
+Cette exploration de la sécurité des LLM du point de vue d'un pentester révèle la complexité croissante des défis de sécurité dans ce domaine. Comme nous l'avons vu à travers les exemples de Freysa et JailbreakMe, même des systèmes conçus pour être sécurisés peuvent présenter des vulnérabilités exploitables. Le Top 10 OWASP 2025 pour les LLM souligne l'évolution rapide des menaces.
+
+Face à l'intégration croissante des LLM dans les infrastructures d'entreprise, maintenir une approche équilibrée entre Red Teaming et Pentesting traditionnel devient indispensable. Les recherches continues, comme celles citées sur les backdoors et les attaques par injection, montrent que ce domaine évolue rapidement, nécessitant une adaptation constante des méthodologies de test.
+
+Il est important de souligner que les concepts et méthodologies présentés dans cet article représentent un instantané d'un domaine en perpétuelle évolution. À l'heure où de nouveaux LLM et techniques d'attaque émergent presque quotidiennement, les professionnels de la sécurité doivent rester en veille constante. Les vulnérabilités d'aujourd'hui peuvent différer significativement de celles de demain, et les méthodologies de test devront continuellement s'adapter à ces changements.
+
+Pour les professionnels de la sécurité, la clé réside donc non seulement dans la combinaison d'une compréhension approfondie des spécificités des LLM avec des pratiques de test rigoureuses, mais aussi dans leur capacité à rester à jour et à faire évoluer leurs approches au rythme des innovations dans ce domaine en constante mutation.
+
+Dans ce contexte d'évolution rapide, quelles seront les prochaines vulnérabilités critiques ? Comment les entreprises peuvent-elles se préparer aux menaces émergentes ? Et surtout, comment pouvons-nous collectivement contribuer à établir des standards de sécurité robustes pour les systèmes d'IA de demain ? Ces questions méritent notre attention continue et appellent à une collaboration accrue entre les professionnels de la sécurité, les développeurs d'IA et les chercheurs du domaine.
 
 ---
 
