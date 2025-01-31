@@ -6,17 +6,17 @@ description: "Voyage dans le Deep Learning - Principes et applications"
 ---
 
 
-- [**Voyage dans le Deep Learning : Principes et applications**](#voyage-dans-le-deep-learning--principes-et-applications)
-- [**Présentation du cours**](#prsentation-du-cours)
+- [**Voyage dans le Deep Learning : Principes et applications**](#voyage-dans-le-deep-learning---principes-et-applications)
+- [**Présentation du cours**](#pr%C3%A9sentation-du-cours)
 - [**1. Introduction au Deep Learning**](#1-introduction-au-deep-learning)
-- [**2. L'architecture des réseaux de neurones**](#2-larchitecture-des-rseaux-de-neurones)
-- [**3. La préparation des données**](#3-la-prparation-des-donnes)
-- [**4. Processus d'entraînement**](#4-processus-dentranement)
-- [**5. Défis dans l'entraînement des modèles**](#5-dfis-dans-lentranement-des-modles)
-- [**6. Architectures spécialisées de réseaux**](#6-architectures-spcialises-de-rseaux)
-- [**7. Enrichir les données grâce à l'augmentation**](#7-enrichir-les-donnes-grce--laugmentation)
+- [**2. L'architecture des réseaux de neurones**](#2-larchitecture-des-r%C3%A9seaux-de-neurones)
+- [**3. La préparation des données**](#3-la-pr%C3%A9paration-des-donn%C3%A9es)
+- [**4. Processus d'entraînement**](#4-processus-dentra%C3%AEnement)
+- [**5. Défis dans l'entraînement des modèles**](#5-d%C3%A9fis-dans-lentra%C3%AEnement-des-mod%C3%A8les)
+- [**6. Architectures spécialisées de réseaux**](#6-architectures-sp%C3%A9cialis%C3%A9es-de-r%C3%A9seaux)
+- [**7. Enrichir les données grâce à l'augmentation**](#7-enrichir-les-donn%C3%A9es-gr%C3%A2ce-%C3%A0-laugmentation)
 - [**8. Apprentissage par transfert et fine-tuning**](#8-apprentissage-par-transfert-et-fine-tuning)
-- [**9. Modèle de détection de phishing (Google collab)**](#9-modle-de-dtection-de-phishing-google-collab)
+- [**9. Modèle de détection de phishing (Google collab)**](#9-mod%C3%A8le-de-d%C3%A9tection-de-phishing-google-collab)
 - [**10. Conclusion**](#10-conclusion)
 - [**Glossaire**](#glossaire)
 
@@ -76,7 +76,7 @@ Les fonctions d'activation introduisent de la non-linéarité dans le réseau, p
 | **Sigmoid** | Sortie binaire | Interprétation probabiliste | Sensible au vanishing gradient |
 | **Tanh** | Transformations cachées | Centrée sur zéro | Problème de saturation pour des valeurs extrêmes |
 
-</br>
+
 <p align="center">
     <img src="https://raw.githubusercontent.com/Liodeus/liodeus.github.io/refs/heads/master/assets/imgs/deep_learning/architecture_des_reseaux_de_neurones.png" width="90%"> 
 </p>
@@ -360,6 +360,9 @@ Mes notes prennent fin ici sur ce sujet. La suite pour moi est un autre cours de
 - **Pooling** : Réduction des dimensions d'une image tout en conservant les informations clés.
 - **Fine-tuning** : Réentraînement des couches d’un modèle pré-entraîné pour une nouvelle tâche.
 - **Adam** : Algorithme d'optimisation combinant momentum et adaptation du taux d'apprentissage.
+
+- TODO
+
 - Gradient
 - Vanishing gradient
 - Taux d'apprentissage
