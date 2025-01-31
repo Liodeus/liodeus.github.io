@@ -76,8 +76,9 @@ Les fonctions d'activation introduisent de la non-linéarité dans le réseau, p
 | **Sigmoid** | Sortie binaire | Interprétation probabiliste | Sensible au vanishing gradient |
 | **Tanh** | Transformations cachées | Centrée sur zéro | Problème de saturation pour des valeurs extrêmes |
 
-<p align="center" width="100%">
-    <img src="https://raw.githubusercontent.com/Liodeus/liodeus.github.io/refs/heads/master/assets/imgs/deep_learning/architecture_des_reseaux_de_neurones.png"> 
+</br>
+<p align="center">
+    <img src="https://raw.githubusercontent.com/Liodeus/liodeus.github.io/refs/heads/master/assets/imgs/deep_learning/architecture_des_reseaux_de_neurones.png" width="90%"> 
 </p>
 
 #### Les tenseurs (tensors)
@@ -99,8 +100,8 @@ Une grande partie de la réussite en Deep Learning dépend de la qualité des do
 - **Division des données** :
     - Une répartition **70-15-15** (entraînement, validation, test) est souvent utilisé car il offre un bon équilibre entre apprentissage et évaluation. Cependant, des variantes comme **80-10-10** peuvent être adaptées à des volumes de données différents.
 
-<p align="center" width="50%">
-    <img src="https://raw.githubusercontent.com/Liodeus/liodeus.github.io/refs/heads/master/assets/imgs/deep_learning/preparation_des_donnees.png"> 
+<p align="center">
+    <img src="https://raw.githubusercontent.com/Liodeus/liodeus.github.io/refs/heads/master/assets/imgs/deep_learning/preparation_des_donnees.png" width="70%"> 
 </p>
 
 ---
@@ -136,8 +137,8 @@ Une epoch correspond à un passage complet du modèle sur l’intégralité des 
     - Des centaines d’epochs peuvent être nécessaires pour des architectures complexes.
 - **Validation** : Après chaque epoch, le modèle est évalué sur les données de validation pour suivre sa progression.
 
-<p align="center" width="100%">
-    <img src="https://raw.githubusercontent.com/Liodeus/liodeus.github.io/refs/heads/master/assets/imgs/deep_learning/processus_entrainement_des_reseaux_de_neurones.png"> 
+<p align="center">
+    <img src="https://raw.githubusercontent.com/Liodeus/liodeus.github.io/refs/heads/master/assets/imgs/deep_learning/processus_entrainement_des_reseaux_de_neurones.png" width="70%"> 
 </p>
 
 ---
@@ -162,8 +163,8 @@ Un modèle sous-apprend lorsqu'il est trop simple pour capturer la complexité d
     - **Utilisation de fonctions d'activation non linéaires** : Introduire des fonctions d'activation non linéaires pour permettre au modèle de capturer des relations plus complexes dans les données.
     - **Réduction du taux de dropout** : Diminuer le taux de dropout pour permettre à plus de neurones de contribuer à l'apprentissage.
 
-<p align="center" width="100%">
-    <img src="https://raw.githubusercontent.com/Liodeus/liodeus.github.io/refs/heads/master/assets/imgs/deep_learning/sur_apprentissage_sous_apprentissage.png"> 
+<p align="center">
+    <img src="https://raw.githubusercontent.com/Liodeus/liodeus.github.io/refs/heads/master/assets/imgs/deep_learning/sur_apprentissage_sous_apprentissage.png" width="60%"> 
 </p>
 
 ---
@@ -199,8 +200,8 @@ Applique des filtres (masques) pour détecter des motifs spécifiques dans une z
     - **Average Pooling** : Prend la moyenne des valeurs.
         - *Usage* : Atténue le bruit mais perd en précision.
 
-<p align="center" width="70%">
-    <img src="https://raw.githubusercontent.com/Liodeus/liodeus.github.io/refs/heads/master/assets/imgs/deep_learning/reseau_de_neurones_convolutif.png"> 
+<p align="center">
+    <img src="https://raw.githubusercontent.com/Liodeus/liodeus.github.io/refs/heads/master/assets/imgs/deep_learning/reseau_de_neurones_convolutif.png" width="40%"> 
 </p>
 
 #### **6.2. Les réseaux récurrents (RNN)**
@@ -217,8 +218,8 @@ Exemple de Tokenisation avec [OpenAI](https://platform.openai.com/tokenizer):
 - Phrase : "Le chat noir dort sur le canapé."
 - Tokens : ["Le", " chat", " noir", " dort", " sur", " le", " canapé", "."]
 
-<p align="center" width="100%">
-    <img src="https://raw.githubusercontent.com/Liodeus/liodeus.github.io/refs/heads/master/assets/imgs/deep_learning/reseaux_recurrents.png"> 
+<p align="center">
+    <img src="https://raw.githubusercontent.com/Liodeus/liodeus.github.io/refs/heads/master/assets/imgs/deep_learning/reseaux_recurrents.png" width="70%"> 
 </p>
 
 ---
@@ -258,8 +259,8 @@ L'augmentation des données est une technique essentielle pour améliorer la per
     - **Combinaison de portions de textes différents** : Mélanger des parties de différents textes.
     - **Remplacement d'entités nommées** : Substituer des noms propres par d'autres noms propres.
 
-<p align="center" width="100%">
-    <img src="https://raw.githubusercontent.com/Liodeus/liodeus.github.io/refs/heads/master/assets/imgs/deep_learning/augmentation_donnees.png"> 
+<p align="center">
+    <img src="https://raw.githubusercontent.com/Liodeus/liodeus.github.io/refs/heads/master/assets/imgs/deep_learning/augmentation_donnees.png" width="70%"> 
 </p>
 
 ---
@@ -284,8 +285,8 @@ Une bonne analogie pour cela est un artiste qui est compétent dans un médium, 
     - Taux d’apprentissage très faible pour ajuster finement les poids sans dégrader les connaissances existantes.
     - Surveillance accrue du surapprentissage via des données de validation.
 
-<p align="center" width="100%">
-    <img src="https://raw.githubusercontent.com/Liodeus/liodeus.github.io/refs/heads/master/assets/imgs/deep_learning/apprentissage_par_transfert.png"> 
+<p align="center">
+    <img src="https://raw.githubusercontent.com/Liodeus/liodeus.github.io/refs/heads/master/assets/imgs/deep_learning/apprentissage_par_transfert.png" width="70%"> 
 </p>
 
 ---
