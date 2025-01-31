@@ -76,7 +76,7 @@ Les fonctions d'activation introduisent de la non-linéarité dans le réseau, p
 | **Sigmoid** | Sortie binaire | Interprétation probabiliste | Sensible au vanishing gradient |
 | **Tanh** | Transformations cachées | Centrée sur zéro | Problème de saturation pour des valeurs extrêmes |
 
-
+<br>
 <p align="center">
     <img src="https://raw.githubusercontent.com/Liodeus/liodeus.github.io/refs/heads/master/assets/imgs/deep_learning/architecture_des_reseaux_de_neurones.png" width="90%"> 
 </p>
@@ -322,6 +322,7 @@ Pour trouver des datasets :
 | **Autres avantages** |  |  |
 | Gestion des longues séquences | Limitée | Améliorée (jusqu'à 8192 tokens) |
 
+<br>
 Les principaux hyperparamètres sont :
 - **MAX_LENGTH** : Longueur maximale des textes traités (512 tokens)
 - **BATCH_SIZE** : Nombre d'exemples par lot (16)
