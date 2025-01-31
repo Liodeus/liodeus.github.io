@@ -128,6 +128,7 @@ Algorithme comme qui ajuste les poids pour améliorer progressivement la précis
 | **SGD** | Contrôle précis | Sensible au learning rate | Modèles simples |
 | **Adam** | Convergence rapide et stable | Paramètres à ajuster | Modèles complexes |
 
+<br>
 Pour plus d'informations sur les fonctions d'activation, vous pouvez consulter [cette page Wikipédia](https://fr.wikipedia.org/wiki/Fonction_d%27activation).
 
 #### **4.5 Cycles d’entraînement (Epochs)**
