@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Voyage dans le Deep Learning - Principes et applications
-tags: [AI, DeeepLearning, LM]
+tags: [AI, DeepLearning, LM, DL]
 description: "Voyage dans le Deep Learning - Principes et applications"
 ---
 
@@ -287,7 +287,7 @@ Une bonne analogie pour cela est un artiste qui est compétent dans un médium, 
     - Surveillance accrue du surapprentissage via des données de validation.
 
 <p align="center">
-    <img src="https://raw.githubusercontent.com/Liodeus/liodeus.github.io/refs/heads/master/assets/imgs/deep_learning/apprentissage_par_transfert.png" width="70%"> 
+    <img src="https://raw.githubusercontent.com/Liodeus/liodeus.github.io/refs/heads/master/assets/imgs/deep_learning/apprentissage_par_transfert.png" width="85%"> 
 </p>
 
 ---
