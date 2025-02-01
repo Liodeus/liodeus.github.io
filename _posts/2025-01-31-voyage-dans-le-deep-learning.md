@@ -146,7 +146,7 @@ Une epoch correspond à un passage complet du modèle sur l’intégralité des 
 
 ### 5. Défis dans l'entraînement des modèles
 #### 5.1 Sur-apprentissage (Overfitting) :
-Si un modèle apprend trop bien les données d'entraînement, il peut avoir du mal à généraliser à de nouvelles données.
+Si un modèle apprend trop bien les données d'entraînement, il peut avoir du mal à généraliser sur de nouvelles données.
 - **Symptômes** : Nombre excessif d’epochs entraînant une mémorisation du bruit des données. Haute précision en entraînement, faible en validation.
 - **Solutions** :
     - **Dropout** : Désactivation aléatoire de neurones.
@@ -171,7 +171,7 @@ Un modèle sous-apprend lorsqu'il est trop simple pour capturer la complexité d
 ---
 
 ### 6. Architectures spécialisées de réseaux
-#### **6.1. Réseaux Convolutifs (CNN)**
+#### **6.1. Réseaux Convolutifs ()**
 
 Les CNN sont conçus pour traiter des données structurées en grille (images, sons, etc.) en extrayant des motifs hiérarchiques.
 
@@ -292,7 +292,7 @@ Une bonne analogie pour cela est un artiste qui est compétent dans un médium, 
 
 ---
 
-### 9. Modèle de détection de phishing (Google collab)
+### 9. Modèle de détection de phishing (Google colab)
 Après avoir exploré ces concepts clés, il est temps de passer à la pratique et d'appliquer ces principes à un cas concret.
 
 [Ce notebook](https://colab.research.google.com/drive/1sAP6I72ilrWMZP5dE1TmjRjSUpZ56Q_L?usp=sharing) propose une approche pour détecter les tentatives de phishing. Il utilise la bibliothèque **Hugging Face Transformers** et s'appuie sur le modèle **ModernBERT-base**, une version optimisée de BERT pour le traitement du langage naturel.
@@ -300,7 +300,7 @@ Après avoir exploré ces concepts clés, il est temps de passer à la pratique 
 #### 9.1. Installation des bibliothèques et chargement des données
 Les dépendances nécessaires sont installées, le [jeu de données](https://huggingface.co/datasets/David-Egea/phishing-texts/resolve/main/dataset.json) est ensuite téléchargé depuis la plateforme Hugging Face qui propose de nombreux datasets déjà prêts à l'emploi pour l'entraînement de modèles NLP.
 
-Notre jeu de données est composé de **20 300** textes. Il est relativement équilibré, avec **62 %** de textes de non-phishing et **38 %** de textes de phishing. Pour l'entraînement de notre modèle, nous utiliserons **80 %** de ces données, soit **16 240** textes, et nous garderons les **20 %** restants, soit **4 060** textes, pour tester et évaluer les performances de notre modèle.
+Notre jeu de données se compose de **20 300** textes. Il est relativement équilibré, avec **62 %** de textes de non-phishing et **38 %** de textes de phishing. Pour l'entraînement de notre modèle, nous utiliserons **80 %** de ces données, soit **16 240** textes, et nous garderons les **20 %** restants, soit **4 060** textes, pour tester et évaluer les performances de notre modèle.
 
 Pour trouver des datasets :
 - Hugging Face Datasets : https://huggingface.co/datasets
@@ -344,7 +344,7 @@ Après avoir terminé l'entraînement, mon modèle a atteint une précision de 9
 
 Cependant, lors de la phase de test avec des données réelles, c'est-à-dire des messages de phishing que le modèle n'avait jamais vus auparavant, il n'a détecté que 9 messages sur 10. Les erreurs du modèle peuvent être dues à une combinaison de facteurs liés aux données d'entraînement, au choix du modèle, à son entraînement et à son utilisation.
 
-Cependant, pour mes besoins de tests, je trouve cela amplement suffisant et laisse aux lecteurs courageux qui sont arrivés jusqu'ici le soin d'explorer davantage ces aspects.
+Cependant, pour mes besoins de tests, je trouve cela amplement suffisant et laisse aux lecteurs courageux qui sont arrivé jusqu'ici le soin d'explorer davantage ces aspects.
 
 
 ### **10. Conclusion**
