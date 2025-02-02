@@ -125,7 +125,7 @@ Algorithme comme qui ajuste les poids pour améliorer progressivement la précis
 
 | Optimiseur | Avantages | Inconvénients | Usage typique |
 | --- | --- | --- | --- |
-| **SGD** | Contrôle précis | Sensible au learning rate | Modèles simples |
+| **SGD** | Contrôle précis | Sensible au taux d’apprentissage | Modèles simples |
 | **Adam** | Convergence rapide et stable | Paramètres à ajuster | Modèles complexes |
 
 <br>
@@ -357,17 +357,9 @@ Mes notes prennent fin ici sur ce sujet. La suite pour moi est un autre cours de
 ---
 
 ### **Glossaire**
-
-- **Rétropropagation** : Ajustement des poids en fonction de l'erreur.
-- **Pooling** : Réduction des dimensions d'une image tout en conservant les informations clés.
-- **Fine-tuning** : Réentraînement des couches d’un modèle pré-entraîné pour une nouvelle tâche.
-- **Adam** : Algorithme d'optimisation combinant momentum et adaptation du taux d'apprentissage.
-
-- TODO
-
-- Gradient
-- Vanishing gradient
-- Taux d'apprentissage
-- embedding
-- batch
-- normalisation
+- **Convergence** : État atteint lorsqu’un modèle cesse d’apporter des améliorations significatives à ses performances au fil des itérations d’entraînement.  
+- **Gradient** : Vecteur indiquant la direction et l’intensité du changement nécessaire pour ajuster les poids du réseau et minimiser l’erreur lors de l’apprentissage.  
+- **Neurones** : Unités de base d’un réseau de neurones artificiel, responsables du traitement des informations en appliquant des transformations mathématiques.  
+- **Régularisation** : Techniques utilisées pour éviter le surapprentissage (overfitting) en pénalisant des modèles trop complexes ou en limitant les valeurs des poids.  
+- **Taux d’apprentissage** : Paramètre qui contrôle l’ampleur des ajustements apportés aux poids d’un modèle lors de l’entraînement. Un taux trop élevé peut empêcher la convergence, tandis qu’un taux trop faible ralentit l’apprentissage.  
+- **Vanishing gradient** : Phénomène où le gradient devient trop faible lors de la rétropropagation, ralentissant ou empêchant l’apprentissage des couches profondes d’un réseau de neurones.  
