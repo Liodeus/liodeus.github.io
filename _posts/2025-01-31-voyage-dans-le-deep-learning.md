@@ -16,7 +16,7 @@ description: "Voyage dans le Deep Learning - Principes et applications"
 - [**6. Architectures spécialisées de réseaux**](#6-architectures-sp%C3%A9cialis%C3%A9es-de-r%C3%A9seaux)
 - [**7. Enrichir les données grâce à l'augmentation**](#7-enrichir-les-donn%C3%A9es-gr%C3%A2ce-%C3%A0-laugmentation)
 - [**8. Apprentissage par transfert et fine-tuning**](#8-apprentissage-par-transfert-et-fine-tuning)
-- [**9. Modèle de détection de phishing (Google collab)**](#9-mod%C3%A8le-de-d%C3%A9tection-de-phishing-google-collab)
+- [**9. Modèle de détection de phishing (Google collab)**](#9-mod%C3%A8le-de-d%C3%A9tection-de-phishing-google-colab)
 - [**10. Conclusion**](#10-conclusion)
 - [**Glossaire**](#glossaire)
 
